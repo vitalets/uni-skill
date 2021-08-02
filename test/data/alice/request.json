@@ -1,0 +1,66 @@
+{
+  "meta": {
+    "locale": "ru-RU",
+    "timezone": "Europe/Moscow",
+    "client_id": "ru.yandex.mobile/7300 (Apple iPhone; iphone 14.6)",
+    "interfaces": {
+      "screen": {},
+      "payments": {},
+      "account_linking": {}
+    }
+  },
+  "session": {
+    "message_id": 3,
+    "session_id": "bea59bd9-13f2-443d-81be-6f4b8042653b",
+    "skill_id": "28eeaf59-dca8-43f6-b7d3-22826d58f786",
+    "user": {
+      "user_id": "92DE93E7BC5DFDE0ED492D939267972349E5A6B99EC6F1E646EF1C47A102B2D6"
+    },
+    "application": {
+      "application_id": "15B69EA115BD8D831AB0B66C8B9E880C0270916EEB040D47224A35996B233F96"
+    },
+    "new": false,
+    "user_id": "15B69EA115BD8D831AB0B66C8B9E880C0270916EEB040D47224A35996B233F96"
+  },
+  "request": {
+    "command": "привет 1",
+    "original_utterance": "привет один",
+    "nlu": {
+      "tokens": [
+        "привет",
+        "1"
+      ],
+      "entities": [
+        {
+          "type": "YANDEX.NUMBER",
+          "tokens": {
+            "start": 1,
+            "end": 2
+          },
+          "value": 1
+        }
+      ],
+      "intents": {
+        "anyText": {
+          "slots": {}
+        }
+      }
+    },
+    "markup": {
+      "dangerous_context": false
+    },
+    "type": "SimpleUtterance"
+  },
+  "state": {
+    "session": {
+      "foo": 42
+    },
+    "user": {
+      "bar": 43
+    },
+    "application": {
+      "baz": 44
+    }
+  },
+  "version": "1.0"
+}

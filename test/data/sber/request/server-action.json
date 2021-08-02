@@ -1,0 +1,46 @@
+{
+  "messageName": "SERVER_ACTION",
+  "sessionId": "86024848-c12b-4056-b58b-93c69b412314",
+  "messageId": 0,
+  "uuid": {
+    "userChannel": "B2C",
+    "sub": "d2d6da62-6bdd-452b-b5dd-a145090075ba",
+    "userId": "123"
+  },
+  "payload": {
+    "device": {
+      "platformType": "ios",
+      "platformVersion": "1.0.2",
+      "surface": "SBOL",
+      "surfaceVersion": "1.0.2",
+      "features": {
+        "appTypes": [
+          "DIALOG",
+          "WEB_APP"
+        ]
+      },
+      "capabilities": {
+        "screen": {
+          "available": true
+        },
+        "mic": {
+          "available": true
+        },
+        "speak": {
+          "available": true
+        }
+      },
+      "additionalInfo": {}
+    },
+    "app_info": {
+      "projectId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "applicationId": "3fa85f64-5717-4562-b3fc-2c963f66afa7",
+      "appversionId": "3fa85f64-5717-4562-b3fc-2c963f66afa8"
+    },
+    "projectName": "weather",
+    "server_action": {
+      "action_id": "start_track",
+      "parameters": {}
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "response": {
+    "text": "Привет",
+    "tts": "Привет",
+    "end_session": false,
+    "card": {
+      "type": "BigImage",
+      "image_id": "1030494/5fa5d95433629a9e2596",
+      "description": "Описание",
+      "title": "Подпись"
+    },
+    "buttons": [
+      {
+        "hide": true,
+        "title": "кнопка"
+      }
+    ]
+  },
+  "session_state": {
+    "foo": 42
+  },
+  "application_state": {
+    "bar": 43
+  },
+  "version": "1.0"
+}

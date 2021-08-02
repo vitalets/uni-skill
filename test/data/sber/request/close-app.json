@@ -1,0 +1,269 @@
+{
+  "messageName": "CLOSE_APP",
+  "sessionId": "86024848-c12b-4056-b58b-93c69b412314",
+  "messageId": 0,
+  "uuid": {
+    "userChannel": "B2C",
+    "sub": "d2d6da62-6bdd-452b-b5dd-a145090075ba",
+    "userId": "123"
+  },
+  "payload": {
+    "device": {
+      "platformType": "android",
+      "platformVersion": "1.0.2",
+      "surface": "SBOL",
+      "surfaceVersion": "1.0.2",
+      "features": {
+        "appTypes": [
+          "DIALOG",
+          "WEB_APP"
+        ]
+      },
+      "capabilities": {
+        "screen": {
+          "available": true
+        },
+        "mic": {
+          "available": true
+        },
+        "speak": {
+          "available": true
+        }
+      },
+      "additionalInfo": {}
+    },
+    "app_info": {
+      "projectId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "applicationId": "3fa85f64-5717-4562-b3fc-2c963f66afa7",
+      "appversionId": "3fa85f64-5717-4562-b3fc-2c963f66afa8"
+    },
+    "character": {
+      "id": "sber",
+      "name": "Сбер",
+      "gender": "male",
+      "appeal": "official"
+    },
+    "intent": "rain",
+    "original_intent": "rain",
+    "intent_meta": {},
+    "projectName": "weather",
+    "annotations": {
+      "censor_data": {
+        "classes": [
+          "politicians",
+          "obscene",
+          "model_response"
+        ],
+        "probas": [
+          0,
+          0,
+          0.20716862380504608
+        ]
+      },
+      "text_sentiment": {
+        "classes": [
+          "negative",
+          "speech",
+          "neutral",
+          "positive",
+          "skip"
+        ],
+        "probas": [
+          0.1,
+          0.1,
+          0.1,
+          0.6,
+          0.1
+        ]
+      },
+      "asr_sentiment": {
+        "classes": [
+          "positive",
+          "neutral",
+          "negative"
+        ],
+        "probas": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      }
+    },
+    "strategies": {
+      "happy_birthday": false,
+      "last_call": 158644724
+    },
+    "message": {
+      "original_text": "переведи сотню евро на мой счёт",
+      "normalized_text": "перевести MONEY_TOKEN на мой счет .",
+      "asr_normalized_message": "переведи 100 евро на мой счёт",
+      "entities": {
+        "CCY_TOKEN": [
+          {
+            "value": "eur"
+          }
+        ],
+        "MONEY_TOKEN": [
+          {
+            "amount": 100,
+            "currency": "eur"
+          }
+        ],
+        "NUM_TOKEN": [
+          {
+            "adjectival_number": false,
+            "value": 100
+          }
+        ]
+      },
+      "tokenized_elements_list": [
+        {
+          "dependency_type": "root",
+          "grammem_info": {
+            "aspect": "perf",
+            "mood": "imp",
+            "number": "sing",
+            "part_of_speech": "VERB",
+            "person": "2",
+            "raw_gram_info": "aspect=perf|mood=imp|number=sing|person=2|transitivity=tran|verbform=fin|voice=act",
+            "transitivity": "tran",
+            "verbform": "fin",
+            "voice": "act"
+          },
+          "head": 0,
+          "lemma": "перевести",
+          "list_of_dependents": [
+            2,
+            3
+          ],
+          "text": "переведи"
+        },
+        {
+          "composite_token_length": 2,
+          "composite_token_type": "MONEY_TOKEN",
+          "composite_token_value": {
+            "amount": 100,
+            "currency": "eur"
+          },
+          "dependency_type": "nummod",
+          "grammem_info": {
+            "numform": "digit",
+            "part_of_speech": "NUM",
+            "raw_gram_info": "numform=digit"
+          },
+          "head": 1,
+          "is_beginning_of_composite": true,
+          "lemma": "100",
+          "list_of_dependents": [],
+          "list_of_token_types_data": [
+            {
+              "token_type": "NUM_TOKEN",
+              "token_value": {
+                "adjectival_number": false,
+                "value": 100
+              }
+            }
+          ],
+          "text": "100",
+          "token_type": "NUM_TOKEN",
+          "token_value": {
+            "adjectival_number": false,
+            "value": 100
+          }
+        },
+        {
+          "composite_token_length": 2,
+          "composite_token_type": "MONEY_TOKEN",
+          "composite_token_value": {
+            "amount": 100,
+            "currency": "eur"
+          },
+          "dependency_type": "obj",
+          "grammem_info": {
+            "degree": "pos",
+            "part_of_speech": "X",
+            "raw_gram_info": "degree=pos"
+          },
+          "head": 1,
+          "is_beginning_of_composite": false,
+          "lemma": "eur",
+          "list_of_dependents": [
+            6
+          ],
+          "list_of_token_types_data": [
+            {
+              "token_type": "CCY_TOKEN",
+              "token_value": {
+                "value": "eur"
+              }
+            }
+          ],
+          "text": "eur",
+          "token_type": "CCY_TOKEN",
+          "token_value": {
+            "value": "eur"
+          }
+        },
+        {
+          "dependency_type": "case",
+          "grammem_info": {
+            "part_of_speech": "ADP",
+            "raw_gram_info": ""
+          },
+          "head": 6,
+          "lemma": "на",
+          "list_of_dependents": [],
+          "text": "на"
+        },
+        {
+          "dependency_type": "det",
+          "grammem_info": {
+            "case": "acc",
+            "gender": "masc",
+            "number": "sing",
+            "part_of_speech": "DET",
+            "raw_gram_info": "case=acc|gender=masc|number=sing"
+          },
+          "head": 6,
+          "lemma": "мой",
+          "list_of_dependents": [],
+          "text": "мой"
+        },
+        {
+          "dependency_type": "nmod",
+          "grammem_info": {
+            "animacy": "inan",
+            "case": "acc",
+            "gender": "masc",
+            "number": "sing",
+            "part_of_speech": "NOUN",
+            "raw_gram_info": "animacy=inan|case=acc|gender=masc|number=sing"
+          },
+          "head": 3,
+          "lemma": "счет",
+          "list_of_dependents": [
+            4,
+            5
+          ],
+          "text": "счет"
+        },
+        {
+          "lemma": ".",
+          "list_of_token_types_data": [
+            {
+              "token_type": "SENTENCE_ENDPOINT_TOKEN",
+              "token_value": {
+                "value": "."
+              }
+            }
+          ],
+          "text": ".",
+          "token_type": "SENTENCE_ENDPOINT_TOKEN",
+          "token_value": {
+            "value": "."
+          }
+        }
+      ]
+    }
+  }
+}
