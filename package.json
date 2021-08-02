@@ -1,0 +1,49 @@
+{
+  "name": "uni-skill",
+  "description": "Universal protocol for voice assistant skills",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "lint": "eslint src test --ext .ts",
+    "test:l": "mocha -r ts-node/register test/setup.ts test/specs/*.ts",
+    "test": "LOG_LEVEL=fatal npm run test:l",
+    "build": "rm -rf dist && tsc -p tsconfig.build.json",
+    "release": "npm run lint && npm t && npm run build && npm version $VER && npm publish && git push --follow-tags --no-verify",
+    "release-patch": "VER=patch npm run release",
+    "release-minor": "VER=minor npm run release"
+  },
+  "lint-staged": {
+    "{src,test}/**/*.ts": "eslint --ext .ts"
+  },
+  "dependencies": {
+    "alice-types": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.17",
+    "@types/mocha": "^8.2.2",
+    "@types/node": "^15.0.1",
+    "@types/sinon": "^10.0.2",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+    "chai": "^4.3.4",
+    "eslint": "^7.24.0",
+    "eslint-plugin-mocha": "^8.1.0",
+    "lint-staged": "^10.5.4",
+    "mocha": "^8.3.2",
+    "sinon": "^11.1.1",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.2.4"
+  },
+  "author": {
+    "name": "Vitaliy Potapov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/vitalets/uni-skill.git"
+  },
+  "license": "MIT"
+}
