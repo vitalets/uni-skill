@@ -1,11 +1,10 @@
 /**
  * Sber request.
  */
-import { NLPRequestMTS, NLPRequestСA } from '@salutejs/types';
+import { NLPRequest, NLPRequestMTS, NLPRequestСA, NLPRequestRA, NLPRequestSA } from '@salutejs/types';
 import { BaseRequest, IRequest } from '../base/request';
 
-// todo: support run-app and server-action
-type ReqBody = NLPRequestMTS | NLPRequestСA;
+type ReqBody = NLPRequest;
 
 export class SberRequest extends BaseRequest implements IRequest {
   static match(reqBody: unknown): reqBody is ReqBody {
@@ -32,11 +31,32 @@ export class SberRequest extends BaseRequest implements IRequest {
     return this.body.messageId;
   }
 
-  get userMessage() {
-    return this.body.payload.message.asr_normalized_message || '';
+  get userMessage(): string {
+    return this.isMessageToSkill() || this.isCloseApp()
+      ? this.body.payload.message.asr_normalized_message || ''
+      : '';
   }
 
-  get isNewSession() {
-    return this.body.payload.new_session;
+  get isNewSession(): boolean {
+    return this.isMessageToSkill() || this.isCloseApp()
+      ? this.body.payload.new_session
+      : (this.isRunApp() ? true : false);
+
+  }
+
+  isMessageToSkill(): this is { body: NLPRequestMTS } {
+    return this.body.messageName === 'MESSAGE_TO_SKILL';
+  }
+
+  isCloseApp(): this is { body: NLPRequestСA } {
+    return this.body.messageName === 'CLOSE_APP';
+  }
+
+  isServerAction(): this is { body: NLPRequestSA } {
+    return this.body.messageName === 'SERVER_ACTION';
+  }
+
+  isRunApp(): this is { body: NLPRequestRA } {
+    return this.body.messageName === 'RUN_APP';
   }
 }
