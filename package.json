@@ -11,6 +11,7 @@
     "lint": "eslint src test --ext .ts",
     "test:l": "mocha -r ts-node/register test/setup.ts 'test/specs/**/*.ts'",
     "test": "LOG_LEVEL=fatal npm run test:l",
+    "check": "ts-node scripts/check",
     "build": "rm -rf dist && tsc -p tsconfig.build.json",
     "release": "npm run lint && npm t && npm run build && npm version $VER && npm publish && git push --follow-tags --no-verify",
     "release-patch": "VER=patch npm run release",
@@ -21,7 +22,8 @@
   },
   "dependencies": {
     "@salutejs/types": "^0.7.0",
-    "alice-types": "^1.2.0"
+    "alice-types": "^1.2.0",
+    "marusya-types": "^1.0.1"
   },
   "devDependencies": {
     "@types/chai": "^4.2.17",
@@ -31,13 +33,14 @@
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "chai": "^4.3.4",
+    "dotenv": "^10.0.0",
     "eslint": "^7.24.0",
     "eslint-plugin-mocha": "^8.1.0",
     "lint-staged": "^10.5.4",
-    "marusya-types": "^1.0.1",
     "mocha": "^8.3.2",
     "sinon": "^11.1.1",
-    "ts-node-dev": "^1.1.8",
+    "skill-dev-proxy": "^2.0.9",
+    "ts-node": "^10.1.0",
     "typescript": "^4.2.4"
   },
   "author": {
