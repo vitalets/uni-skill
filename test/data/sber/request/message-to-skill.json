@@ -1,34 +1,153 @@
 {
-  "messageId": 1627996247239,
-  "sessionId": "77ac4fc3-ab57-30ce-824f-824052afb114",
+  "messageId": 1627996643286,
+  "sessionId": "f54b38df-61fc-33ba-91e3-447482844b0c",
   "messageName": "MESSAGE_TO_SKILL",
   "payload": {
     "intent": "run_app",
-    "original_intent": "dmik_denKosmonavtiki",
+    "original_intent": "axon",
     "intent_meta": {},
     "message": {
-      "original_text": "Поехали",
-      "normalized_text": "поехать .",
+      "original_text": "Виталий, как дела?",
+      "normalized_text": "PERSON_TOKEN как дело .",
       "tokenized_elements_list": [
         {
-          "text": "Поехали",
-          "raw_text": "Поехали",
+          "text": "Виталий",
+          "raw_text": "Виталий",
           "grammem_info": {
-            "aspect": "perf",
-            "mood": "ind",
-            "number": "plur",
-            "tense": "past",
-            "transitivity": "intr",
-            "verbform": "fin",
-            "voice": "act",
-            "raw_gram_info": "aspect=perf|mood=ind|number=plur|tense=past|transitivity=intr|verbform=fin|voice=act",
-            "part_of_speech": "VERB"
+            "animacy": "anim",
+            "case": "nom",
+            "gender": "masc",
+            "number": "sing",
+            "raw_gram_info": "animacy=anim|case=nom|gender=masc|number=sing",
+            "part_of_speech": "NOUN"
           },
-          "lemma": "поехать",
+          "lemma": "виталий",
+          "is_stop_word": false,
+          "list_of_dependents": [
+            2,
+            4
+          ],
+          "dependency_type": "root",
+          "head": 0,
+          "token_type": "NAME_TOKEN",
+          "token_value": {
+            "value": "виталий",
+            "full_names": [
+              "виталий",
+              "виталюша",
+              "виталя",
+              "витася",
+              "витаха",
+              "виташа",
+              "витоша",
+              "витуля",
+              "витуша",
+              "витюля",
+              "витюня",
+              "витюся",
+              "витюха",
+              "витюша",
+              "витя",
+              "таля"
+            ]
+          },
+          "list_of_token_types_data": [
+            {
+              "token_type": "NAME_TOKEN",
+              "token_value": {
+                "value": "виталий",
+                "full_names": [
+                  "виталий",
+                  "виталюша",
+                  "виталя",
+                  "витася",
+                  "витаха",
+                  "виташа",
+                  "витоша",
+                  "витуля",
+                  "витуша",
+                  "витюля",
+                  "витюня",
+                  "витюся",
+                  "витюха",
+                  "витюша",
+                  "витя",
+                  "таля"
+                ]
+              }
+            },
+            {
+              "token_type": "ANIMACY_TOKEN",
+              "token_value": {
+                "value": "виталий"
+              }
+            }
+          ],
+          "is_beginning_of_composite": true,
+          "composite_token_type": "PERSON_TOKEN",
+          "composite_token_length": 1,
+          "composite_token_value": {
+            "name": "виталий"
+          }
+        },
+        {
+          "text": ",",
+          "raw_text": ",",
+          "grammem_info": {
+            "raw_gram_info": "",
+            "part_of_speech": "PUNCT"
+          },
+          "lemma": ",",
           "is_stop_word": false,
           "list_of_dependents": [],
-          "dependency_type": "root",
-          "head": 0
+          "dependency_type": "punct",
+          "head": 1
+        },
+        {
+          "text": "как",
+          "raw_text": "как",
+          "grammem_info": {
+            "raw_gram_info": "",
+            "part_of_speech": "CONJ"
+          },
+          "lemma": "как",
+          "is_stop_word": false,
+          "list_of_dependents": [],
+          "dependency_type": "mark",
+          "head": 4
+        },
+        {
+          "text": "дела",
+          "raw_text": "дела",
+          "grammem_info": {
+            "animacy": "inan",
+            "case": "nom",
+            "gender": "neut",
+            "number": "plur",
+            "raw_gram_info": "animacy=inan|case=nom|gender=neut|number=plur",
+            "part_of_speech": "NOUN"
+          },
+          "lemma": "дело",
+          "is_stop_word": false,
+          "list_of_dependents": [
+            3,
+            5
+          ],
+          "dependency_type": "acl",
+          "head": 1
+        },
+        {
+          "text": "?",
+          "raw_text": "?",
+          "grammem_info": {
+            "raw_gram_info": "",
+            "part_of_speech": "PUNCT"
+          },
+          "lemma": "?",
+          "is_stop_word": false,
+          "list_of_dependents": [],
+          "dependency_type": "punct",
+          "head": 4
         },
         {
           "raw_text": ".",
@@ -48,11 +167,45 @@
           ]
         }
       ],
-      "entities": {},
+      "entities": {
+        "NAME_TOKEN": [
+          {
+            "value": "виталий",
+            "full_names": [
+              "виталий",
+              "виталюша",
+              "виталя",
+              "витася",
+              "витаха",
+              "виташа",
+              "витоша",
+              "витуля",
+              "витуша",
+              "витюля",
+              "витюня",
+              "витюся",
+              "витюха",
+              "витюша",
+              "витя",
+              "таля"
+            ]
+          }
+        ],
+        "ANIMACY_TOKEN": [
+          {
+            "value": "виталий"
+          }
+        ],
+        "PERSON_TOKEN": [
+          {
+            "name": "виталий"
+          }
+        ]
+      },
       "original_message_name": "MESSAGE_FROM_USER",
-      "human_normalized_text": "поехать",
+      "human_normalized_text": "виталий , как дело ?",
       "asr_normalized_message": null,
-      "human_normalized_text_with_anaphora": "поехать"
+      "human_normalized_text_with_anaphora": "виталий , как дело ?"
     },
     "annotations": {
       "censor_data": {
@@ -64,7 +217,7 @@
         "probas": [
           0,
           0,
-          0.00014871123130433261
+          0.00012005677126580849
         ]
       },
       "text_sentiment": {
@@ -74,9 +227,9 @@
           "neutral"
         ],
         "probas": [
-          0.002735276473686099,
-          0.06017279252409935,
-          0.9370919466018677
+          0.0006735523347742856,
+          0.11559958755970001,
+          0.8837268352508545
         ]
       },
       "asr_sentiment": {
@@ -85,8 +238,27 @@
       },
       "ner_prediction": [
         {
-          "raw_text": "Поехали",
-          "lemma": "поехать",
+          "raw_text": "Виталий",
+          "lemma": "виталий",
+          "normalized_token": null,
+          "ner_labels": {
+            "food": "O",
+            "main": "B-LOC",
+            "music": "O",
+            "odqa": "O",
+            "video": "O"
+          },
+          "ner_label_probas": {
+            "food": "0.99999046",
+            "main": "0.6429378",
+            "music": "0.989408",
+            "odqa": "0.9951851",
+            "video": "0.98945284"
+          }
+        },
+        {
+          "raw_text": ",",
+          "lemma": ",",
           "normalized_token": null,
           "ner_labels": {
             "food": "O",
@@ -96,11 +268,68 @@
             "video": "O"
           },
           "ner_label_probas": {
-            "food": "0.99677724",
-            "main": "0.8945029",
-            "music": "0.88677233",
-            "odqa": "0.9427564",
-            "video": "0.95196533"
+            "food": "1.0",
+            "main": "1.0",
+            "music": "1.0",
+            "odqa": "1.0",
+            "video": "1.0"
+          }
+        },
+        {
+          "raw_text": "как",
+          "lemma": "как",
+          "normalized_token": null,
+          "ner_labels": {
+            "food": "O",
+            "main": "O",
+            "music": "O",
+            "odqa": "O",
+            "video": "O"
+          },
+          "ner_label_probas": {
+            "food": "0.9999186",
+            "main": "0.9579877",
+            "music": "0.99916685",
+            "odqa": "0.99999845",
+            "video": "0.9989992"
+          }
+        },
+        {
+          "raw_text": "дела",
+          "lemma": "дело",
+          "normalized_token": null,
+          "ner_labels": {
+            "food": "O",
+            "main": "O",
+            "music": "O",
+            "odqa": "O",
+            "video": "O"
+          },
+          "ner_label_probas": {
+            "food": "0.9996599",
+            "main": "0.9933289",
+            "music": "0.9850327",
+            "odqa": "0.9999956",
+            "video": "0.99972016"
+          }
+        },
+        {
+          "raw_text": "?",
+          "lemma": "?",
+          "normalized_token": null,
+          "ner_labels": {
+            "food": "O",
+            "main": "O",
+            "music": "O",
+            "odqa": "O",
+            "video": "O"
+          },
+          "ner_label_probas": {
+            "food": "1.0",
+            "main": "1.0",
+            "music": "1.0",
+            "odqa": "1.0",
+            "video": "1.0"
           }
         }
       ],
@@ -126,7 +355,7 @@
     "device": {
       "platformType": "web",
       "platformVersion": "1",
-      "surface": "STARGATE",
+      "surface": "COMPANION",
       "surfaceVersion": "1",
       "deviceId": "",
       "deviceManufacturer": "",
@@ -161,6 +390,6 @@
   "uuid": {
     "userId": "4052f143-7be9-3344-d347-25483e8c1c62",
     "sub": "8tet/qbl+CcHB4nE68Kv5WdIZcPCH8JCeoArhHqWlFS+z7iqDAZQ9EEE4wdfI76102FmFj2CvM8n5X/6JKSwPsboVOBDNKPbE1QaDoQ7pflj8c8gwXrqV8SAuo2oDWaxng8gadFhk8QcLjWYfdVI07lr/knABRrh35Dr4z0D5Fc=",
-    "userChannel": "B2C"
+    "userChannel": "COMPANION_B2C"
   }
 }
