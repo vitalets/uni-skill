@@ -8,6 +8,15 @@ import { SberResponse } from './sber/response';
 export type Request = AliceRequest | MarusyaRequest | SberRequest;
 export type Response = AliceResponse | MarusyaResponse | SberResponse;
 
+export {
+  AliceRequest,
+  AliceResponse,
+  MarusyaRequest,
+  MarusyaResponse,
+  SberRequest,
+  SberResponse,
+};
+
 export function createRequest(reqBody: unknown) {
   // Important to match Marusya first!
   if (MarusyaRequest.match(reqBody)) {
