@@ -9,4 +9,9 @@ describe('sber request', () => {
     assert.equal(req.isMarusya(), false);
   });
 
+  it('userMessage', () => {
+    const req = createRequest(data);
+    assert.equal(req.userMessage, 'кнопка');
+  });
+
 });

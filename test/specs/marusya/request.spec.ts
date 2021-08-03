@@ -9,4 +9,9 @@ describe('marusya request', () => {
     assert.equal(req.isMarusya(), true);
   });
 
+  it('userMessage', () => {
+    const req = createRequest(data);
+    assert.equal(req.userMessage, 'привет');
+  });
+
 });

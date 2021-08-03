@@ -9,12 +9,12 @@
     "_city_ru": "Москва"
   },
   "request": {
-    "command": "dsfg",
-    "original_utterance": "dsfg",
+    "command": "привет",
+    "original_utterance": "привет",
     "type": "SimpleUtterance",
     "nlu": {
       "tokens": [
-        "dsfg"
+        "привет"
       ],
       "entities": []
     }
