@@ -6,31 +6,18 @@ import { BaseRequest, IRequest } from '../base/request';
 
 type ReqBody = NLPRequest;
 
-export class SberRequest extends BaseRequest implements IRequest {
+export class SberRequest extends BaseRequest implements IRequest<ReqBody> {
   static match(reqBody: unknown): reqBody is ReqBody {
     return Boolean((reqBody as ReqBody)?.messageName);
   }
 
-  isSber(): this is SberRequest {
-    return true;
-  }
+  isSber(): this is SberRequest { return true; }
 
-  constructor(public body: ReqBody) {
-    super();
-  }
+  constructor(public body: ReqBody) { super(); }
 
-  get userId() {
-    return this.body.uuid.userId || this.body.uuid.sub;
-  }
-
-  get sessionId() {
-    return this.body.sessionId;
-  }
-
-  get messageId() {
-    return this.body.messageId;
-  }
-
+  get userId() { return this.body.uuid.userId || this.body.uuid.sub; }
+  get sessionId() { return this.body.sessionId; }
+  get messageId() { return this.body.messageId; }
   get userMessage(): string {
     return this.isMessageToSkill() || this.isCloseApp()
       ? this.body.payload.message.asr_normalized_message || ''

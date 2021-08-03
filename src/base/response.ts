@@ -9,10 +9,17 @@ export abstract class BaseResponse {
   isMarusya() { return false; }
 }
 
-export interface IResponse {
-  body: unknown;
-  data: unknown;
+export interface IResponse<TBody> {
+  /** Тело ответа */
+  body: TBody;
+  /** Озвучка */
+  tts: string;
+  /** Текст (в первом бабле) */
+  text: string;
+  /** Флаг завершения сессии */
   endSession: boolean;
+  /** Кнопки-саджесты */
+  addButtons(titles: string[]): void;
   // Marusya does not support applicationState
   // Sber does not support any state
   // userState: State;

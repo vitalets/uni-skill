@@ -2,7 +2,7 @@ import data from '../../data/marusya/request.json';
 
 describe('marusya request', () => {
 
-  it('isAlice / isSber / isMarusya', async () => {
+  it('isMarusya', () => {
     const req = createRequest(data);
     assert.equal(req.isAlice(), false);
     assert.equal(req.isSber(), false);

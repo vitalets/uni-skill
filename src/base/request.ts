@@ -12,8 +12,9 @@ export abstract class BaseRequest {
 
 export type State = Record<string, unknown> | undefined;
 
-export interface IRequest {
-  body: unknown;
+export interface IRequest<TBody> {
+  /** Тело запроса */
+  body: TBody;
   isAlice(): boolean;
   isSber(): boolean;
   isMarusya(): boolean;

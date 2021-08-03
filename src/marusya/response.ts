@@ -5,20 +5,23 @@ import { ResBody } from 'marusya-types';
 import { BaseResponse, IResponse } from '../base/response';
 import { MarusyaRequest } from './request';
 
-export class MarusyaResponse extends BaseResponse implements IResponse {
+export class MarusyaResponse extends BaseResponse implements IResponse<ResBody> {
   body: ResBody;
-
-  isMarusya(): this is MarusyaResponse {
-    return true;
-  }
+  isMarusya(): this is MarusyaResponse { return true; }
 
   constructor(request: MarusyaRequest) {
     super();
     this.body = this.initBody(request);
   }
 
-  get data() { return this.body.response; }
-  set data(value: ResBody['response']) { this.body.response = value; }
+  get tts() { return this.body.response.tts || ''; }
+  set tts(value: string) { this.body.response.tts = value; }
+
+  get text() {
+    const { text } = this.body.response;
+    return Array.isArray(text) ? text[0] : text;
+  }
+  set text(value: string) { this.body.response.text = value; }
 
   get endSession() { return this.body.response.end_session; }
   set endSession(value: boolean) { this.body.response.end_session = value; }
@@ -29,9 +32,15 @@ export class MarusyaResponse extends BaseResponse implements IResponse {
   get sessionState() { return this.body.session_state; }
   set sessionState(value: ResBody['session_state']) { this.body.session_state = value; }
 
+  addButtons(titles: string[]) {
+    for (const title of titles) {
+      this.body.response.buttons!.push({ title });
+    }
+  }
+
   private initBody(request: MarusyaRequest): ResBody {
     return {
-      response: { text: '', end_session: false },
+      response: { text: '', buttons: [], end_session: false },
       session: request.body.session,
       version: '1.0'
     };
