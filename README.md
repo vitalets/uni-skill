@@ -30,3 +30,11 @@ npm i uni-skill
 ## Свойства и методы
 * [Request](src/base/request.ts)
 * [Response](src/base/response.ts)
+
+## Специфика платформ
+Для добавления платформо-зависимых элементов, нужно заносить код под соответствующий if:
+```ts
+if (response.isSber()) {
+  response.body.payload.emotion = { emotionId: 'oups' };
+}
+```
