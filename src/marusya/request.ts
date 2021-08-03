@@ -37,6 +37,10 @@ export class MarusyaRequest extends BaseRequest implements IRequest {
     return this.body.session.new;
   }
 
+  get hasScreen() {
+    return Boolean(this.body.meta.interfaces.screen);
+  }
+
   get userState() {
     return this.body.state?.user;
   }

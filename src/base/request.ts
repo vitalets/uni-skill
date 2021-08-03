@@ -22,6 +22,7 @@ export interface IRequest {
   readonly messageId: number;
   readonly userMessage: string;
   readonly isNewSession: boolean;
+  readonly hasScreen: boolean;
   // Marusya does not support applicationState
   // Sber doest not support any state :(
   // readonly userState: State;

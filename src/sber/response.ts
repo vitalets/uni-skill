@@ -38,7 +38,7 @@ export class SberResponse extends BaseResponse implements IResponse {
       payload: {
         pronounceText: '',
         projectName: request.body.payload.projectName,
-        intent: request.isMessageToSkill() ? request.body.payload.intent : '',
+        intent: '',
         device: request.body.payload.device,
         items: [],
         auto_listening: true,

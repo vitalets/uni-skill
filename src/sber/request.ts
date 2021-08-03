@@ -44,6 +44,10 @@ export class SberRequest extends BaseRequest implements IRequest {
 
   }
 
+  get hasScreen() {
+    return Boolean(this.body.payload.device.capabilities.screen?.available);
+  }
+
   isMessageToSkill(): this is { body: NLPRequestMTS } {
     return this.body.messageName === 'MESSAGE_TO_SKILL';
   }
