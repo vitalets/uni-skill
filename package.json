@@ -1,7 +1,7 @@
 {
   "name": "uni-skill",
   "description": "Universal interface for voice assistant skills",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "main": "dist/index.js",
   "files": [
     "dist",
