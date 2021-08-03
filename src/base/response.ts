@@ -12,6 +12,7 @@ export abstract class BaseResponse {
 export interface IResponse {
   body: unknown;
   data: unknown;
+  endSession: boolean;
   // Marusya does not support applicationState
   // Sber does not support any state
   // userState: State;

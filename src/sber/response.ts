@@ -20,14 +20,11 @@ export class SberResponse extends BaseResponse implements IResponse {
     this.body = this.initBody(request);
   }
 
-  get data() {
-    // todo:
-    return this.body.payload;
-  }
+  get data() { return this.body.payload; }
+  set data(value: ResBody['payload']) { this.body.payload = value; }
 
-  set data(value: ResBody['payload']) {
-    this.body.payload = value;
-  }
+  get endSession() { return this.body.payload.finished; }
+  set endSession(value: boolean) { this.body.payload.finished = value; }
 
   private initBody(request: SberRequest): ResBody {
     return {

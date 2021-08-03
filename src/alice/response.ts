@@ -16,37 +16,20 @@ export class AliceResponse extends BaseResponse implements IResponse {
     this.body = this.initBody();
   }
 
-  get data() {
-    return this.body.response;
-  }
+  get data() { return this.body.response; }
+  set data(value: ResBody['response']) { this.body.response = value; }
 
-  set data(value: ResBody['response']) {
-    this.body.response = value;
-  }
+  get endSession() { return this.body.response.end_session; }
+  set endSession(value: boolean) { this.body.response.end_session = value; }
 
-  get userState() {
-    return this.body.user_state_update;
-  }
+  get userState() { return this.body.user_state_update; }
+  set userState(value: ResBody['user_state_update']) { this.body.user_state_update = value; }
 
-  set userState(value: ResBody['user_state_update']) {
-    this.body.user_state_update = value;
-  }
+  get applicationState() { return this.body.application_state; }
+  set applicationState(value: ResBody['application_state']) { this.body.application_state = value; }
 
-  get applicationState() {
-    return this.body.application_state;
-  }
-
-  set applicationState(value: ResBody['application_state']) {
-    this.body.application_state = value;
-  }
-
-  get sessionState() {
-    return this.body.session_state;
-  }
-
-  set sessionState(value: ResBody['session_state']) {
-    this.body.session_state = value;
-  }
+  get sessionState() { return this.body.session_state; }
+  set sessionState(value: ResBody['session_state']) { this.body.session_state = value; }
 
   private initBody(): ResBody {
     return {
