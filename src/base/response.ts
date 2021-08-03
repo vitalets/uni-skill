@@ -1,13 +1,6 @@
 /**
  * Universal skill response.
  */
-// import { State } from './request';
-
-export abstract class BaseResponse {
-  isAlice() { return false; }
-  isSber() { return false; }
-  isMarusya() { return false; }
-}
 
 export interface IResponse<TBody> {
   /** Тело ответа */
@@ -25,4 +18,10 @@ export interface IResponse<TBody> {
   // userState: State;
   // applicationState: State;
   // sessionState: State;
+}
+
+export abstract class BaseResponse {
+  isAlice() { return false; }
+  isSber() { return false; }
+  isMarusya() { return false; }
 }
