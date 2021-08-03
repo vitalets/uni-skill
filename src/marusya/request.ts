@@ -19,6 +19,7 @@ export class MarusyaRequest extends BaseRequest implements IRequest<MarusyaReqBo
   get userMessage() { return this.body.request.command || this.body.request.original_utterance || ''; }
   get isNewSession() { return this.body.session.new; }
   get hasScreen() { return Boolean(this.body.meta.interfaces.screen); }
+  get isAuthorized() { return Boolean(this.body.session.user); }
   get userState() { return this.body.state?.user; }
   get sessionState() { return this.body.state?.session; }
 }

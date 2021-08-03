@@ -16,7 +16,7 @@ export class SberRequest extends BaseRequest implements IRequest<SberReqBody> {
 
   constructor(public body: SberReqBody) { super(); }
 
-  get userId() { return this.body.uuid.userId || this.body.uuid.sub; }
+  get userId() { return this.body.uuid.sub || this.body.uuid.userId; }
   get sessionId() { return this.body.sessionId; }
   get messageId() { return this.body.messageId; }
   get userMessage(): string {
@@ -35,6 +35,8 @@ export class SberRequest extends BaseRequest implements IRequest<SberReqBody> {
   get hasScreen() {
     return Boolean(this.body.payload.device.capabilities.screen?.available);
   }
+
+  get isAuthorized() { return Boolean(this.body.uuid.sub); }
 
   isMessageToSkill(): this is { body: NLPRequestMTS } {
     return this.body.messageName === 'MESSAGE_TO_SKILL';

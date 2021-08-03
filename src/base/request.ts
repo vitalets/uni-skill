@@ -14,6 +14,8 @@ export interface IRequest<TBody> {
   readonly userMessage: string;
   readonly isNewSession: boolean;
   readonly hasScreen: boolean;
+  readonly isAuthorized: boolean;
+
   // Marusya does not support applicationState
   // Sber doest not support any state :(
   // readonly userState: State;
