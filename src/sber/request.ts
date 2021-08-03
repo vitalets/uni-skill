@@ -21,7 +21,7 @@ export class SberRequest extends BaseRequest implements IRequest<SberReqBody> {
   get messageId() { return this.body.messageId; }
   get userMessage(): string {
     return this.isMessageToSkill() || this.isCloseApp()
-      ? this.body.payload.message.human_normalized_text || this.body.payload.message.original_text || ''
+      ? (this.body.payload.message.original_text || '').toLocaleLowerCase()
       : '';
   }
 

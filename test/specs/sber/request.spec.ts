@@ -11,7 +11,7 @@ describe('sber request', () => {
 
   it('userMessage', () => {
     const req = createRequest(data);
-    assert.equal(req.userMessage, 'кнопка');
+    assert.equal(req.userMessage, 'поехали');
   });
 
 });
