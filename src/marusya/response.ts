@@ -1,17 +1,12 @@
 /**
  * Marusya response.
  */
-import { ResBody as AliceResBody } from 'alice-types';
+import { ResBody } from 'marusya-types';
 import { BaseResponse, IResponse } from '../base/response';
 import { MarusyaRequest } from './request';
 
-// todo: write own types for marusya
-type MarusyaResBody = AliceResBody & {
-  session: MarusyaRequest['body']['session']
-};
-
 export class MarusyaResponse extends BaseResponse implements IResponse {
-  body: MarusyaResBody;
+  body: ResBody;
 
   isMarusya(): this is MarusyaResponse {
     return true;
@@ -26,7 +21,7 @@ export class MarusyaResponse extends BaseResponse implements IResponse {
     return this.body.response;
   }
 
-  set data(value: MarusyaResBody['response']) {
+  set data(value: ResBody['response']) {
     this.body.response = value;
   }
 
@@ -34,7 +29,7 @@ export class MarusyaResponse extends BaseResponse implements IResponse {
     return this.body.user_state_update;
   }
 
-  set userState(value: MarusyaResBody['user_state_update']) {
+  set userState(value: ResBody['user_state_update']) {
     this.body.user_state_update = value;
   }
 
@@ -42,11 +37,11 @@ export class MarusyaResponse extends BaseResponse implements IResponse {
     return this.body.session_state;
   }
 
-  set sessionState(value: MarusyaResBody['session_state']) {
+  set sessionState(value: ResBody['session_state']) {
     this.body.session_state = value;
   }
 
-  private initBody(request: MarusyaRequest): MarusyaResBody {
+  private initBody(request: MarusyaRequest): ResBody {
     return {
       response: { text: '', end_session: false },
       session: request.body.session,

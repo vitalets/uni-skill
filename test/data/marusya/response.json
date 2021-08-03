@@ -1,0 +1,29 @@
+{
+  "response": {
+    "text": "Сейчас очередь в столовой 5 человек.",
+    "tts": "Сейчас очередь в столовой пять человек.",
+    "buttons": [
+      {
+        "title": "Надпись на кнопке",
+        "payload": {},
+        "url": "https://example.com/"
+      }
+    ],
+    "end_session": true
+  },
+  "session": {
+    "session_id": "01bfd28fe3a326-c-2-fea35db06d4-a8930",
+    "user_id": "f63bc4d9e9c89abe10fbe874b5400b67c0df41f86143ec22629b00be606a1dac",
+    "skill_id": "5b23aa28b9cbd41ad25-21-2-60c7-121d4b",
+    "new": false,
+    "message_id": 1,
+    "user": {
+      "user_id": "c825511e862f23f3728a58cd3b15896cd243c7460237c651944b7499c7c9a425"
+    },
+    "application": {
+      "application_id": "f63bc4d9e9c89abe10fbe874b5400b67c0df41f86143ec22629b00be606a1dac",
+      "application_type": "mobile"
+    }
+  },
+  "version": "1.0"
+}

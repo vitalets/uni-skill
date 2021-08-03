@@ -1,26 +1,19 @@
 /**
  * Marusya request.
  */
-import { ReqBody as AliceReqBody } from 'alice-types';
+import { ReqBody } from 'marusya-types';
 import { BaseRequest, IRequest } from '../base/request';
 
-// todo: write own types for marusya
-interface MarusyaReqBody extends AliceReqBody {
-  session: AliceReqBody['session'] & {
-    auth_token: string;
-  }
-}
-
 export class MarusyaRequest extends BaseRequest implements IRequest {
-  static match(reqBody: unknown): reqBody is MarusyaReqBody {
-    return Boolean((reqBody as MarusyaReqBody)?.session?.auth_token);
+  static match(reqBody: unknown): reqBody is ReqBody {
+    return Boolean((reqBody as ReqBody)?.session?.auth_token);
   }
 
   isMarusya(): this is MarusyaRequest {
     return true;
   }
 
-  constructor(public body: MarusyaReqBody) {
+  constructor(public body: ReqBody) {
     super();
   }
 
