@@ -4,16 +4,17 @@
 import { NLPRequest, NLPRequestMTS, NLPRequestСA, NLPRequestRA, NLPRequestSA } from '@salutejs/types';
 import { BaseRequest, IRequest } from '../base/request';
 
-type ReqBody = NLPRequest;
+// Use fake Omit to have 'SberReqBody' in ts messages.
+type SberReqBody = Omit<NLPRequest, ''>;
 
-export class SberRequest extends BaseRequest implements IRequest<ReqBody> {
-  static match(reqBody: unknown): reqBody is ReqBody {
-    return Boolean((reqBody as ReqBody)?.messageName);
+export class SberRequest extends BaseRequest implements IRequest<SberReqBody> {
+  static match(reqBody: unknown): reqBody is SberReqBody {
+    return Boolean((reqBody as SberReqBody)?.messageName);
   }
 
   isSber(): this is SberRequest { return true; }
 
-  constructor(public body: ReqBody) { super(); }
+  constructor(public body: SberReqBody) { super(); }
 
   get userId() { return this.body.uuid.userId || this.body.uuid.sub; }
   get sessionId() { return this.body.sessionId; }

@@ -5,8 +5,11 @@ import { ResBody } from 'marusya-types';
 import { BaseResponse, IResponse } from '../base/response';
 import { MarusyaRequest } from './request';
 
-export class MarusyaResponse extends BaseResponse implements IResponse<ResBody> {
-  body: ResBody;
+// Use fake Omit to have 'MarusyaResBody' in ts messages.
+type MarusyaResBody = Omit<ResBody, ''>;
+
+export class MarusyaResponse extends BaseResponse implements IResponse<MarusyaResBody> {
+  body: MarusyaResBody;
   isMarusya(): this is MarusyaResponse { return true; }
 
   constructor(request: MarusyaRequest) {
@@ -27,10 +30,10 @@ export class MarusyaResponse extends BaseResponse implements IResponse<ResBody> 
   set endSession(value: boolean) { this.body.response.end_session = value; }
 
   get userState() { return this.body.user_state_update; }
-  set userState(value: ResBody['user_state_update']) { this.body.user_state_update = value; }
+  set userState(value: MarusyaResBody['user_state_update']) { this.body.user_state_update = value; }
 
   get sessionState() { return this.body.session_state; }
-  set sessionState(value: ResBody['session_state']) { this.body.session_state = value; }
+  set sessionState(value: MarusyaResBody['session_state']) { this.body.session_state = value; }
 
   addButtons(titles: string[]) {
     for (const title of titles) {
@@ -38,7 +41,7 @@ export class MarusyaResponse extends BaseResponse implements IResponse<ResBody> 
     }
   }
 
-  private initBody(request: MarusyaRequest): ResBody {
+  private initBody(request: MarusyaRequest): MarusyaResBody {
     return {
       response: { text: '', buttons: [], end_session: false },
       session: request.body.session,

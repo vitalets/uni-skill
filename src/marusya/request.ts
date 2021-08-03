@@ -4,12 +4,15 @@
 import { ReqBody } from 'marusya-types';
 import { BaseRequest, IRequest } from '../base/request';
 
-export class MarusyaRequest extends BaseRequest implements IRequest<ReqBody> {
-  static match(reqBody: unknown): reqBody is ReqBody {
-    return Boolean((reqBody as ReqBody)?.session?.auth_token);
+// Use fake Omit to have 'MarusyaReqBody' in ts messages.
+type MarusyaReqBody = Omit<ReqBody, ''>;
+
+export class MarusyaRequest extends BaseRequest implements IRequest<MarusyaReqBody> {
+  static match(reqBody: unknown): reqBody is MarusyaReqBody {
+    return Boolean((reqBody as MarusyaReqBody)?.session?.auth_token);
   }
   isMarusya(): this is MarusyaRequest { return true; }
-  constructor(public body: ReqBody) { super(); }
+  constructor(public body: MarusyaReqBody) { super(); }
   get userId() { return this.body.session.application.application_id; }
   get sessionId() { return this.body.session.session_id; }
   get messageId() { return this.body.session.message_id; }

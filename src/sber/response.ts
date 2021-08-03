@@ -5,11 +5,13 @@ import { NLPResponseATU, BubbleCommand } from '@salutejs/types';
 import { BaseResponse, IResponse } from '../base/response';
 import { SberRequest } from './request';
 
-// todo: support other types
-type ResBody = NLPResponseATU;
+// todo: support other messageNames, not only NLPResponseATU
 
-export class SberResponse extends BaseResponse implements IResponse<ResBody> {
-  body: ResBody;
+// Use fake Omit to have 'SberResBody' in ts messages.
+type SberResBody = Omit<NLPResponseATU, ''>;
+
+export class SberResponse extends BaseResponse implements IResponse<SberResBody> {
+  body: SberResBody;
 
   isSber(): this is SberResponse { return true; }
 
@@ -41,7 +43,7 @@ export class SberResponse extends BaseResponse implements IResponse<ResBody> {
   }
 
   private initBody(request: SberRequest) {
-    const resBody: ResBody = {
+    const resBody: SberResBody = {
       messageName: 'ANSWER_TO_USER',
       sessionId: request.sessionId,
       messageId: request.messageId,

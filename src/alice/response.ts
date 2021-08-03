@@ -4,8 +4,11 @@
 import { ResBody } from 'alice-types';
 import { BaseResponse, IResponse } from '../base/response';
 
-export class AliceResponse extends BaseResponse implements IResponse<ResBody> {
-  body: ResBody;
+// Use fake Omit to have 'AliceResBody' in ts messages.
+type AliceResBody = Omit<ResBody, ''>;
+
+export class AliceResponse extends BaseResponse implements IResponse<AliceResBody> {
+  body: AliceResBody;
   isAlice(): this is AliceResponse { return true; }
 
   constructor() {
@@ -23,13 +26,13 @@ export class AliceResponse extends BaseResponse implements IResponse<ResBody> {
   set endSession(value: boolean) { this.body.response.end_session = value; }
 
   get userState() { return this.body.user_state_update; }
-  set userState(value: ResBody['user_state_update']) { this.body.user_state_update = value; }
+  set userState(value: AliceResBody['user_state_update']) { this.body.user_state_update = value; }
 
   get applicationState() { return this.body.application_state; }
-  set applicationState(value: ResBody['application_state']) { this.body.application_state = value; }
+  set applicationState(value: AliceResBody['application_state']) { this.body.application_state = value; }
 
   get sessionState() { return this.body.session_state; }
-  set sessionState(value: ResBody['session_state']) { this.body.session_state = value; }
+  set sessionState(value: AliceResBody['session_state']) { this.body.session_state = value; }
 
   addButtons(titles: string[]) {
     for (const title of titles) {
@@ -37,7 +40,7 @@ export class AliceResponse extends BaseResponse implements IResponse<ResBody> {
     }
   }
 
-  private initBody(): ResBody {
+  private initBody(): AliceResBody {
     return {
       response: { text: '', buttons: [], end_session: false },
       version: '1.0'
