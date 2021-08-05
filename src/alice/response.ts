@@ -2,7 +2,7 @@
  * Alice response.
  */
 import { ResBody } from 'alice-types';
-import { BaseResponse, IResponse } from '../base/response';
+import { BaseResponse, IResponse, ResponseImage } from '../base/response';
 
 // Use fake Omit to have 'AliceResBody' in ts messages.
 type AliceResBody = Omit<ResBody, ''>;
@@ -16,12 +16,6 @@ export class AliceResponse extends BaseResponse implements IResponse<AliceResBod
     this.body = this.initBody();
   }
 
-  get tts() { return this.body.response.tts || ''; }
-  set tts(value: string) { this.body.response.tts = value; }
-
-  get text() { return this.body.response.text; }
-  set text(value: string) { this.body.response.text = value; }
-
   get endSession() { return this.body.response.end_session; }
   set endSession(value: boolean) { this.body.response.end_session = value; }
 
@@ -34,15 +28,41 @@ export class AliceResponse extends BaseResponse implements IResponse<AliceResBod
   get sessionState() { return this.body.session_state; }
   set sessionState(value: AliceResBody['session_state']) { this.body.session_state = value; }
 
+  addText(value: string) {
+    const { text } = this.body.response;
+    this.body.response.text = text ? `${text}\n${value}` : value;
+  }
+
+  addTts(value: string) {
+    const { tts } = this.body.response;
+    this.body.response.tts = tts ? `${tts} ${value}` : value;
+  }
+
   addButtons(titles: string[]) {
     for (const title of titles) {
       this.body.response.buttons!.push({ title, hide: true });
     }
   }
 
+  addImage({ id, title = '', description = '' }: ResponseImage) {
+    this.body.response.card = {
+      type: 'BigImage',
+      image_id: id,
+      title,
+      description,
+    };
+    // дописываем все в text, т.к. он не может быть пустым
+    title && this.addText(title);
+    description && this.addText(description);
+  }
+
   private initBody(): AliceResBody {
     return {
-      response: { text: '', buttons: [], end_session: false },
+      response: {
+        text: '',
+        buttons: [],
+        end_session: false
+      },
       version: '1.0'
     };
   }

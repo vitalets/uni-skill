@@ -1,8 +1,9 @@
 /**
  * Sber response.
  */
-import { NLPResponseATU, BubbleCommand } from '@salutejs/types';
-import { BaseResponse, IResponse } from '../base/response';
+import { NLPResponseATU } from '@salutejs/types';
+import { BaseResponse, IResponse, ResponseImage } from '../base/response';
+import { getImageItem } from './image';
 import { SberRequest } from './request';
 
 // todo: support other messageNames, not only NLPResponseATU
@@ -20,18 +21,21 @@ export class SberResponse extends BaseResponse implements IResponse<SberResBody>
     this.body = this.initBody(request);
   }
 
-  get tts() { return this.body.payload.pronounceText || ''; }
-  set tts(value: string) { this.body.payload.pronounceText = value; }
-
-  get text() { return this.getOrCreateTextBubble().bubble.text; }
-  set text(value: string) {
-    // todo: several bubbles?
-    // todo: check for max length 250
-    this.getOrCreateTextBubble().bubble.text = value;
-  }
-
   get endSession() { return this.body.payload.finished; }
   set endSession(value: boolean) { this.body.payload.finished = value; }
+
+  addText(text: string) {
+    this.body.payload.items.push({
+      bubble: { text }
+    });
+  }
+
+  addTts(value: string) {
+    const { pronounceText } = this.body.payload;
+    this.body.payload.pronounceText = pronounceText
+      ? `${pronounceText} ${value}`
+      : value;
+  }
 
   addButtons(titles: string[]) {
     for (const title of titles) {
@@ -42,6 +46,11 @@ export class SberResponse extends BaseResponse implements IResponse<SberResBody>
     }
   }
 
+  addImage(image: ResponseImage) {
+    const imageItem = getImageItem(image);
+    this.body.payload.items.push(imageItem);
+  }
+
   private initBody(request: SberRequest) {
     const resBody: SberResBody = {
       messageName: 'ANSWER_TO_USER',
@@ -49,6 +58,7 @@ export class SberResponse extends BaseResponse implements IResponse<SberResBody>
       messageId: request.messageId,
       uuid: request.body.uuid,
       payload: {
+        pronounceTextType: 'application/ssml',
         projectName: request.body.payload.projectName,
         intent: '',
         device: request.body.payload.device,
@@ -59,15 +69,5 @@ export class SberResponse extends BaseResponse implements IResponse<SberResBody>
       }
     };
     return resBody;
-  }
-
-  // see: https://developer.sberdevices.ru/docs/ru/developer_tools/amp/smartapp_interface_elements#bubble
-  private getOrCreateTextBubble() {
-    let textBubble = this.body.payload.items.find(item => Boolean(item.bubble));
-    if (!textBubble) {
-      textBubble = { bubble: { text: '' }};
-      this.body.payload.items.push(textBubble);
-    }
-    return textBubble as BubbleCommand;
   }
 }

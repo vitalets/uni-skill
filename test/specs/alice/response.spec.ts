@@ -8,20 +8,22 @@ describe('alice response', () => {
     res = createResponse(createRequest(data)) as AliceResponse;
   });
 
-  it('text', () => {
-    res.text = 'привет';
+  it('addText', () => {
+    res.addText('привет');
+    res.addText('как дела');
     assert.deepEqual(res.body.response, {
-      text: 'привет',
+      text: 'привет\nкак дела',
       end_session: false,
       buttons: [],
     });
   });
 
-  it('tts', () => {
-    res.tts = 'привет';
+  it('addTts', () => {
+    res.addTts('привет');
+    res.addTts('как дела');
     assert.deepEqual(res.body.response, {
       text: '',
-      tts: 'привет',
+      tts: 'привет как дела',
       end_session: false,
       buttons: [],
     });
@@ -41,6 +43,21 @@ describe('alice response', () => {
     assert.deepEqual(res.body.response, {
       text: '',
       end_session: true,
+      buttons: [],
+    });
+  });
+
+  it('addImage', () => {
+    res.addImage({ id: '42', title: 'картинка', description: 'описание' });
+    assert.deepEqual(res.body.response, {
+      text: 'картинка\nописание',
+      card: {
+        type: 'BigImage',
+        image_id: '42',
+        title: 'картинка',
+        description: 'описание'
+      },
+      end_session: false,
       buttons: [],
     });
   });

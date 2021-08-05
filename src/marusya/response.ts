@@ -2,7 +2,7 @@
  * Marusya response.
  */
 import { ResBody } from 'marusya-types';
-import { BaseResponse, IResponse } from '../base/response';
+import { BaseResponse, IResponse, ResponseImage } from '../base/response';
 import { MarusyaRequest } from './request';
 
 // Use fake Omit to have 'MarusyaResBody' in ts messages.
@@ -17,15 +17,6 @@ export class MarusyaResponse extends BaseResponse implements IResponse<MarusyaRe
     this.body = this.initBody(request);
   }
 
-  get tts() { return this.body.response.tts || ''; }
-  set tts(value: string) { this.body.response.tts = value; }
-
-  get text() {
-    const { text } = this.body.response;
-    return Array.isArray(text) ? text[0] : text;
-  }
-  set text(value: string) { this.body.response.text = value; }
-
   get endSession() { return this.body.response.end_session; }
   set endSession(value: boolean) { this.body.response.end_session = value; }
 
@@ -35,15 +26,33 @@ export class MarusyaResponse extends BaseResponse implements IResponse<MarusyaRe
   get sessionState() { return this.body.session_state; }
   set sessionState(value: MarusyaResBody['session_state']) { this.body.session_state = value; }
 
+  addText(value: string) {
+    (this.body.response.text as string[]).push(value);
+  }
+
+  addTts(value: string) {
+    const { tts } = this.body.response;
+    this.body.response.tts = tts ? `${tts} ${value}` : value;
+  }
+
   addButtons(titles: string[]) {
     for (const title of titles) {
       this.body.response.buttons!.push({ title });
     }
   }
 
+  addImage({ id, title = '', description = '' }: ResponseImage) {
+    this.body.response.card = {
+      type: 'BigImage',
+      image_id: Number(id),
+    };
+    title && this.addText(title);
+    description && this.addText(description);
+  }
+
   private initBody(request: MarusyaRequest): MarusyaResBody {
     return {
-      response: { text: '', buttons: [], end_session: false },
+      response: { text: [], buttons: [], end_session: false },
       session: request.body.session,
       version: '1.0'
     };

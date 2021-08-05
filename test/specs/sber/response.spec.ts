@@ -1,21 +1,27 @@
+import { GalleryCard } from '@salutejs/types';
 import { SberResponse } from '../../../src/sber/response';
 import data from '../../data/sber/request/message-to-skill.json';
 
-describe('marusya response', () => {
+describe('sber response', () => {
   let res: SberResponse;
 
   beforeEach(() => {
     res = createResponse(createRequest(data)) as SberResponse;
   });
 
-  it('text', () => {
-    res.text = 'привет';
-    assert.deepEqual(res.body.payload.items, [ { bubble: { text: 'привет' } } ]);
+  it('addText', () => {
+    res.addText('привет');
+    res.addText('как дела');
+    assert.deepEqual(res.body.payload.items, [
+      { bubble: { text: 'привет' } },
+      { bubble: { text: 'как дела' } },
+    ]);
   });
 
-  it('tts', () => {
-    res.tts = 'привет';
-    assert.deepEqual(res.body.payload.pronounceText, 'привет');
+  it('addTts', () => {
+    res.addTts('привет');
+    res.addTts('как дела');
+    assert.deepEqual(res.body.payload.pronounceText, 'привет как дела');
   });
 
   it('addButtons', () => {
@@ -31,6 +37,15 @@ describe('marusya response', () => {
   it('endSession', () => {
     res.endSession = true;
     assert.deepEqual(res.body.payload.finished, true);
+  });
+
+  it('addImage', () => {
+    res.addImage({ id: '42', title: 'картинка', description: 'описание', ratio: 0.5 });
+    const galItem = (res.body.payload.items[0].card as GalleryCard).items[0];
+    assert.deepInclude(galItem.image, { url: '42' });
+    assert.deepInclude(galItem.image, { size: { aspect_ratio: 0.5, width: 'resizable' }});
+    assert.deepInclude(galItem.top_text, { text: 'картинка' });
+    assert.deepInclude(galItem.bottom_text, { text: 'описание' });
   });
 
 });

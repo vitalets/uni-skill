@@ -8,20 +8,22 @@ describe('marusya response', () => {
     res = createResponse(createRequest(data)) as MarusyaResponse;
   });
 
-  it('text', () => {
-    res.text = 'привет';
+  it('addText', () => {
+    res.addText('привет');
+    res.addText('как дела');
     assert.deepEqual(res.body.response, {
-      text: 'привет',
+      text: [ 'привет', 'как дела' ],
       end_session: false,
       buttons: [],
     });
   });
 
-  it('tts', () => {
-    res.tts = 'привет';
+  it('addTts', () => {
+    res.addTts('привет');
+    res.addTts('как дела');
     assert.deepEqual(res.body.response, {
-      text: '',
-      tts: 'привет',
+      text: [],
+      tts: 'привет как дела',
       end_session: false,
       buttons: [],
     });
@@ -30,7 +32,7 @@ describe('marusya response', () => {
   it('addButtons', () => {
     res.addButtons([ 'кнопка' ]);
     assert.deepEqual(res.body.response, {
-      text: '',
+      text: [],
       end_session: false,
       buttons: [ { title: 'кнопка' }],
     });
@@ -39,8 +41,21 @@ describe('marusya response', () => {
   it('endSession', () => {
     res.endSession = true;
     assert.deepEqual(res.body.response, {
-      text: '',
+      text: [],
       end_session: true,
+      buttons: [],
+    });
+  });
+
+  it('addImage', () => {
+    res.addImage({ id: '42', title: 'картинка', description: 'описание' });
+    assert.deepEqual(res.body.response, {
+      text: [ 'картинка', 'описание' ],
+      card: {
+        type: 'BigImage',
+        image_id: 42,
+      },
+      end_session: false,
       buttons: [],
     });
   });

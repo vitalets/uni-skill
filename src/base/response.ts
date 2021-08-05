@@ -5,19 +5,32 @@
 export interface IResponse<TBody> {
   /** Тело ответа */
   body: TBody;
-  /** Озвучка */
-  tts: string;
-  /** Текст (в первом бабле) */
-  text: string;
-  /** Флаг завершения сессии */
-  endSession: boolean;
+  /** Добавить текстовый бабл */
+  addText(value: string): void;
+  /** Добавить озвучку */
+  addTts(value: string): void;
   /** Кнопки-саджесты */
   addButtons(titles: string[]): void;
+  /** Изображение */
+  addImage(image: ResponseImage): void;
+  /** Флаг завершения сессии */
+  endSession: boolean;
   // Marusya does not support applicationState
   // Sber does not support any state
   // userState: State;
   // applicationState: State;
   // sessionState: State;
+}
+
+export interface ResponseImage {
+  /** id изображения (для сбера урл) */
+  id: string;
+  /** Крупная подпись */
+  title?: string;
+  /** Мелкая подпись */
+  description?: string;
+  /** Соотношение сторон (только сбер) */
+  ratio?: number;
 }
 
 export abstract class BaseResponse {

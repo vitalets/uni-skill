@@ -15,8 +15,9 @@ import { createRequest, createResponse } from 'uni-skill';
 function handler(reqBody: unknown) {
   const request = createRequest(reqBody);
   const response = createResponse(request);
-  response.text = `Вы сказали: ${request.userMessage}`;
-  response.tts = response.text;
+  const reply = `Вы сказали: ${request.userMessage}`;
+  response.addText(reply);
+  response.addTts(reply);
   response.addButtons([ 'Кнопка' ]);
   return response.body;
 }
@@ -32,7 +33,7 @@ npm i uni-skill
 * [Response](src/base/response.ts)
 
 ## Специфика платформ
-Для добавления платформо-зависимых элементов, нужно заносить код под соответствующий if:
+Для добавления платформо-зависимых элементов, нужно занести код под соответствующий if:
 ```ts
 if (response.isSber()) {
   response.body.payload.emotion = { emotionId: 'oups' };

@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@salutejs/types": "^0.7.0",
-    "alice-types": "^1.2.0",
+    "alice-types": "^1.2.1",
     "marusya-types": "^1.0.1"
   },
   "devDependencies": {

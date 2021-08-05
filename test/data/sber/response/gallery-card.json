@@ -1,0 +1,38 @@
+{
+  "card": {
+      "type": "gallery_card",
+      "items": [
+          {
+              "type": "media_gallery_item",
+              "image": {
+                  "url": "https://thumbs.dfs.ivi.ru/storage31/contents/8/e/010ea0147875e28b91ef1ff01cd042.jpg",
+                  "size": {
+                      "width": "medium",
+                      "aspect_ratio": 1.42
+                  }
+              },
+              "margins": {
+                  "top": "4x",
+                  "left": "6x",
+                  "right": "6x",
+                  "bottom": "5x"
+              },
+              "bottom_text": {
+                  "text": "2019 г. ‧ Комедия/Драма",
+                  "typeface": "caption",
+                  "text_color": "secondary",
+                  "max_lines": 1,
+                  "margins": {
+                      "top": "2x"
+                  }
+              },
+              "top_text": {
+                  "text": "Однажды в Голливуде",
+                  "typeface": "footnote1",
+                  "text_color": "default",
+                  "max_lines": 2
+              }
+          }
+      ]
+  }
+}
