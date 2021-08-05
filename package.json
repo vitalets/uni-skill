@@ -11,7 +11,7 @@
     "lint": "eslint src test --ext .ts",
     "test:l": "mocha -r ts-node/register test/setup.ts 'test/specs/**/*.ts'",
     "test": "LOG_LEVEL=fatal npm run test:l",
-    "check": "ts-node scripts/check",
+    "check": "tsnd --respawn scripts/check",
     "build": "rm -rf dist && tsc -p tsconfig.build.json",
     "release": "npm run lint && npm t && npm run build && npm version $VER && npm publish && git push --follow-tags --no-verify",
     "release-patch": "VER=patch npm run release",
@@ -41,6 +41,7 @@
     "sinon": "^11.1.1",
     "skill-dev-proxy": "^2.0.9",
     "ts-node": "^10.1.0",
+    "ts-node-dev": "^1.1.8",
     "typescript": "^4.2.4"
   },
   "author": {
