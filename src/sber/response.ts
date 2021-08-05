@@ -37,7 +37,7 @@ export class SberResponse extends BaseResponse implements IResponse<SberResBody>
       : value;
   }
 
-  addButtons(titles: string[]) {
+  addSuggest(titles: string[]) {
     for (const title of titles) {
       this.body.payload.suggestions!.buttons.push({
         title,

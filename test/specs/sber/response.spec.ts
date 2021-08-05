@@ -24,8 +24,8 @@ describe('sber response', () => {
     assert.deepEqual(res.body.payload.pronounceText, 'привет как дела');
   });
 
-  it('addButtons', () => {
-    res.addButtons([ 'кнопка' ]);
+  it('addSuggest', () => {
+    res.addSuggest([ 'кнопка' ]);
     assert.deepEqual(res.body.payload.suggestions, {
       buttons: [{
         title: 'кнопка',

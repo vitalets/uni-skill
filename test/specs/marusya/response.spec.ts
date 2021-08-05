@@ -29,8 +29,8 @@ describe('marusya response', () => {
     });
   });
 
-  it('addButtons', () => {
-    res.addButtons([ 'кнопка' ]);
+  it('addSuggest', () => {
+    res.addSuggest([ 'кнопка' ]);
     assert.deepEqual(res.body.response, {
       text: [],
       end_session: false,

@@ -38,7 +38,7 @@ export class AliceResponse extends BaseResponse implements IResponse<AliceResBod
     this.body.response.tts = tts ? `${tts} ${value}` : value;
   }
 
-  addButtons(titles: string[]) {
+  addSuggest(titles: string[]) {
     for (const title of titles) {
       this.body.response.buttons!.push({ title, hide: true });
     }

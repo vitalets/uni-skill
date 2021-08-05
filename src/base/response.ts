@@ -10,7 +10,7 @@ export interface IResponse<TBody> {
   /** Добавить озвучку */
   addTts(value: string): void;
   /** Кнопки-саджесты */
-  addButtons(titles: string[]): void;
+  addSuggest(titles: string[]): void;
   /** Изображение */
   addImage(image: ResponseImage): void;
   /** Флаг завершения сессии */

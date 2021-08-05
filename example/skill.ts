@@ -6,6 +6,6 @@ export function handler(reqBody: unknown) {
   const reply = `Вы сказали: ${request.userMessage}`;
   response.addText(reply);
   response.addTts(reply);
-  response.addButtons([ 'Кнопка' ]);
+  response.addSuggest([ 'Кнопка' ]);
   return response.body;
 }

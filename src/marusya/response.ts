@@ -35,7 +35,7 @@ export class MarusyaResponse extends BaseResponse implements IResponse<MarusyaRe
     this.body.response.tts = tts ? `${tts} ${value}` : value;
   }
 
-  addButtons(titles: string[]) {
+  addSuggest(titles: string[]) {
     for (const title of titles) {
       this.body.response.buttons!.push({ title });
     }
