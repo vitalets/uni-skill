@@ -46,7 +46,7 @@ function getMargins(): Margins1 {
 function getTopText(text: string): TextView {
   return {
     text,
-    typeface: 'title2',
+    typeface: 'body1',
     text_color: 'default',
     max_lines: 0,
   };
@@ -55,7 +55,7 @@ function getTopText(text: string): TextView {
 function getBottomText(text: string): TextView {
   return {
     text,
-    typeface: 'body1',
+    typeface: 'text1',
     text_color: 'secondary',
     max_lines: 0,
     margins: {

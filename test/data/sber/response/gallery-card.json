@@ -12,25 +12,25 @@
                   }
               },
               "margins": {
-                  "top": "4x",
-                  "left": "6x",
-                  "right": "6x",
+                  "top": "5x",
+                  "left": "5x",
+                  "right": "5x",
                   "bottom": "5x"
+              },
+              "top_text": {
+                "text": "Однажды в Голливуде",
+                "typeface": "body1",
+                "text_color": "default",
+                "max_lines": 2
               },
               "bottom_text": {
                   "text": "2019 г. ‧ Комедия/Драма",
-                  "typeface": "caption",
+                  "typeface": "text1",
                   "text_color": "secondary",
                   "max_lines": 1,
                   "margins": {
                       "top": "2x"
                   }
-              },
-              "top_text": {
-                  "text": "Однажды в Голливуде",
-                  "typeface": "footnote1",
-                  "text_color": "default",
-                  "max_lines": 2
               }
           }
       ]
