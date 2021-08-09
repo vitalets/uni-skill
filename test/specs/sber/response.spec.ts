@@ -40,10 +40,11 @@ describe('sber response', () => {
   });
 
   it('addImage', () => {
-    res.addImage({ id: '42', title: 'картинка', description: 'описание', ratio: 0.5 });
+    const id = 'https://path.to/image.png|hash1234567';
+    res.addImage({ id, title: 'картинка', description: 'описание', ratio: 0.5 });
     const galItem = (res.body.payload.items[0].card as GalleryCard).items[0];
-    assert.deepInclude(galItem.image, { url: '42' });
-    assert.deepInclude(galItem.image, { size: { aspect_ratio: 0.5, width: 'resizable' }});
+    assert.deepInclude(galItem.image, { url: 'https://path.to/image.png', hash: 'hash1234567' });
+    assert.deepInclude(galItem.image, { size: { aspect_ratio: 0.5, width: 'large' }});
     assert.deepInclude(galItem.top_text, { text: 'картинка' });
     assert.deepInclude(galItem.bottom_text, { text: 'описание' });
   });

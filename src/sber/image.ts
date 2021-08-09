@@ -7,9 +7,10 @@ export function getImageItem({
   description = '',
   ratio = 1,
 }: ResponseImage): CardCommand {
+  const [ url, hash ] = id.split('|');
   const galleryItem: GalleryItem = {
     type: 'media_gallery_item',
-    image: getImage(id, ratio),
+    image: getImage(url, hash, ratio),
     margins: getMargins(),
     top_text: getTopText(title),
     bottom_text: getBottomText(description),
@@ -22,11 +23,12 @@ export function getImageItem({
   };
 }
 
-function getImage(url: string, aspect_ratio: number): ImageView {
+function getImage(url: string, hash: string, aspect_ratio: number): ImageView {
   return {
     url,
+    hash,
     size: {
-      width: 'resizable',
+      width: 'large',
       aspect_ratio,
     }
   };
