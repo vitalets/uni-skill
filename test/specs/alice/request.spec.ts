@@ -13,4 +13,10 @@ describe('alice request', () => {
     const req = createRequest(data);
     assert.equal(req.userMessage, 'привет 1');
   });
+
+  it('clientInfo', () => {
+    const req = createRequest(data);
+    assert.equal(req.clientInfo, 'ru.yandex.mobile/7300 (Apple iPhone; iphone 14.6)');
+  });
+
 });

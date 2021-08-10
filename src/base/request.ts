@@ -14,6 +14,8 @@ export interface IRequest<TBody> {
   readonly sessionId: string;
   readonly messageId: number;
   readonly userMessage: string;
+  /** Информация про операционную систему и приложение, откуда пришел запрос */
+  readonly clientInfo: string;
   isNewSession(): boolean;
   hasScreen(): boolean;
   isAuthorized(): boolean;

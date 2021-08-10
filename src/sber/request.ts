@@ -25,6 +25,11 @@ export class SberRequest extends BaseRequest implements IRequest<SberReqBody> {
       : '';
   }
 
+  get clientInfo() {
+    const { platformType, platformVersion, surface, surfaceVersion } = this.body.payload.device;
+    return `${platformType} ${platformVersion}; ${surface} ${surfaceVersion}`;
+  }
+
   isNewSession() {
     return this.isMessageToSkill() || this.isCloseApp()
       ? this.body.payload.new_session
@@ -32,6 +37,7 @@ export class SberRequest extends BaseRequest implements IRequest<SberReqBody> {
   }
 
   hasScreen() {
+    // meta.features.screen.enabled?
     return Boolean(this.body.payload.device.capabilities.screen?.available);
   }
 

@@ -21,6 +21,9 @@ export class MarusyaRequest extends BaseRequest implements IRequest<MarusyaReqBo
     const msg = this.isCloseApp() ? original_utterance : ( command || original_utterance);
     return msg || '';
   }
+  get clientInfo() {
+    return `${this.body.meta.client_id}; app: ${this.body.session.application.application_type}`;
+  }
   isNewSession() { return this.body.session.new; }
   hasScreen() { return Boolean(this.body.meta.interfaces.screen); }
   isAuthorized() { return Boolean(this.body.session.user); }

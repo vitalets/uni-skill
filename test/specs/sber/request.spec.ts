@@ -15,6 +15,11 @@ describe('sber request', () => {
     assert.equal(req.userMessage, 'виталий, как дела?');
   });
 
+  it('clientInfo', () => {
+    const req = createRequest(data);
+    assert.equal(req.clientInfo, 'web 1; COMPANION 1');
+  });
+
   it('isCloseApp', () => {
     const req = createRequest(closeAppData);
     assert.equal(req.isCloseApp(), true);
