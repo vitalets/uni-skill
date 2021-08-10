@@ -2,6 +2,8 @@
  * Universal skill request.
  */
 
+// Лучше использовать методы вместо геттеров, т.к. тогда можно указывать typeguard-ы
+
 export interface IRequest<TBody> {
   /** Тело запроса */
   body: TBody;
@@ -12,9 +14,11 @@ export interface IRequest<TBody> {
   readonly sessionId: string;
   readonly messageId: number;
   readonly userMessage: string;
-  readonly isNewSession: boolean;
-  readonly hasScreen: boolean;
-  readonly isAuthorized: boolean;
+  isNewSession(): boolean;
+  hasScreen(): boolean;
+  isAuthorized(): boolean;
+  /** Закрытие скила (в Алисе всегда false) */
+  isCloseApp(): boolean;
 
   // Marusya does not support applicationState
   // Sber doest not support any state :(

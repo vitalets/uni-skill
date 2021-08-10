@@ -14,4 +14,11 @@ describe('marusya request', () => {
     assert.equal(req.userMessage, 'привет');
   });
 
+  it('isCloseApp', () => {
+    const closeAppData = JSON.parse(JSON.stringify(data)) as typeof data;
+    closeAppData.request.command = 'on_interrupt';
+    const req = createRequest(closeAppData);
+    assert.equal(req.userMessage, 'привет');
+    assert.equal(req.isCloseApp(), true);
+  });
 });

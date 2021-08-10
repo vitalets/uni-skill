@@ -16,10 +16,18 @@ export class MarusyaRequest extends BaseRequest implements IRequest<MarusyaReqBo
   get userId() { return this.body.session.application.application_id; }
   get sessionId() { return this.body.session.session_id; }
   get messageId() { return this.body.session.message_id; }
-  get userMessage() { return this.body.request.command || this.body.request.original_utterance || ''; }
-  get isNewSession() { return this.body.session.new; }
-  get hasScreen() { return Boolean(this.body.meta.interfaces.screen); }
-  get isAuthorized() { return Boolean(this.body.session.user); }
+  get userMessage() {
+    const { command, original_utterance } = this.body.request;
+    const msg = this.isCloseApp() ? original_utterance : ( command || original_utterance);
+    return msg || '';
+  }
+  isNewSession() { return this.body.session.new; }
+  hasScreen() { return Boolean(this.body.meta.interfaces.screen); }
+  isAuthorized() { return Boolean(this.body.session.user); }
+  isCloseApp() { return this.body.request.command === 'on_interrupt'; }
+
+  /** own */
+
   get userState() { return this.body.state?.user; }
   get sessionState() { return this.body.state?.session; }
 }

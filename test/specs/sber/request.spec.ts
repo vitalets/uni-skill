@@ -1,4 +1,5 @@
 import data from '../../data/sber/request/message-to-skill.json';
+import closeAppData from '../../data/sber/request/close-app.json';
 
 describe('sber request', () => {
 
@@ -12,6 +13,11 @@ describe('sber request', () => {
   it('userMessage', () => {
     const req = createRequest(data);
     assert.equal(req.userMessage, 'виталий, как дела?');
+  });
+
+  it('isCloseApp', () => {
+    const req = createRequest(closeAppData);
+    assert.equal(req.isCloseApp(), true);
   });
 
 });

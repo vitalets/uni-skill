@@ -25,32 +25,33 @@ export class SberRequest extends BaseRequest implements IRequest<SberReqBody> {
       : '';
   }
 
-  get isNewSession(): boolean {
+  isNewSession() {
     return this.isMessageToSkill() || this.isCloseApp()
       ? this.body.payload.new_session
       : (this.isRunApp() ? true : false);
-
   }
 
-  get hasScreen() {
+  hasScreen() {
     return Boolean(this.body.payload.device.capabilities.screen?.available);
   }
 
-  get isAuthorized() { return Boolean(this.body.uuid.sub); }
+  isAuthorized() { return Boolean(this.body.uuid.sub); }
 
-  isMessageToSkill(): this is { body: NLPRequestMTS } {
-    return this.body.messageName === 'MESSAGE_TO_SKILL';
-  }
-
-  isCloseApp(): this is { body: NLPRequestСA } {
+  isCloseApp(): this is this & { body: NLPRequestСA } {
     return this.body.messageName === 'CLOSE_APP';
   }
 
-  isServerAction(): this is { body: NLPRequestSA } {
+  /** own */
+
+  isMessageToSkill(): this is this & { body: NLPRequestMTS } {
+    return this.body.messageName === 'MESSAGE_TO_SKILL';
+  }
+
+  isServerAction(): this is this & { body: NLPRequestSA } {
     return this.body.messageName === 'SERVER_ACTION';
   }
 
-  isRunApp(): this is { body: NLPRequestRA } {
+  isRunApp(): this is this & { body: NLPRequestRA } {
     return this.body.messageName === 'RUN_APP';
   }
 }
