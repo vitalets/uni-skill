@@ -27,8 +27,12 @@ export class SberRequest extends BaseRequest implements IRequest<SberReqBody> {
   }
 
   get clientInfo() {
-    const { platformType, platformVersion, surface, surfaceVersion } = this.body.payload.device;
-    return `${platformType} ${platformVersion}; ${surface} ${surfaceVersion}`;
+    const { platformType, platformVersion, deviceModel, surface, surfaceVersion } = this.body.payload.device;
+    return [
+      `${platformType} ${platformVersion}`,
+      `${deviceModel}`,
+      `${surface} ${surfaceVersion}`,
+    ].join('; ');
   }
 
   isNewSession() {

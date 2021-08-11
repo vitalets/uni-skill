@@ -12,12 +12,12 @@ describe('sber request', () => {
 
   it('userMessage', () => {
     const req = createRequest(data);
-    assert.equal(req.userMessage, 'виталий, как дела?');
+    assert.equal(req.userMessage, 'начинаем раз два три');
   });
 
   it('clientInfo', () => {
     const req = createRequest(data);
-    assert.equal(req.clientInfo, 'web 1; COMPANION 1');
+    assert.equal(req.clientInfo, 'IOS 14.7.1; iPhone9,3; COMPANION 21.8.1000');
   });
 
   it('isCloseApp', () => {
