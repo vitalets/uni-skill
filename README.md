@@ -39,3 +39,6 @@ if (response.isSber()) {
   response.body.payload.emotion = { emotionId: 'oups' };
 }
 ```
+
+## Лицензия
+MIT @ [Vitaliy Potapov](https://github.com/vitalets)
