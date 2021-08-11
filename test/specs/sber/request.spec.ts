@@ -1,5 +1,5 @@
-import data from '../../data/sber/request/message-to-skill.json';
-import closeAppData from '../../data/sber/request/close-app.json';
+import data from '../../../data/sber/request/message-to-skill.json';
+import closeAppData from '../../../data/sber/request/close-app.json';
 
 describe('sber request', () => {
 

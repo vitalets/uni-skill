@@ -1,6 +1,6 @@
 import { GalleryCard } from '@salutejs/types';
 import { SberResponse } from '../../../src/sber/response';
-import data from '../../data/sber/request/message-to-skill.json';
+import data from '../../../data/sber/request/message-to-skill.json';
 
 describe('sber response', () => {
   let res: SberResponse;

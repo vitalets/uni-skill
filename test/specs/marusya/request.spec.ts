@@ -1,4 +1,4 @@
-import data from '../../data/marusya/request.json';
+import data from '../../../data/marusya/request.json';
 
 describe('marusya request', () => {
 

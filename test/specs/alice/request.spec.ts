@@ -1,4 +1,4 @@
-import data from '../../data/alice/request.json';
+import data from '../../../data/alice/request.json';
 
 describe('alice request', () => {
 

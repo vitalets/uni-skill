@@ -1,5 +1,5 @@
 import { MarusyaResponse } from '../../../src/marusya/response';
-import data from '../../data/marusya/request.json';
+import data from '../../../data/marusya/request.json';
 
 describe('marusya response', () => {
   let res: MarusyaResponse;

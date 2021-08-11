@@ -1,5 +1,5 @@
 import { AliceResponse } from '../../../src/alice/response';
-import data from '../../data/alice/request.json';
+import data from '../../../data/alice/request.json';
 
 describe('alice response', () => {
   let res: AliceResponse;
