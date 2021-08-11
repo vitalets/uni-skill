@@ -58,8 +58,5 @@ function getBottomText(text: string): TextView {
     typeface: 'text1',
     text_color: 'secondary',
     max_lines: 0,
-    margins: {
-      top: '2x'
-    }
   };
 }
