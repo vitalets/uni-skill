@@ -29,8 +29,8 @@ npm i uni-skill
 ```
 
 ## Свойства и методы
-* [Request](src/base/request.ts)
-* [Response](src/base/response.ts)
+* [Request](src/request.ts)
+* [Response](src/response.ts)
 
 ## Специфика платформ
 Для добавления платформо-зависимых элементов, нужно занести код под соответствующий if:

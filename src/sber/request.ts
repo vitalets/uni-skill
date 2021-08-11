@@ -2,7 +2,8 @@
  * Sber request.
  */
 import { NLPRequest, NLPRequestMTS, NLPRequestСA, NLPRequestRA, NLPRequestSA } from '@salutejs/types';
-import { BaseRequest, IRequest } from '../base/request';
+import { BaseRequest } from '../base/request';
+import { IRequest } from '../request';
 
 // Use fake Omit to have 'SberReqBody' in ts messages.
 type SberReqBody = Omit<NLPRequest, ''>;

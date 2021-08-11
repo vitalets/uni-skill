@@ -2,7 +2,8 @@
  * Alice request.
  */
 import { ReqBody } from 'alice-types';
-import { BaseRequest, IRequest } from '../base/request';
+import { BaseRequest } from '../base/request';
+import { IRequest } from '../request';
 
 // Use fake Omit to have 'AliceReqBody' in ts messages.
 type AliceReqBody = Omit<ReqBody, ''>;

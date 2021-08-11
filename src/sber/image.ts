@@ -1,5 +1,5 @@
 import { CardCommand, GalleryItem, ImageView, Margins1, TextView } from '@salutejs/types';
-import { ResponseImage } from '../base/response';
+import { ResponseImage } from '../response';
 
 export function getImageItem({
   id,

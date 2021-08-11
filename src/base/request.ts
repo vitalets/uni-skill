@@ -1,33 +1,6 @@
 /**
- * Universal skill request.
+ * Base request.
  */
-
-// Лучше использовать методы вместо геттеров, т.к. тогда можно указывать typeguard-ы
-
-export interface IRequest<TBody> {
-  /** Тело запроса */
-  body: TBody;
-  isAlice(): boolean;
-  isSber(): boolean;
-  isMarusya(): boolean;
-  readonly userId: string;
-  readonly sessionId: string;
-  readonly messageId: number;
-  readonly userMessage: string;
-  /** Информация про операционную систему и приложение, откуда пришел запрос */
-  readonly clientInfo: string;
-  isNewSession(): boolean;
-  hasScreen(): boolean;
-  isAuthorized(): boolean;
-  /** Закрытие скила (в Алисе всегда false) */
-  isCloseApp(): boolean;
-
-  // Marusya does not support applicationState
-  // Sber doest not support any state :(
-  // readonly userState: State;
-  // readonly applicationState: State;
-  // readonly sessionState: State;
-}
 
 export abstract class BaseRequest {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -36,5 +9,3 @@ export abstract class BaseRequest {
   isSber() { return false; }
   isMarusya() { return false; }
 }
-
-export type State = Record<string, unknown> | undefined;

@@ -2,7 +2,8 @@
  * Alice response.
  */
 import { ResBody } from 'alice-types';
-import { BaseResponse, IResponse, ResponseImage } from '../base/response';
+import { BaseResponse } from '../base/response';
+import { IResponse, ResponseImage } from '../response';
 
 // Use fake Omit to have 'AliceResBody' in ts messages.
 type AliceResBody = Omit<ResBody, ''>;
