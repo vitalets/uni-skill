@@ -24,6 +24,7 @@ export class AliceRequest extends BaseRequest implements IRequest<AliceReqBody> 
   hasScreen() { return Boolean(this.body.meta.interfaces.screen); }
   isAuthorized() { return Boolean(this.body.session.user); }
   isCloseApp() { return false; }
+  isMale() { return false; }
 
   /** own */
 

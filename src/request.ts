@@ -29,4 +29,6 @@ export interface IRequest<TBody> {
   isAuthorized(): boolean;
   /** Закрытие скила (в Алисе всегда false) */
   isCloseApp(): boolean;
+  /** м/ж */
+  isMale(): boolean;
 }

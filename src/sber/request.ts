@@ -52,6 +52,10 @@ export class SberRequest extends BaseRequest implements IRequest<SberReqBody> {
     return this.body.messageName === 'CLOSE_APP';
   }
 
+  isMale() {
+    return this.body.payload.character.gender === 'male';
+  }
+
   /** own */
 
   isMessageToSkill(): this is this & { body: NLPRequestMTS } {
@@ -64,5 +68,10 @@ export class SberRequest extends BaseRequest implements IRequest<SberReqBody> {
 
   isRunApp(): this is this & { body: NLPRequestRA } {
     return this.body.messageName === 'RUN_APP';
+  }
+
+  /** Обращение на вы */
+  isOfficial() {
+    return this.body.payload.character.appeal === 'official';
   }
 }

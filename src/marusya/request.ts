@@ -29,6 +29,7 @@ export class MarusyaRequest extends BaseRequest implements IRequest<MarusyaReqBo
   hasScreen() { return Boolean(this.body.meta.interfaces.screen); }
   isAuthorized() { return Boolean(this.body.session.user); }
   isCloseApp() { return this.body.request.command === 'on_interrupt'; }
+  isMale() { return false; }
 
   /** own */
 
