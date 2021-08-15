@@ -4,8 +4,11 @@ export function handler(reqBody: unknown) {
   const request = createRequest(reqBody);
   const response = createResponse(request);
   const reply = `Вы сказали: ${request.userMessage}`;
-  response.addText(reply);
-  response.addTts(reply);
-  response.addSuggest([ 'Кнопка' ]);
+  response.bubbles.push(reply);
+  response.tts = reply;
+  response.suggest = [ 'Кнопка' ];
+  if (response.isSber()) {
+    response.body.payload.emotion = { emotionId: 'oups' };
+  }
   return response.body;
 }

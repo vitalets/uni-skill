@@ -3,18 +3,16 @@
  */
 import { ReqBody } from 'alice-types';
 import { BaseRequest } from '../base/request';
-import { IRequest } from '../request';
+import { IRequest } from '../types/request';
 
 // Use fake Omit to have 'AliceReqBody' in ts messages.
 type AliceReqBody = Omit<ReqBody, ''>;
 
-export class AliceRequest extends BaseRequest implements IRequest<AliceReqBody> {
+export class AliceRequest extends BaseRequest<AliceReqBody> implements IRequest<AliceReqBody> {
   static match(reqBody: unknown): reqBody is AliceReqBody {
     return Boolean((reqBody as AliceReqBody)?.request);
   }
-
   isAlice(): this is AliceRequest { return true; }
-  constructor(public body: AliceReqBody) { super(); }
   get userId() { return this.body.session.application.application_id; }
   get sessionId() { return this.body.session.session_id; }
   get messageId() { return this.body.session.message_id; }
@@ -24,7 +22,6 @@ export class AliceRequest extends BaseRequest implements IRequest<AliceReqBody> 
   hasScreen() { return Boolean(this.body.meta.interfaces.screen); }
   isAuthorized() { return Boolean(this.body.session.user); }
   isCloseApp() { return false; }
-  isMale() { return false; }
 
   /** own */
 

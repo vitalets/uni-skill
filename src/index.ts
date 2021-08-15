@@ -32,7 +32,7 @@ export function createRequest(reqBody: unknown) {
 
 export function createResponse(request: Request) {
   if (request instanceof AliceRequest) {
-    return new AliceResponse();
+    return new AliceResponse(request);
   } else if (request instanceof MarusyaRequest) {
     return new MarusyaResponse(request);
   } else if (request instanceof SberRequest) {

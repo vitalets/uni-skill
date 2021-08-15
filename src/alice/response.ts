@@ -3,22 +3,39 @@
  */
 import { ResBody } from 'alice-types';
 import { BaseResponse } from '../base/response';
-import { IResponse, ResponseImage } from '../response';
+import { ImageBubble, IResponse } from '../types/response';
+import { AliceRequest } from './request';
 
 // Use fake Omit to have 'AliceResBody' in ts messages.
 type AliceResBody = Omit<ResBody, ''>;
 
-export class AliceResponse extends BaseResponse implements IResponse<AliceResBody> {
-  body: AliceResBody;
+export class AliceResponse extends BaseResponse<AliceResBody, AliceRequest> implements IResponse<AliceResBody> {
   isAlice(): this is AliceResponse { return true; }
 
-  constructor() {
-    super();
-    this.body = this.initBody();
+  protected syncBubbles() {
+    const { response } = this.platformBody;
+    const texts: string[] = [];
+    for (const bubble of this.bubbles) {
+      if (typeof bubble === 'string') {
+        texts.push(bubble);
+      } else if ('imageId' in bubble) {
+        this.syncImage(texts, bubble);
+      }
+    }
+    response.text = texts.join('\n');
   }
 
-  get endSession() { return this.body.response.end_session; }
-  set endSession(value: boolean) { this.body.response.end_session = value; }
+  protected syncSuggest() {
+    this.platformBody.response.buttons = this.suggest.map(title => ({ title, hide: true }));
+  }
+
+  protected syncTts() {
+    this.platformBody.response.tts = this.tts;
+  }
+
+  protected syncEndSession() {
+    this.platformBody.response.end_session = this.endSession;
+  }
 
   get userState() { return this.body.user_state_update; }
   set userState(value: AliceResBody['user_state_update']) { this.body.user_state_update = value; }
@@ -29,35 +46,7 @@ export class AliceResponse extends BaseResponse implements IResponse<AliceResBod
   get sessionState() { return this.body.session_state; }
   set sessionState(value: AliceResBody['session_state']) { this.body.session_state = value; }
 
-  addText(value: string) {
-    const { text } = this.body.response;
-    this.body.response.text = text ? `${text}\n${value}` : value;
-  }
-
-  addTts(value: string) {
-    const { tts } = this.body.response;
-    this.body.response.tts = tts ? `${tts} ${value}` : value;
-  }
-
-  addSuggest(titles: string[]) {
-    for (const title of titles) {
-      this.body.response.buttons!.push({ title, hide: true });
-    }
-  }
-
-  addImage({ id, title = '', description = '' }: ResponseImage) {
-    this.body.response.card = {
-      type: 'BigImage',
-      image_id: id,
-      title,
-      description,
-    };
-    // дописываем все в text, т.к. он не может быть пустым
-    title && this.addText(title);
-    description && this.addText(description);
-  }
-
-  private initBody(): AliceResBody {
+  protected init(): AliceResBody {
     return {
       response: {
         text: '',
@@ -66,5 +55,13 @@ export class AliceResponse extends BaseResponse implements IResponse<AliceResBod
       },
       version: '1.0'
     };
+  }
+
+  private syncImage(texts: string[], { imageId, title, description }: ImageBubble) {
+    const { response } = this.platformBody;
+    response.card = { type: 'BigImage', image_id: imageId, title, description };
+    // дописываем все в text, т.к. он не может быть пустым
+    if (title) texts.push(title);
+    if (description) texts.push(description);
   }
 }

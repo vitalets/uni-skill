@@ -3,7 +3,7 @@
  */
 import { NLPResponseATU } from '@salutejs/types';
 import { BaseResponse } from '../base/response';
-import { IResponse, ResponseImage } from '../response';
+import { IResponse } from '../types/response';
 import { getImageItem } from './image';
 import { SberRequest } from './request';
 
@@ -12,63 +12,54 @@ import { SberRequest } from './request';
 // Use fake Omit to have 'SberResBody' in ts messages.
 type SberResBody = Omit<NLPResponseATU, ''>;
 
-export class SberResponse extends BaseResponse implements IResponse<SberResBody> {
-  body: SberResBody;
-
+export class SberResponse extends BaseResponse<SberResBody, SberRequest> implements IResponse<SberResBody> {
   isSber(): this is SberResponse { return true; }
 
-  constructor(request: SberRequest) {
-    super();
-    this.body = this.initBody(request);
-  }
-
-  get endSession() { return this.body.payload.finished; }
-  set endSession(value: boolean) { this.body.payload.finished = value; }
-
-  addText(text: string) {
-    this.body.payload.items.push({
-      bubble: { text }
-    });
-  }
-
-  addTts(value: string) {
-    const { pronounceText } = this.body.payload;
-    this.body.payload.pronounceText = pronounceText
-      ? `${pronounceText} ${value}`
-      : value;
-  }
-
-  addSuggest(titles: string[]) {
-    for (const title of titles) {
-      this.body.payload.suggestions!.buttons.push({
-        title,
-        action: { type: 'text', text: title }
-      });
+  protected syncBubbles() {
+    const { items } = this.platformBody.payload;
+    items.length = 0;
+    for (const bubble of this.bubbles) {
+      if (typeof bubble === 'string') {
+        items.push({ bubble: { text: bubble }});
+      } else if ('imageId' in bubble) {
+        items.push(getImageItem(bubble));
+      }
     }
   }
 
-  addImage(image: ResponseImage) {
-    const imageItem = getImageItem(image);
-    this.body.payload.items.push(imageItem);
+  protected syncSuggest() {
+    this.body.payload.suggestions!.buttons = this.suggest.map(title => {
+      return { title, action: { type: 'text', text: title }};
+    });
   }
 
-  private initBody(request: SberRequest) {
-    const resBody: SberResBody = {
+  protected syncTts() {
+    this.platformBody.payload.pronounceText = this.tts;
+  }
+
+  protected syncEndSession() {
+    this.platformBody.payload.finished = this.endSession;
+  }
+
+  protected init(): SberResBody {
+    this.isMale = this.request.body.payload.character.gender === 'male';
+    this.isOfficial = this.request.body.payload.character.appeal === 'official';
+    return {
       messageName: 'ANSWER_TO_USER',
-      sessionId: request.sessionId,
-      messageId: request.messageId,
-      uuid: request.body.uuid,
+      sessionId: this.request.sessionId,
+      messageId: this.request.messageId,
+      uuid: this.request.body.uuid,
       payload: {
+        pronounceText: '',
         pronounceTextType: 'application/ssml',
-        projectName: request.body.payload.projectName,
+        projectName: this.request.body.payload.projectName,
         intent: '',
-        device: request.body.payload.device,
+        device: this.request.body.payload.device,
         items: [],
         suggestions: { buttons: [] },
         auto_listening: true,
         finished: false,
       }
     };
-    return resBody;
   }
 }

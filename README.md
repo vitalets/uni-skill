@@ -16,9 +16,12 @@ function handler(reqBody: unknown) {
   const request = createRequest(reqBody);
   const response = createResponse(request);
   const reply = `Вы сказали: ${request.userMessage}`;
-  response.addText(reply);
-  response.addTts(reply);
-  response.addButtons([ 'Кнопка' ]);
+  response.bubbles.push(reply);
+  response.tts = reply;
+  response.suggest = [ 'Кнопка' ];
+  if (response.isSber()) {
+    response.body.payload.emotion = { emotionId: 'oups' };
+  }
   return response.body;
 }
 ```
@@ -29,18 +32,17 @@ npm i uni-skill
 ```
 
 ## Свойства и методы
-* [Request](src/request.ts)
-* [Response](src/response.ts)
+* [Request](src/types/request.ts)
+* [Response](src/types/response.ts)
 
 ## Специфика платформ
 Для добавления платформо-зависимых элементов, нужно занести код под соответствующий if.
+Под if-ом работают typeguard-ы для нужной платформы, что удобно.
 ```ts
 if (response.isSber()) {
   response.body.payload.emotion = { emotionId: 'oups' };
 }
 ```
-
-> Под if-ом работают typeguard-ы для нужной платформы, что удобно.
 
 ## Лицензия
 MIT @ [Vitaliy Potapov](https://github.com/vitalets)

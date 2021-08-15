@@ -9,23 +9,23 @@ describe('sber response', () => {
     res = createResponse(createRequest(data)) as SberResponse;
   });
 
-  it('addText', () => {
-    res.addText('привет');
-    res.addText('как дела');
+  it('text', () => {
+    res.bubbles.push('привет');
+    res.bubbles.push('как дела');
     assert.deepEqual(res.body.payload.items, [
       { bubble: { text: 'привет' } },
       { bubble: { text: 'как дела' } },
     ]);
   });
 
-  it('addTts', () => {
-    res.addTts('привет');
-    res.addTts('как дела');
+  it('tts', () => {
+    res.tts = 'привет';
+    res.tts += ' как дела';
     assert.deepEqual(res.body.payload.pronounceText, 'привет как дела');
   });
 
-  it('addSuggest', () => {
-    res.addSuggest([ 'кнопка' ]);
+  it('suggest', () => {
+    res.suggest.push('кнопка');
     assert.deepEqual(res.body.payload.suggestions, {
       buttons: [{
         title: 'кнопка',
@@ -39,9 +39,9 @@ describe('sber response', () => {
     assert.deepEqual(res.body.payload.finished, true);
   });
 
-  it('addImage', () => {
-    const id = 'https://path.to/image.png|hash1234567';
-    res.addImage({ id, title: 'картинка', description: 'описание', ratio: 0.5 });
+  it('image', () => {
+    const imageId = 'https://path.to/image.png|hash1234567';
+    res.bubbles.push({ imageId, title: 'картинка', description: 'описание', ratio: 0.5 });
     const galItem = (res.body.payload.items[0].card as GalleryCard).items[0];
     assert.deepInclude(galItem.image, { url: 'https://path.to/image.png', hash: 'hash1234567' });
     assert.deepInclude(galItem.image, { size: { aspect_ratio: 0.5, width: 'large' }});

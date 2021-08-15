@@ -3,7 +3,7 @@
  */
 
 export interface IResponse<TBody> {
-  /** Тело ответа */
+  /** Тело ответа под платформу */
   body: TBody;
   /** Флаг ответа для Алисы */
   isAlice(): boolean;
@@ -11,21 +11,25 @@ export interface IResponse<TBody> {
   isSber(): boolean;
   /** Флаг ответа для Маруси */
   isMarusya(): boolean;
-  /** Добавить текстовый бабл (в Алисе тот же бабл через перенос строки) */
-  addText(value: string): void;
-  /** Добавить озвучку */
-  addTts(value: string): void;
-  /** Добавить кнопки-саджесты */
-  addSuggest(titles: string[]): void;
-  /** Добавить изображение */
-  addImage(image: ResponseImage): void;
+  /** Массив баблов: текст или картинка (в Алисе все в 1 бабл) */
+  bubbles: Bubble[];
+  /** Озвучка */
+  tts: string;
+  /** Кнопки-саджесты */
+  suggest: string[];
   /** Флаг завершения сессии */
   endSession: boolean;
+  /** М/ж */
+  isMale: boolean;
+  /** Ты/вы */
+  isOfficial: boolean;
 }
 
-export interface ResponseImage {
+export type Bubble = TextBubble | ImageBubble;
+export type TextBubble = string;
+export interface ImageBubble {
   /** id изображения (для сбера "<url>|<hash>") */
-  id: string;
+  imageId: string;
   /** Крупная подпись */
   title?: string;
   /** Мелкая подпись */

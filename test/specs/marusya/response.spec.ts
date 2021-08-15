@@ -8,19 +8,20 @@ describe('marusya response', () => {
     res = createResponse(createRequest(data)) as MarusyaResponse;
   });
 
-  it('addText', () => {
-    res.addText('привет');
-    res.addText('как дела');
+  it('text', () => {
+    res.bubbles.push('привет');
+    res.bubbles.push('как дела');
     assert.deepEqual(res.body.response, {
       text: [ 'привет', 'как дела' ],
+      tts: '',
       end_session: false,
       buttons: [],
     });
   });
 
-  it('addTts', () => {
-    res.addTts('привет');
-    res.addTts('как дела');
+  it('tts', () => {
+    res.tts = 'привет';
+    res.tts += ' как дела';
     assert.deepEqual(res.body.response, {
       text: [],
       tts: 'привет как дела',
@@ -29,10 +30,11 @@ describe('marusya response', () => {
     });
   });
 
-  it('addSuggest', () => {
-    res.addSuggest([ 'кнопка' ]);
+  it('suggest', () => {
+    res.suggest.push('кнопка');
     assert.deepEqual(res.body.response, {
       text: [],
+      tts: '',
       end_session: false,
       buttons: [ { title: 'кнопка' }],
     });
@@ -42,15 +44,17 @@ describe('marusya response', () => {
     res.endSession = true;
     assert.deepEqual(res.body.response, {
       text: [],
+      tts: '',
       end_session: true,
       buttons: [],
     });
   });
 
-  it('addImage', () => {
-    res.addImage({ id: '42', title: 'картинка', description: 'описание' });
+  it('image', () => {
+    res.bubbles.push({ imageId: '42', title: 'картинка', description: 'описание' });
     assert.deepEqual(res.body.response, {
       text: [ 'картинка', 'описание' ],
+      tts: '',
       card: {
         type: 'BigImage',
         image_id: 42,

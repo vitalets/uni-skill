@@ -3,20 +3,17 @@
  */
 import { NLPRequest, NLPRequestMTS, NLPRequestСA, NLPRequestRA, NLPRequestSA } from '@salutejs/types';
 import { BaseRequest } from '../base/request';
-import { IRequest } from '../request';
+import { IRequest } from '../types/request';
 
 // Use fake Omit to have 'SberReqBody' in ts messages.
 type SberReqBody = Omit<NLPRequest, ''>;
 
-export class SberRequest extends BaseRequest implements IRequest<SberReqBody> {
+export class SberRequest extends BaseRequest<SberReqBody> implements IRequest<SberReqBody> {
   static match(reqBody: unknown): reqBody is SberReqBody {
     return Boolean((reqBody as SberReqBody)?.messageName);
   }
 
   isSber(): this is SberRequest { return true; }
-
-  constructor(public body: SberReqBody) { super(); }
-
   get userId() { return this.body.uuid.sub || this.body.uuid.userId; }
   get sessionId() { return this.body.sessionId; }
   get messageId() { return this.body.messageId; }
@@ -52,10 +49,6 @@ export class SberRequest extends BaseRequest implements IRequest<SberReqBody> {
     return this.body.messageName === 'CLOSE_APP';
   }
 
-  isMale() {
-    return this.body.payload.character.gender === 'male';
-  }
-
   /** own */
 
   isMessageToSkill(): this is this & { body: NLPRequestMTS } {
@@ -68,10 +61,5 @@ export class SberRequest extends BaseRequest implements IRequest<SberReqBody> {
 
   isRunApp(): this is this & { body: NLPRequestRA } {
     return this.body.messageName === 'RUN_APP';
-  }
-
-  /** Обращение на вы */
-  isOfficial() {
-    return this.body.payload.character.appeal === 'official';
   }
 }
