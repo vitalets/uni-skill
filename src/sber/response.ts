@@ -28,7 +28,7 @@ export class SberResponse extends BaseResponse<SberResBody, SberRequest> impleme
   }
 
   protected syncSuggest() {
-    this.body.payload.suggestions!.buttons = this.suggest.map(title => {
+    this.platformBody.payload.suggestions!.buttons = this.suggest.map(title => {
       return { title, action: { type: 'text', text: title }};
     });
   }
