@@ -47,6 +47,12 @@ export abstract class BaseResponse<TBody, TReq> {
     return this.platformBody;
   }
 
+  // be carefull with overwriting full body!
+  set body(value: TBody) {
+    this.platformBody = value;
+    this.synced = true;
+  }
+
   isAlice() { return false; }
   isSber() { return false; }
   isMarusya() { return false; }
