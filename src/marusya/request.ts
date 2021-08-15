@@ -24,9 +24,9 @@ export class MarusyaRequest extends BaseRequest<MarusyaReqBody> implements IRequ
   get clientInfo() {
     return `${this.body.meta.client_id}; app: ${this.body.session.application.application_type}`;
   }
-  isNewSession() { return this.body.session.new; }
-  hasScreen() { return Boolean(this.body.meta.interfaces.screen); }
-  isAuthorized() { return Boolean(this.body.session.user); }
+  get isNewSession() { return this.body.session.new; }
+  get hasScreen() { return Boolean(this.body.meta.interfaces.screen); }
+  get isAuthorized() { return Boolean(this.body.session.user); }
   isCloseApp() { return this.body.request.command === 'on_interrupt'; }
 
   /** own */

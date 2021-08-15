@@ -22,11 +22,11 @@ export interface IRequest<TBody> {
   /** Информация про операционную систему и приложение пользователя */
   readonly clientInfo: string;
   /** Флаг новой сессии в терминах платформы */
-  isNewSession(): boolean;
+  isNewSession: boolean;
   /** Флаг наличия экрана */
-  hasScreen(): boolean;
+  hasScreen: boolean;
   /** Авторизован пользователь или нет */
-  isAuthorized(): boolean;
+  isAuthorized: boolean;
   /** Закрытие скила (в Алисе всегда false) */
-  isCloseApp(): boolean;
+  isCloseApp(): boolean; // <- Сделан методом, чтобы работали тайпгарды
 }

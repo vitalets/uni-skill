@@ -32,18 +32,18 @@ export class SberRequest extends BaseRequest<SberReqBody> implements IRequest<Sb
     ].join('; ');
   }
 
-  isNewSession() {
+  get isNewSession(): boolean {
     return this.isMessageToSkill() || this.isCloseApp()
       ? this.body.payload.new_session
       : (this.isRunApp() ? true : false);
   }
 
-  hasScreen() {
+  get hasScreen() {
     // meta.features.screen.enabled?
     return Boolean(this.body.payload.device.capabilities.screen?.available);
   }
 
-  isAuthorized() { return Boolean(this.body.uuid.sub); }
+  get isAuthorized() { return Boolean(this.body.uuid.sub); }
 
   isCloseApp(): this is this & { body: NLPRequestСA } {
     return this.body.messageName === 'CLOSE_APP';

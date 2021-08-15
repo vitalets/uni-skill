@@ -9,6 +9,11 @@ describe('marusya request', () => {
     assert.equal(req.isMarusya(), true);
   });
 
+  it('userId', () => {
+    const req = createRequest(data);
+    assert.equal(req.userId, '52f12d70fb4077f68880010513d3382156f4b3a34fe176baae6ff9d74c006c51');
+  });
+
   it('userMessage', () => {
     const req = createRequest(data);
     assert.equal(req.userMessage, 'привет');

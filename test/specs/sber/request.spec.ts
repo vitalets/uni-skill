@@ -10,6 +10,11 @@ describe('sber request', () => {
     assert.equal(req.isMarusya(), false);
   });
 
+  it('userId', () => {
+    const req = createRequest(data);
+    assert.equal(req.userId.slice(0, 10), '8tet/qbl+C');
+  });
+
   it('userMessage', () => {
     const req = createRequest(data);
     assert.equal(req.userMessage, 'начинаем раз два три');

@@ -18,9 +18,9 @@ export class AliceRequest extends BaseRequest<AliceReqBody> implements IRequest<
   get messageId() { return this.body.session.message_id; }
   get userMessage() { return this.body.request.command || this.body.request.original_utterance || ''; }
   get clientInfo() { return this.body.meta.client_id; }
-  isNewSession() { return this.body.session.new; }
-  hasScreen() { return Boolean(this.body.meta.interfaces.screen); }
-  isAuthorized() { return Boolean(this.body.session.user); }
+  get isNewSession() { return this.body.session.new; }
+  get hasScreen() { return Boolean(this.body.meta.interfaces.screen); }
+  get isAuthorized() { return Boolean(this.body.session.user); }
   isCloseApp() { return false; }
 
   /** own */
