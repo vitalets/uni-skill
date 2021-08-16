@@ -1,5 +1,7 @@
 /**
  * Универсальный интерфейс запроса к навыку.
+ * Все поля только на чтение.
+ * Некоторые сделаны методами, чтобы работали тайпгарды.
  */
 
 export interface IRequest<TBody> {
@@ -11,6 +13,8 @@ export interface IRequest<TBody> {
   isSber(): boolean;
   /** Флаг запроса от Маруси */
   isMarusya(): boolean;
+  /** Закрытие скила (в Алисе всегда false) */
+  isCloseApp(): boolean;
   /** ID пользователя */
   readonly userId: string;
   /** ID сессии */
@@ -22,11 +26,9 @@ export interface IRequest<TBody> {
   /** Информация про операционную систему и приложение пользователя */
   readonly clientInfo: string;
   /** Флаг новой сессии в терминах платформы */
-  isNewSession: boolean;
+  readonly isNewSession: boolean;
   /** Флаг наличия экрана */
-  hasScreen: boolean;
+  readonly hasScreen: boolean;
   /** Авторизован пользователь или нет */
-  isAuthorized: boolean;
-  /** Закрытие скила (в Алисе всегда false) */
-  isCloseApp(): boolean; // <- Сделан методом, чтобы работали тайпгарды
+  readonly isAuthorized: boolean;
 }

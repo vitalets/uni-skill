@@ -3,7 +3,7 @@
  */
 import { NLPResponseATU } from '@salutejs/types';
 import { BaseResponse } from '../base/response';
-import { IResponse } from '../types/response';
+import { ImageBubble, IResponse } from '../types/response';
 import { getImageItem } from './image';
 import { SberRequest } from './request';
 
@@ -15,30 +15,26 @@ type SberResBody = Omit<NLPResponseATU, ''>;
 export class SberResponse extends BaseResponse<SberResBody, SberRequest> implements IResponse<SberResBody> {
   isSber(): this is SberResponse { return true; }
 
-  protected syncBubbles() {
-    const { items } = this.platformBody.payload;
-    items.length = 0;
-    for (const bubble of this.bubbles) {
-      if (typeof bubble === 'string') {
-        items.push({ bubble: { text: bubble }});
-      } else if ('imageId' in bubble) {
-        items.push(getImageItem(bubble));
-      }
-    }
+  protected addTextInternal(text: string) {
+    this.body.payload.items.push({ bubble: { text }});
   }
 
-  protected syncSuggest() {
-    this.platformBody.payload.suggestions!.buttons = this.suggest.map(title => {
+  protected addImageInternal(image: ImageBubble) {
+    this.body.payload.items.push(getImageItem(image));
+  }
+
+  protected setVoiceInternal(text: string) {
+    this.body.payload.pronounceText = text;
+  }
+
+  protected addSuggestInternal(suggest: string[]) {
+    this.body.payload.suggestions!.buttons = suggest.map(title => {
       return { title, action: { type: 'text', text: title }};
     });
   }
 
-  protected syncTts() {
-    this.platformBody.payload.pronounceText = this.tts;
-  }
-
-  protected syncEndSession() {
-    this.platformBody.payload.finished = this.endSession;
+  protected endSessionInternal(value: boolean) {
+    this.body.payload.finished = value;
   }
 
   protected init(): SberResBody {

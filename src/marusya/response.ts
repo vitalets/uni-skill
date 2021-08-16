@@ -12,51 +12,47 @@ type MarusyaResBody = Omit<ResBody, ''>;
 export class MarusyaResponse extends BaseResponse<MarusyaResBody, MarusyaRequest> implements IResponse<MarusyaResBody> {
   isMarusya(): this is MarusyaResponse { return true; }
 
-  get userState() { return this.platformBody.user_state_update; }
-  set userState(value: MarusyaResBody['user_state_update']) { this.platformBody.user_state_update = value; }
-
-  get sessionState() { return this.platformBody.session_state; }
-  set sessionState(value: MarusyaResBody['session_state']) { this.platformBody.session_state = value; }
-
-  protected syncBubbles() {
-    const { response } = this.platformBody;
-    response.text = [];
-    for (const bubble of this.bubbles) {
-      if (typeof bubble === 'string') {
-        response.text.push(bubble);
-      } else if ('imageId' in bubble) {
-        this.syncImage(bubble);
-      }
-    }
+  protected addTextInternal(text: string) {
+    (this.body.response.text as string[]).push(text);
   }
 
-  protected syncSuggest() {
-    this.platformBody.response.buttons = this.suggest.map(title => ({ title }));
-  }
-
-  protected syncTts() {
-    this.platformBody.response.tts = this.tts;
-  }
-
-  protected syncEndSession() {
-    this.platformBody.response.end_session = this.endSession;
-  }
-
-  protected init(): MarusyaResBody {
-    return {
-      response: { text: [], buttons: [], end_session: false },
-      session: this.request.body.session,
-      version: '1.0'
-    };
-  }
-
-  private syncImage({ imageId, title, description }: ImageBubble) {
-    const { response } = this.platformBody;
-    response.card = {
+  protected addImageInternal({ imageId, title, description }: ImageBubble) {
+    this.body.response.card = {
       type: 'BigImage',
       image_id: Number(imageId),
     };
-    if (title) (response.text as string[]).push(title);
-    if (description) (response.text as string[]).push(description);
+    if (title) this.addTextInternal(title);
+    if (description) this.addTextInternal(description);
+  }
+
+  protected setVoiceInternal(text: string) {
+    this.body.response.tts = text;
+  }
+
+  protected addSuggestInternal(suggest: string[]) {
+    this.body.response.buttons = suggest.map(title => ({ title }));
+  }
+
+  protected endSessionInternal(value: boolean) {
+    this.body.response.end_session = value;
+  }
+
+  get userState() { return this.body.user_state_update; }
+  set userState(value: MarusyaResBody['user_state_update']) { this.body.user_state_update = value; }
+
+  get sessionState() { return this.body.session_state; }
+  set sessionState(value: MarusyaResBody['session_state']) { this.body.session_state = value; }
+
+  protected init(): MarusyaResBody {
+    return {
+      response: {
+        text: [],
+        tts: '',
+        buttons: [],
+        end_session: false,
+      },
+      session: this.request.body.session,
+      version: '1.0'
+    };
   }
 }

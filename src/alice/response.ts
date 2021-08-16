@@ -12,29 +12,29 @@ type AliceResBody = Omit<ResBody, ''>;
 export class AliceResponse extends BaseResponse<AliceResBody, AliceRequest> implements IResponse<AliceResBody> {
   isAlice(): this is AliceResponse { return true; }
 
-  protected syncBubbles() {
-    const { response } = this.platformBody;
-    const texts: string[] = [];
-    for (const bubble of this.bubbles) {
-      if (typeof bubble === 'string') {
-        texts.push(bubble);
-      } else if ('imageId' in bubble) {
-        this.syncImage(texts, bubble);
-      }
-    }
-    response.text = texts.join('\n');
+  protected addTextInternal(text: string) {
+    this.body.response.text = [ this.body.response.text, text ]
+      .filter(text => typeof text === 'string' && text.length > 0)
+      .join('\n');
   }
 
-  protected syncSuggest() {
-    this.platformBody.response.buttons = this.suggest.map(title => ({ title, hide: true }));
+  protected addImageInternal({ imageId, title, description }: ImageBubble) {
+    this.body.response.card = { type: 'BigImage', image_id: imageId, title, description };
+    // дописываем все в text, т.к. в Алисе он не может быть пустым
+    if (title) this.addTextInternal(title);
+    if (description) this.addTextInternal(description);
   }
 
-  protected syncTts() {
-    this.platformBody.response.tts = this.tts;
+  protected setVoiceInternal(text: string) {
+    this.body.response.tts = text;
   }
 
-  protected syncEndSession() {
-    this.platformBody.response.end_session = this.endSession;
+  protected addSuggestInternal(suggest: string[]) {
+    this.body.response.buttons = suggest.map(title => ({ title, hide: true }));
+  }
+
+  protected endSessionInternal(value: boolean) {
+    this.body.response.end_session = value;
   }
 
   get userState() { return this.body.user_state_update; }
@@ -50,18 +50,11 @@ export class AliceResponse extends BaseResponse<AliceResBody, AliceRequest> impl
     return {
       response: {
         text: '',
+        tts: '',
         buttons: [],
         end_session: false
       },
       version: '1.0'
     };
-  }
-
-  private syncImage(texts: string[], { imageId, title, description }: ImageBubble) {
-    const { response } = this.platformBody;
-    response.card = { type: 'BigImage', image_id: imageId, title, description };
-    // дописываем все в text, т.к. он не может быть пустым
-    if (title) texts.push(title);
-    if (description) texts.push(description);
   }
 }

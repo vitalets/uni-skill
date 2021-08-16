@@ -9,8 +9,8 @@ describe('marusya response', () => {
   });
 
   it('text', () => {
-    res.bubbles.push('привет');
-    res.bubbles.push('как дела');
+    res.addBubble('привет');
+    res.addBubble('как дела');
     assert.deepEqual(res.body.response, {
       text: [ 'привет', 'как дела' ],
       tts: '',
@@ -19,9 +19,9 @@ describe('marusya response', () => {
     });
   });
 
-  it('tts', () => {
-    res.tts = 'привет';
-    res.tts += ' как дела';
+  it('voice', () => {
+    res.addVoice('привет');
+    res.addVoice('как дела');
     assert.deepEqual(res.body.response, {
       text: [],
       tts: 'привет как дела',
@@ -30,18 +30,32 @@ describe('marusya response', () => {
     });
   });
 
+  it('text + voice', () => {
+    res.addVoiceBubble('привет');
+    res.addVoiceBubble('как дела');
+    assert.deepEqual(res.body.response, {
+      text: [ 'привет', 'как дела' ],
+      tts: 'привет как дела',
+      end_session: false,
+      buttons: [],
+    });
+  });
+
   it('suggest', () => {
-    res.suggest.push('кнопка');
+    res.addSuggest([ 'кнопка 1', 'кнопка 2' ]);
     assert.deepEqual(res.body.response, {
       text: [],
       tts: '',
       end_session: false,
-      buttons: [ { title: 'кнопка' }],
+      buttons: [
+        { title: 'кнопка 1' },
+        { title: 'кнопка 2' },
+      ],
     });
   });
 
   it('endSession', () => {
-    res.endSession = true;
+    res.endSession(true);
     assert.deepEqual(res.body.response, {
       text: [],
       tts: '',
@@ -51,7 +65,7 @@ describe('marusya response', () => {
   });
 
   it('image', () => {
-    res.bubbles.push({ imageId: '42', title: 'картинка', description: 'описание' });
+    res.addBubble({ imageId: '42', title: 'картинка', description: 'описание' });
     assert.deepEqual(res.body.response, {
       text: [ 'картинка', 'описание' ],
       tts: '',

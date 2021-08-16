@@ -15,10 +15,8 @@ import { createRequest, createResponse } from 'uni-skill';
 function handler(reqBody: unknown) {
   const request = createRequest(reqBody);
   const response = createResponse(request);
-  const reply = `Вы сказали: ${request.userMessage}`;
-  response.bubbles.push(reply);
-  response.tts = reply;
-  response.suggest = [ 'Кнопка' ];
+  response.addVoiceBubble(`Вы сказали: ${request.userMessage}`);
+  response.addSuggest([ 'Кнопка' ]);
   if (response.isSber()) {
     response.body.payload.emotion = { emotionId: 'oups' };
   }
