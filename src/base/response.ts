@@ -34,8 +34,7 @@ export abstract class BaseResponse<TBody, TReq> {
 
   addBubble(bubble: Bubble) {
     if (typeof bubble === 'string') {
-      const text = this.applyTextHook(bubble);
-      this.addTextInternal(text ?? '');
+      this.addTextBubble(bubble);
     } else if ('imageId' in bubble) {
       this.addImageBubble(bubble);
     } else {
@@ -79,6 +78,14 @@ export abstract class BaseResponse<TBody, TReq> {
   getUniBody() { return this.uniBody; }
   setTextHook(fn: Hook) { this.textHook = fn; return this; }
   setVoiceHook(fn: Hook) { this.voiceHook = fn; return this; }
+
+  private addTextBubble(text?: string) {
+    text = this.applyTextHook(text);
+    if (text) {
+      this.uniBody.bubbles.push(text);
+      this.addTextInternal(text);
+    }
+  }
 
   private addImageBubble({ imageId, title, description, ratio }: ImageBubble) {
     title = this.applyTextHook(title);
