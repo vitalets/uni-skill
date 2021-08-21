@@ -3,7 +3,7 @@
  */
 import { ResBody } from 'alice-types';
 import { BaseResponse } from '../base/response';
-import { ImageBubble, IResponse } from '../types/response';
+import { ImageBubble, IResponse, State } from '../types/response';
 import { AliceRequest } from './request';
 
 // Use fake Omit to have 'AliceResBody' in ts messages.
@@ -39,14 +39,15 @@ export class AliceResponse extends BaseResponse<AliceResBody, AliceRequest> impl
     this.body.response.end_session = value;
   }
 
-  get userState() { return this.body.user_state_update; }
-  set userState(value: AliceResBody['user_state_update']) { this.body.user_state_update = value; }
+  /** Для userState используем дополнительный ключ data, чтобы легче было сбрасывать стейт */
+  get userState() { return this.body.user_state_update?.data as State; }
+  set userState(data: State) { this.body.user_state_update = { data }; }
 
   get applicationState() { return this.body.application_state; }
-  set applicationState(value: AliceResBody['application_state']) { this.body.application_state = value; }
+  set applicationState(value: State) { this.body.application_state = value; }
 
   get sessionState() { return this.body.session_state; }
-  set sessionState(value: AliceResBody['session_state']) { this.body.session_state = value; }
+  set sessionState(value: State) { this.body.session_state = value; }
 
   protected init(): AliceResBody {
     return {

@@ -6,7 +6,7 @@ describe('sber response', () => {
   let res: SberResponse;
 
   beforeEach(() => {
-    res = createResponse(createRequest(data)) as SberResponse;
+    res = createRes(data) as SberResponse;
   });
 
   it('text', () => {

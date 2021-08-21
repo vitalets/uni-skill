@@ -57,3 +57,5 @@ export interface UniBody {
   voice: string;
   endSession: boolean;
 }
+
+export type State = Record<string, unknown> | undefined;

@@ -5,7 +5,7 @@ describe('marusya response', () => {
   let res: MarusyaResponse;
 
   beforeEach(() => {
-    res = createResponse(createRequest(data)) as MarusyaResponse;
+    res = createRes(data) as MarusyaResponse;
   });
 
   it('text', () => {
@@ -76,6 +76,16 @@ describe('marusya response', () => {
       end_session: false,
       buttons: [],
     });
+  });
+
+  it('sessionState', () => {
+    res.sessionState = { foo: 42 };
+    assert.deepEqual(res.body.session_state, { foo: 42 });
+  });
+
+  it('userState', () => {
+    res.userState = { foo: 42 };
+    assert.deepEqual(res.body.user_state_update, { data: { foo: 42 }});
   });
 
 });

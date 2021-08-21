@@ -5,7 +5,7 @@ describe('alice response', () => {
   let res: AliceResponse;
 
   beforeEach(() => {
-    res = createResponse(createRequest(data)) as AliceResponse;
+    res = createRes(data) as AliceResponse;
   });
 
   it('text', () => {
@@ -78,6 +78,21 @@ describe('alice response', () => {
       end_session: false,
       buttons: [],
     });
+  });
+
+  it('sessionState', () => {
+    res.sessionState = { foo: 42 };
+    assert.deepEqual(res.body.session_state, { foo: 42 });
+  });
+
+  it('applicationState', () => {
+    res.applicationState = { foo: 42 };
+    assert.deepEqual(res.body.application_state, { foo: 42 });
+  });
+
+  it('userState', () => {
+    res.userState = { foo: 42 };
+    assert.deepEqual(res.body.user_state_update, { data: { foo: 42 }});
   });
 
 });

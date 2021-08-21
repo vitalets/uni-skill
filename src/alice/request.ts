@@ -4,6 +4,7 @@
 import { ReqBody } from 'alice-types';
 import { BaseRequest } from '../base/request';
 import { IRequest } from '../types/request';
+import { State } from '../types/response';
 
 // Use fake Omit to have 'AliceReqBody' in ts messages.
 type AliceReqBody = Omit<ReqBody, ''>;
@@ -25,7 +26,8 @@ export class AliceRequest extends BaseRequest<AliceReqBody> implements IRequest<
 
   /** own */
 
-  get userState() { return this.body.state?.user; }
+  /** Для userState используем дополнительный ключ data, чтобы легче было сбрасывать стейт */
+  get userState() { return this.body.state?.user?.data as State; }
   get applicationState() { return this.body.state?.application; }
   get sessionState() { return this.body.state?.session; }
 }

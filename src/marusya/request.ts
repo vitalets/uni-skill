@@ -4,6 +4,7 @@
 import { ReqBody } from 'marusya-types';
 import { BaseRequest } from '../base/request';
 import { IRequest } from '../types/request';
+import { State } from '../types/response';
 
 // Use fake Omit to have 'MarusyaReqBody' in ts messages.
 type MarusyaReqBody = Omit<ReqBody, ''>;
@@ -31,6 +32,7 @@ export class MarusyaRequest extends BaseRequest<MarusyaReqBody> implements IRequ
 
   /** own */
 
-  get userState() { return this.body.state?.user; }
+  /** Для userState используем дополнительный ключ data, чтобы легче было сбрасывать стейт */
+  get userState() { return this.body.state?.user?.data as State; }
   get sessionState() { return this.body.state?.session; }
 }

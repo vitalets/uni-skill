@@ -3,7 +3,7 @@
  */
 import { ResBody } from 'marusya-types';
 import { BaseResponse } from '../base/response';
-import { ImageBubble, IResponse } from '../types/response';
+import { ImageBubble, IResponse, State } from '../types/response';
 import { MarusyaRequest } from './request';
 
 // Use fake Omit to have 'MarusyaResBody' in ts messages.
@@ -37,11 +37,12 @@ export class MarusyaResponse extends BaseResponse<MarusyaResBody, MarusyaRequest
     this.body.response.end_session = value;
   }
 
-  get userState() { return this.body.user_state_update; }
-  set userState(value: MarusyaResBody['user_state_update']) { this.body.user_state_update = value; }
+  /** Для userState используем дополнительный ключ data, чтобы легче было сбрасывать стейт */
+  get userState() { return this.body.user_state_update?.data as State; }
+  set userState(data: State) { this.body.user_state_update = { data }; }
 
   get sessionState() { return this.body.session_state; }
-  set sessionState(value: MarusyaResBody['session_state']) { this.body.session_state = value; }
+  set sessionState(value: State) { this.body.session_state = value; }
 
   protected init(): MarusyaResBody {
     return {
