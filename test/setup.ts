@@ -27,6 +27,7 @@ afterEach(() => {
   sinon.restore();
 });
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function createReq(data: unknown, fn?: (data: any) => any) {
   if (fn) {
     data = JSON.parse(JSON.stringify(data));
@@ -35,6 +36,6 @@ function createReq(data: unknown, fn?: (data: any) => any) {
   return createRequest(data);
 }
 
-function createRes(data: unknown, fn?: (data: any) => any) {
-  return createResponse(createReq(data, fn));
+function createRes(...args: Parameters<typeof createReq>) {
+  return createResponse(createReq(...args));
 }
