@@ -13,6 +13,8 @@ export class AliceResponse extends BaseResponse<AliceResBody, AliceRequest> impl
   isAlice(): this is AliceResponse { return true; }
 
   protected addTextInternal(text: string) {
+    // todo: если response.text есть и заканчивается буквой, а не знаком препинания, то нужно туда дописать точку.
+    // Иначе все сольётся в одно предложение.
     this.body.response.text = [ this.body.response.text, text ]
       .filter(text => typeof text === 'string' && text.length > 0)
       .join('\n');
