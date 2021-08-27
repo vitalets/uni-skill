@@ -1,0 +1,58 @@
+{
+  "user": {
+    "userId": "ABwppHEF...",
+    "locale": "en-US",
+    "lastSeen": "2018-03-21T17:59:52Z",
+    "userStorage": "{\"data\":{}}"
+  },
+  "device": {},
+  "surface": {
+    "capabilities": [
+      {
+        "name": "actions.capability.SCREEN_OUTPUT"
+      },
+      {
+        "name": "actions.capability.AUDIO_OUTPUT"
+      },
+      {
+        "name": "actions.capability.MEDIA_RESPONSE_AUDIO"
+      },
+      {
+        "name": "actions.capability.WEB_BROWSER"
+      }
+    ]
+  },
+  "conversation": {
+    "conversationId": "1521784527171",
+    "type": "NEW"
+  },
+  "inputs": [
+    {
+      "intent": "actions.intent.MAIN",
+      "rawInputs": [
+        {
+          "inputType": "VOICE",
+          "query": "Talk to my test app"
+        }
+      ]
+    }
+  ],
+  "availableSurfaces": [
+    {
+      "capabilities": [
+        {
+          "name": "actions.capability.SCREEN_OUTPUT"
+        },
+        {
+          "name": "actions.capability.AUDIO_OUTPUT"
+        },
+        {
+          "name": "actions.capability.MEDIA_RESPONSE_AUDIO"
+        },
+        {
+          "name": "actions.capability.WEB_BROWSER"
+        }
+      ]
+    }
+  ]
+}

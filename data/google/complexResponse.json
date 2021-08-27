@@ -1,0 +1,60 @@
+{
+  "expectUserResponse": true,
+  "expectedInputs": [
+    {
+      "possibleIntents": [
+        {
+          "intent": "actions.intent.OPTION",
+          "inputValueData": {
+            "@type": "type.googleapis.com/google.actions.v2.OptionValueSpec",
+            "carouselSelect": {
+              "items": [
+                {
+                  "optionInfo": {
+                    "key": "one",
+                    "synonyms": [
+                      "synonym of KEY_ONE 1",
+                      "synonym of KEY_ONE 2"
+                    ]
+                  },
+                  "description": "Description of number one",
+                  "title": "Number one"
+                },
+                {
+                  "optionInfo": {
+                    "key": "two",
+                    "synonyms": [
+                      "synonym of KEY_TWO 1",
+                      "synonym of KEY_TWO 2"
+                    ]
+                  },
+                  "description": "Description of number two",
+                  "title": "Number two"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "inputPrompt": {
+        "richInitialPrompt": {
+          "items": [
+            {
+              "simpleResponse": {
+                "textToSpeech": "this shows an example of a carousel"
+              }
+            }
+          ],
+          "suggestions": [
+            {
+              "title": "1"
+            },
+            {
+              "title": "2"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
