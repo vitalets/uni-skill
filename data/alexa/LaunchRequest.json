@@ -1,0 +1,99 @@
+{
+	"version": "1.0",
+	"session": {
+		"new": false,
+		"sessionId": "amzn1.echo-api.session.7efdfa91-cb82-49f0-b9fa-9b91fbdfc3f8",
+		"application": {
+			"applicationId": "amzn1.ask.skill.b78c084c-e823-49db-bec2-f2629819015f"
+		},
+		"attributes": {
+			"gamesPlayed": 0,
+			"guessNumber": 72,
+			"gameState": "STARTED",
+			"endedSessionCount": 0
+		},
+		"user": {
+			"userId": "amzn1.ask.account.AE46KRWSH3DJAYR3TVNBVGP272PGIS5JW4D7LJNSOBVAHUFNQLKYLRU6NS5MPMMWX2BU7NZAG6KJYT7FQKBROHL4BQWVWVD4TBTGGJY5SSTPJZJ5FDAJIINKPZPNIWBS46UARBOONBI76ZBPGZO73PWEKV6YLL4LKZPXJTX2ML73COMEILMVGLXVGT5AYJGNHI3IRSA3ZJ3DKXQ"
+		}
+	},
+	"request": {
+    "type": "LaunchRequest",
+    "requestId": "amzn1.echo-api.request.772d1394-015c-4318-9a04-5102a135a19f",
+    "locale": "en-US",
+    "timestamp": "2021-08-29T19:49:44Z",
+    "shouldLinkResultBeReturned": false
+	},
+  "context": {
+		"Viewports": [
+			{
+				"type": "APL",
+				"id": "main",
+				"shape": "RECTANGLE",
+				"dpi": 213,
+				"presentationType": "STANDARD",
+				"canRotate": false,
+				"configuration": {
+					"current": {
+						"mode": "HUB",
+						"video": {
+							"codecs": [
+								"H_264_42",
+								"H_264_41"
+							]
+						},
+						"size": {
+							"type": "DISCRETE",
+							"pixelWidth": 1280,
+							"pixelHeight": 800
+						}
+					}
+				}
+			}
+		],
+		"Viewport": {
+			"experiences": [
+				{
+					"arcMinuteWidth": 346,
+					"arcMinuteHeight": 216,
+					"canRotate": false,
+					"canResize": false
+				}
+			],
+			"mode": "HUB",
+			"shape": "RECTANGLE",
+			"pixelWidth": 1280,
+			"pixelHeight": 800,
+			"dpi": 213,
+			"currentPixelWidth": 1280,
+			"currentPixelHeight": 800,
+			"touch": [
+				"SINGLE"
+			],
+			"video": {
+				"codecs": [
+					"H_264_42",
+					"H_264_41"
+				]
+			}
+		},
+		"Extensions": {
+			"available": {
+				"aplext:backstack:10": {}
+			}
+		},
+		"System": {
+			"application": {
+				"applicationId": "amzn1.ask.skill.b78c084c-e823-49db-bec2-f2629819015f"
+			},
+			"user": {
+				"userId": "amzn1.ask.account.AE46KRWSH3DJAYR3TVNBVGP272PGIS5JW4D7LJNSOBVAHUFNQLKYLRU6NS5MPMMWX2BU7NZAG6KJYT7FQKBROHL4BQWVWVD4TBTGGJY5SSTPJZJ5FDAJIINKPZPNIWBS46UARBOONBI76ZBPGZO73PWEKV6YLL4LKZPXJTX2ML73COMEILMVGLXVGT5AYJGNHI3IRSA3ZJ3DKXQ"
+			},
+			"device": {
+				"deviceId": "amzn1.ask.device.AFTNK4QWEQPHROF2PMLY7DEOJ7OAYWSG7TZOS3LTYBGIKNHJNZAZURAOJT6YESLLKMQZYATCAKEI5Q4ZUHXREJ6D6TAS4KDQ3FPTVQQLWCKKDIG4KKVM5UHUVDWLWXW6IWVZEIELRFKXTMP2BVMYBN7YGLKAJN6HBVWKSS34QWMFWXB6IXRJQ",
+				"supportedInterfaces": {}
+			},
+			"apiEndpoint": "https://api.amazonalexa.com",
+			"apiAccessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjEifQ.eyJhdWQiOiJodHRwczovL2FwaS5hbWF6b25hbGV4YS5jb20iLCJpc3MiOiJBbGV4YVNraWxsS2l0Iiwic3ViIjoiYW16bjEuYXNrLnNraWxsLmI3OGMwODRjLWU4MjMtNDlkYi1iZWMyLWYyNjI5ODE5MDE1ZiIsImV4cCI6MTYyOTk3NTU3MywiaWF0IjoxNjI5OTc1MjczLCJuYmYiOjE2Mjk5NzUyNzMsInByaXZhdGVDbGFpbXMiOnsiY29udGV4dCI6IkFBQUFBQUFBQUFBSXp3czBWZ1kzalg0UWdUalN2SC9sS3dFQUFBQUFBQUFrSkJ3WkVVa1BaSUdJeUJTQTc2ZWNIYzRnMFRveXJYRlluUnNQYjc3c21jb2s2TFNQWTFvdGpnWjJCWFJsV29zakgwdWNpYmpUNHVzRjUwY296THVISnlMWXAwRU01eHduYytTTUpGaGZRdFlTZllNZnBNQ2JhN0szcmp6dk44ZlIxMVlEbXA2TzM4VFVIK3UzaVlGVFVPZHl0SjlJZysrSmV1R3VyVDZDTDNybFp5ajc1cGMxcEtEQ0NDYXJsQjB2RGczK3o0VnIzSGs3cjZISjdBZE1sajhUQkduaFJlSTRkRmk5U2NjdERoaE9HTWplc2lUS2dQUHlVUjBGdGNaQ2RkNEI1eHgzcExFaW5ocFZVVnQ3d1NEVDNKRjlGNVNIdUsvUE9CWVVhTXZqeTBhemY5TVdVMlU4U0J6TmhtdmRhc2pycm91akRVUnZOUzJhYWpXQ01GQ1JLQW1wTlF4RHh1S3BIRnFWTHBic1NsT3RJbW9FUEVVU1VLekRQL1p2NzdOeDhDWGVOSU1xVHc9PSIsImNvbnNlbnRUb2tlbiI6bnVsbCwiZGV2aWNlSWQiOiJhbXpuMS5hc2suZGV2aWNlLkFGVE5LNFFXRVFQSFJPRjJQTUxZN0RFT0o3T0FZV1NHN1RaT1MzTFRZQkdJS05ISk5aQVpVUkFPSlQ2WUVTTExLTVFaWUFUQ0FLRUk1UTRaVUhYUkVKNkQ2VEFTNEtEUTNGUFRWUVFMV0NLS0RJRzRLS1ZNNVVIVVZEV0xXWFc2SVdWWkVJRUxSRktYVE1QMkJWTVlCTjdZR0xLQUpONkhCVldLU1MzNFFXTUZXWEI2SVhSSlEiLCJ1c2VySWQiOiJhbXpuMS5hc2suYWNjb3VudC5BRTQ2S1JXU0gzREpBWVIzVFZOQlZHUDI3MlBHSVM1Slc0RDdMSk5TT0JWQUhVRk5RTEtZTFJVNk5TNU1QTU1XWDJCVTdOWkFHNktKWVQ3RlFLQlJPSEw0QlFXVldWRDRUQlRHR0pZNVNTVFBKWko1RkRBSklJTktQWlBOSVdCUzQ2VUFSQk9PTkJJNzZaQlBHWk83M1BXRUtWNllMTDRMS1pQWEpUWDJNTDczQ09NRUlMTVZHTFhWR1Q1QVlKR05ISTNJUlNBM1pKM0RLWFEifX0.i1wfMFm8QMspw1dgidfPgIyoNaaG6HbitjZNNBBAoMZUFqvLesEzgB6tF-uwKhwKtKOD5Eeu2VTrv9zojX2waNCG6ISCaMLAsXUclfweLo_g1TwJpDxWQS7qJj9pxRHosE5xfFan_8-wXYiyDexvmZtiOFY1DXxFrhHwx0Ok5oJRtinqgnyF9rBtxjqrhC7x_gfBK_E7TqSUWgjHigUBzEZBSMrA4yjrhvfrQPLS5gK54c-PkIkHjnhuPlMzXF17bBkd-tRFvPt-C3Ydocd7jP-TOlYcrjwJ3wNKSUjVq7gimaB-Y5PSecqO48tN4hxIBIGMjl6dIwAsJ-H-9AyLyg"
+		}
+	}
+}
