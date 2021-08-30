@@ -1,26 +1,23 @@
 {
-	"body": {
-		"version": "1.0",
-		"response": {
-			"outputSpeech": {
-				"type": "SSML",
-				"ssml": "<speak>10 is too low.</speak>"
-			},
-			"reprompt": {
-				"outputSpeech": {
-					"type": "SSML",
-					"ssml": "<speak>Try guessing a larger number.</speak>"
-				}
-			},
-			"shouldEndSession": false,
-			"type": "_DEFAULT_RESPONSE"
-		},
-		"sessionAttributes": {
-			"gamesPlayed": 0,
-			"guessNumber": 72,
-			"gameState": "STARTED",
-			"endedSessionCount": 0
-		},
-		"userAgent": "ask-node/2.10.2 Node/v12.22.4"
-	}
+  "response": {
+    "outputSpeech": {
+      "type": "SSML",
+      "ssml": "<speak>10 is too low.</speak>"
+    },
+    "reprompt": {
+      "outputSpeech": {
+        "type": "SSML",
+        "ssml": "<speak>Try guessing a larger number.</speak>"
+      }
+    },
+    "shouldEndSession": false,
+    "type": "_DEFAULT_RESPONSE"
+  },
+  "sessionAttributes": {
+    "gamesPlayed": 0,
+    "guessNumber": 72,
+    "gameState": "STARTED",
+    "endedSessionCount": 0
+  },
+  "version": "1.0"
 }

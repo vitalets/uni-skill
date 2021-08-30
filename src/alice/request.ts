@@ -11,7 +11,7 @@ type AliceReqBody = Omit<ReqBody, ''>;
 
 export class AliceRequest extends BaseRequest<AliceReqBody> implements IRequest<AliceReqBody> {
   static match(reqBody: unknown): reqBody is AliceReqBody {
-    return Boolean((reqBody as AliceReqBody)?.request);
+    return Boolean((reqBody as AliceReqBody)?.session?.skill_id);
   }
   isAlice(): this is AliceRequest { return true; }
   get userId() { return this.body.session.application.application_id; }

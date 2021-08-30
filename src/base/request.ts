@@ -10,4 +10,5 @@ export abstract class BaseRequest<TBody> {
   isAlice() { return false; }
   isSber() { return false; }
   isMarusya() { return false; }
+  isAlexa() { return false; }
 }

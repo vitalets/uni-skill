@@ -1,0 +1,8 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "playground/dist"
+  },
+  "files": [ "./playground/skill.ts" ],
+  "exclude": [ "./src", "./test" ]
+}

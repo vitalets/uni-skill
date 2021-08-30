@@ -12,6 +12,7 @@
     "test:l": "mocha -r ts-node/register test/setup.ts 'test/specs/**/*.ts'",
     "test": "LOG_LEVEL=fatal npm run test:l",
     "check": "tsnd --respawn scripts/check",
+    "check:alexa": "tsc -p tsconfig.alexa.json --watch & ask run --watch --region EU && kill $!",
     "build": "rm -rf dist && tsc -p tsconfig.build.json",
     "release": "npm run lint && npm t && npm run build && npm version $VER && npm publish && git push --follow-tags --no-verify",
     "release-patch": "VER=patch npm run release",
@@ -23,6 +24,8 @@
   "dependencies": {
     "@salutejs/types": "^0.7.0",
     "alice-types": "^1.2.1",
+    "ask-sdk-core": "^2.11.0",
+    "ask-sdk-model": "^1.36.1",
     "marusya-types": "^1.0.1"
   },
   "devDependencies": {
@@ -32,6 +35,8 @@
     "@types/sinon": "^10.0.2",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
+    "ask-cli": "^2.24.1",
+    "ask-sdk-local-debug": "^1.1.0",
     "chai": "^4.3.4",
     "dotenv": "^10.0.0",
     "eslint": "^7.24.0",

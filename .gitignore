@@ -12,3 +12,6 @@ dist
 /todo.txt
 /playground
 /ssml.txt
+
+# alexa
+.ask/

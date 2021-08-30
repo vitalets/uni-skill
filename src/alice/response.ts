@@ -4,6 +4,7 @@
 import { ResBody } from 'alice-types';
 import { BaseResponse } from '../base/response';
 import { ImageBubble, IResponse, State } from '../types/response';
+import { concatWithSeparator } from '../utils';
 import { AliceRequest } from './request';
 
 // Use fake Omit to have 'AliceResBody' in ts messages.
@@ -15,9 +16,7 @@ export class AliceResponse extends BaseResponse<AliceResBody, AliceRequest> impl
   protected addTextInternal(text: string) {
     // todo: если response.text есть и заканчивается буквой, а не знаком препинания, то нужно туда дописать точку.
     // Иначе все сольётся в одно предложение.
-    this.body.response.text = [ this.body.response.text, text ]
-      .filter(text => typeof text === 'string' && text.length > 0)
-      .join('\n');
+    this.body.response.text = concatWithSeparator(this.body.response.text, text, '\n');
   }
 
   protected addImageInternal({ imageId, title, description }: ImageBubble) {

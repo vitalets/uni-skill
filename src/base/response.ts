@@ -3,6 +3,7 @@
  */
 
 import { Bubble, UniBody, Hook, ImageBubble } from '../types/response';
+import { concatWithSeparator, stripSpeakTags } from '../utils';
 
 export abstract class BaseResponse<TBody, TReq> {
   /** Тело платформенного ответа */
@@ -31,6 +32,7 @@ export abstract class BaseResponse<TBody, TReq> {
   isAlice() { return false; }
   isSber() { return false; }
   isMarusya() { return false; }
+  isAlexa() { return false; }
 
   addBubble(bubble: Bubble) {
     if (typeof bubble === 'string') {
@@ -44,8 +46,8 @@ export abstract class BaseResponse<TBody, TReq> {
   }
 
   addVoice(text = '') {
-    const hookedText = this.applyVoiceHook(text);
-    this.uniBody.voice = `${this.uniBody.voice ?? ''} ${hookedText ?? ''}`.trim();
+    const processedText = stripSpeakTags(this.applyVoiceHook(text));
+    this.uniBody.voice = concatWithSeparator(this.uniBody.voice, processedText, ' ');
     this.setVoiceInternal(this.uniBody.voice);
     return this;
   }
