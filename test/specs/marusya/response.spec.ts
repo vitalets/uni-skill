@@ -78,6 +78,22 @@ describe('marusya response', () => {
     });
   });
 
+  it('text - image - text', () => {
+    res.addBubble('привет');
+    res.addBubble({ imageId: '42', title: 'картинка', description: 'описание' });
+    res.addBubble('как дела');
+    assert.deepEqual(res.body.response, {
+      text: [ 'привет', 'картинка', 'описание', 'как дела' ],
+      tts: '',
+      card: {
+        type: 'BigImage',
+        image_id: 42,
+      },
+      end_session: false,
+      buttons: [],
+    });
+  });
+
   it('sessionState', () => {
     res.sessionState = { foo: 42 };
     assert.deepEqual(res.body.session_state, { foo: 42 });

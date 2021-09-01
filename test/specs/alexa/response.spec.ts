@@ -1,7 +1,7 @@
 import IntentRequest from '../../../data/alexa/IntentRequest.json';
 import { AlexaResponse } from '../../../src/alexa/response';
 
-describe('marusya response', () => {
+describe('alexa response', () => {
   let res: AlexaResponse;
 
   beforeEach(() => {
@@ -94,6 +94,28 @@ describe('marusya response', () => {
         image: {
           smallImageUrl: 'https://small-image',
           largeImageUrl: 'https://large-image'
+        }
+      },
+      shouldEndSession: false
+    });
+  });
+
+  it('text - image - text', () => {
+    res.addBubble('привет');
+    res.addBubble({ imageId: 'https://image', title: 'картинка', description: 'описание' });
+    res.addBubble('как дела');
+    assert.deepEqual(res.body.response, {
+      outputSpeech: {
+        type: 'SSML',
+        ssml: ''
+      },
+      card: {
+        type: 'Standard',
+        title: 'картинка',
+        text: 'привет\nописание\nкак дела',
+        image: {
+          smallImageUrl: 'https://image',
+          largeImageUrl: 'https://image'
         }
       },
       shouldEndSession: false

@@ -4,7 +4,7 @@
 import { ResBody } from 'alice-types';
 import { BaseResponse } from '../base/response';
 import { ImageBubble, IResponse, State } from '../types/response';
-import { concatWithSeparator } from '../utils';
+import { concatWithNewline } from '../utils';
 import { AliceRequest } from './request';
 
 // Use fake Omit to have 'AliceResBody' in ts messages.
@@ -16,14 +16,28 @@ export class AliceResponse extends BaseResponse<AliceResBody, AliceRequest> impl
   protected addTextInternal(text: string) {
     // todo: если response.text есть и заканчивается буквой, а не знаком препинания, то нужно туда дописать точку.
     // Иначе все сольётся в одно предложение.
-    this.body.response.text = concatWithSeparator(this.body.response.text, text, '\n');
+    const { response } = this.body;
+    const { card } = response;
+    if (card?.type === 'BigImage') {
+      card.description = concatWithNewline(card.description, text);
+    } else if (card) {
+      throw new Error(`Can not add text to card.type: ${card.type}`);
+    }
+    response.text = concatWithNewline(response.text, text);
   }
 
   protected addImageInternal({ imageId, title, description }: ImageBubble) {
-    this.body.response.card = { type: 'BigImage', image_id: imageId, title, description };
-    // дописываем все в text, т.к. в Алисе он не может быть пустым
-    if (title) this.addTextInternal(title);
-    if (description) this.addTextInternal(description);
+    const { response } = this.body;
+    response.card = {
+      type: 'BigImage',
+      image_id: imageId,
+      title,
+      description: concatWithNewline(response.text, description),
+    };
+    // always append title and description to text
+    // as it can't be empty in Alice (used for non-image devices)
+    if (title) response.text = concatWithNewline(response.text, title);
+    if (description) response.text = concatWithNewline(response.text, description);
   }
 
   protected setVoiceInternal(text: string) {

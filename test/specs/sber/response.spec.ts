@@ -50,13 +50,28 @@ describe('sber response', () => {
   });
 
   it('image', () => {
-    const imageId = 'https://path.to/image.png|hash1234567';
+    const imageId = 'https://image.png|hash12345';
     res.addBubble({ imageId, title: 'картинка', description: 'описание', ratio: 0.5 });
-    const galItem = (res.body.payload.items[0].card as GalleryCard).items[0];
-    assert.deepInclude(galItem.image, { url: 'https://path.to/image.png', hash: 'hash1234567' });
-    assert.deepInclude(galItem.image, { size: { aspect_ratio: 0.5, width: 'large' }});
-    assert.deepInclude(galItem.top_text, { text: 'картинка' });
-    assert.deepInclude(galItem.bottom_text, { text: 'описание' });
+    const imgItem = (res.body.payload.items[0].card as GalleryCard).items[0];
+    assert.deepInclude(imgItem.image, { url: 'https://image.png', hash: 'hash12345' });
+    assert.deepInclude(imgItem.image, { size: { aspect_ratio: 0.5, width: 'large' }});
+    assert.deepInclude(imgItem.top_text, { text: 'картинка' });
+    assert.deepInclude(imgItem.bottom_text, { text: 'описание' });
+  });
+
+  it('text - image - text', () => {
+    res.addBubble('привет');
+    const imageId = 'https://image.png|hash12345';
+    res.addBubble({ imageId, title: 'картинка', description: 'описание', ratio: 0.5 });
+    res.addBubble('как дела');
+
+    assert.deepEqual(res.body.payload.items[0], { bubble: { text: 'привет' } });
+    const imgItem = (res.body.payload.items[1].card as GalleryCard).items[0];
+    assert.deepInclude(imgItem.image, { url: 'https://image.png', hash: 'hash12345' });
+    assert.deepInclude(imgItem.image, { size: { aspect_ratio: 0.5, width: 'large' }});
+    assert.deepInclude(imgItem.top_text, { text: 'картинка' });
+    assert.deepInclude(imgItem.bottom_text, { text: 'описание' });
+    assert.deepEqual(res.body.payload.items[2], { bubble: { text: 'как дела' } });
   });
 
   it('modifications of body saved after updates', () => {

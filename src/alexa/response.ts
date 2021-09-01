@@ -5,7 +5,7 @@
 import { ResponseEnvelope, ui } from 'ask-sdk-model';
 import { BaseResponse } from '../base/response';
 import { ImageBubble, IResponse, State } from '../types/response';
-import { concatWithSeparator } from '../utils';
+import { concatWithNewline } from '../utils';
 import { AlexaRequest } from './request';
 
 // Use fake Omit to have 'AlexaResBody' in ts messages.
@@ -15,26 +15,30 @@ export class AlexaResponse extends BaseResponse<AlexaResBody, AlexaRequest> impl
   isAlexa(): this is AlexaResponse { return true; }
 
   protected addTextInternal(text: string) {
-    // todo: if there is existing image card, use it!
     const { card } = this.body.response;
-    const existingContent = card?.type === 'Simple' && card.content || '';
-    this.body.response.card = {
-      type: 'Simple',
-      title: '',
-      content: concatWithSeparator(existingContent, text, '\n')
-    };
+    if (card?.type === 'Simple') {
+      card.content = concatWithNewline(card.content, text);
+    } else if (card?.type === 'Standard') {
+      card.text = concatWithNewline(card.text, text);
+    } else {
+      this.body.response.card = {
+        type: 'Simple',
+        title: '',
+        content: text,
+      };
+    }
   }
 
+  /**
+   * see: https://developer.amazon.com/en-US/docs/alexa/custom-skills/best-practices-for-skill-card-design.html
+   */
   protected addImageInternal({ imageId, title, description }: ImageBubble) {
-    // todo: copy text from existing Simple/Standart card?
-    // see: https://developer.amazon.com/en-US/docs/alexa/custom-skills/best-practices-for-skill-card-design.html
+    const { card } = this.body.response;
+    const existingText = card?.type === 'Simple' && card.content || '';
+    const text = concatWithNewline(existingText, description);
     const [ smallImageUrl, largeImageUrl = smallImageUrl ] = imageId.split('|');
-    this.body.response.card = {
-      type: 'Standard',
-      title,
-      text: description,
-      image: { smallImageUrl, largeImageUrl },
-    };
+    const image = { smallImageUrl, largeImageUrl };
+    this.body.response.card = { type: 'Standard', title, text, image };
   }
 
   protected setVoiceInternal(text: string) {
