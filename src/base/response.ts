@@ -3,7 +3,7 @@
  */
 
 import { Bubble, UniBody, Hook, ImageBubble } from '../types/response';
-import { concatWithSeparator, stripSpeakTags } from '../utils';
+import { concatWithSeparator, stripSpeakTags, stripEmoji } from '../utils';
 
 export abstract class BaseResponse<TBody, TReq> {
   /** Тело платформенного ответа */
@@ -46,7 +46,7 @@ export abstract class BaseResponse<TBody, TReq> {
   }
 
   addVoice(text = '') {
-    const processedText = stripSpeakTags(this.applyVoiceHook(text));
+    const processedText = stripEmoji(stripSpeakTags(this.applyVoiceHook(text)));
     this.uniBody.voice = concatWithSeparator(this.uniBody.voice, processedText, ' ');
     this.setVoiceInternal(this.uniBody.voice);
     return this;
