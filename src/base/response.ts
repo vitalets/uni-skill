@@ -70,11 +70,13 @@ export abstract class BaseResponse<TBody, TReq> {
   addVoiceBubble(bubble: Bubble) {
     this.addBubble(bubble);
     if (typeof bubble === 'string') {
-      return this.addVoice(bubble);
+      this.addVoice(bubble);
     } else {
       const { title, description } = bubble;
-      return this.addVoice(`${title ?? ''} ${description ?? ''}`.trim());
+      this.addVoice(title);
+      this.addVoice(description);
     }
+    return this;
   }
 
   getUniBody() { return this.uniBody; }
