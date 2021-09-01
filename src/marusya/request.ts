@@ -14,7 +14,10 @@ export class MarusyaRequest extends BaseRequest<MarusyaReqBody> implements IRequ
     return Boolean((reqBody as MarusyaReqBody)?.session?.auth_token);
   }
   isMarusya(): this is MarusyaRequest { return true; }
-  get userId() { return this.body.session.application.application_id; }
+  get userId() {
+    const { user, application } = this.body.session;
+    return user?.user_id || application?.application_id || '';
+  }
   get sessionId() { return this.body.session.session_id; }
   get messageId() { return this.body.session.message_id; }
   get userMessage() {

@@ -12,7 +12,7 @@ describe('alice request', () => {
   });
 
   it('userId', () => {
-    assert.equal(req.userId, '15B69EA115BD8D831AB0B66C8B9E880C0270916EEB040D47224A35996B233F96');
+    assert.equal(req.userId, '92DE93E7BC5DFDE0ED492D939267972349E5A6B99EC6F1E646EF1C47A102B2D6');
   });
 
   it('userMessage', () => {
