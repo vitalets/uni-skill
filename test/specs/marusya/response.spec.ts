@@ -42,7 +42,8 @@ describe('marusya response', () => {
   });
 
   it('suggest', () => {
-    res.addSuggest([ 'кнопка 1', 'кнопка 2' ]);
+    res.addSuggest([ 'кнопка 1' ]);
+    res.addSuggest([ 'кнопка 2' ]);
     assert.deepEqual(res.body.response, {
       text: [],
       tts: '',

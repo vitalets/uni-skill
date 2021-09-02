@@ -1,7 +1,7 @@
 /**
  * Sber response.
  */
-import { NLPResponseATU } from '@salutejs/types';
+import { Button, NLPResponseATU } from '@salutejs/types';
 import { CommonResponse } from '../common/response';
 import { Image, Link } from '../common/types';
 import { getImageItem } from './image';
@@ -29,9 +29,11 @@ export class SberResponse extends CommonResponse<SberResBody, SberRequest> {
   }
 
   protected addSuggestInternal(suggest: string[]) {
-    this.body.payload.suggestions!.buttons = suggest.map(title => {
-      return { title, action: { type: 'text', text: title }};
-    });
+    this.body.payload.suggestions!.buttons.push(
+      ...suggest.map((title): Button => {
+        return { title, action: { type: 'text', text: title }};
+      })
+    );
   }
 
   protected addLinkInternal(link: Link) {

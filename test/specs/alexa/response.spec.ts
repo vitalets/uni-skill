@@ -55,7 +55,8 @@ describe('alexa response', () => {
   });
 
   it('suggest (noop)', () => {
-    res.addSuggest([ 'кнопка 1', 'кнопка 2' ]);
+    res.addSuggest([ 'кнопка 1' ]);
+    res.addSuggest([ 'кнопка 2' ]);
     assert.deepEqual(res.body.response, {
       outputSpeech: {
         type: 'SSML',

@@ -35,7 +35,8 @@ describe('sber response', () => {
   });
 
   it('suggest', () => {
-    res.addSuggest([ 'кнопка 1', 'кнопка 2' ]);
+    res.addSuggest([ 'кнопка 1' ]);
+    res.addSuggest([ 'кнопка 2' ]);
     assert.deepEqual(res.body.payload.suggestions, {
       buttons: [
         { title: 'кнопка 1', action: { type: 'text', text: 'кнопка 1' }},

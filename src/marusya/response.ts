@@ -21,13 +21,16 @@ export class MarusyaResponse extends CommonResponse<MarusyaResBody, MarusyaReque
   }
 
   protected addSuggestInternal(suggest: string[]) {
-    this.body.response.buttons = suggest.map(title => ({ title }));
+    this.body.response.buttons!.push(
+      ...suggest.map(title => ({ title }))
+    );
   }
 
   protected endSessionInternal(value: boolean) {
     this.body.response.end_session = value;
   }
 
+  /** В Марусе возможна только 1 картинка */
   protected addImageInternal({ imageId, title, description }: Image) {
     const { card } = this.body.response;
     if (card && card.type !== 'BigImage') {
@@ -41,9 +44,7 @@ export class MarusyaResponse extends CommonResponse<MarusyaResBody, MarusyaReque
     if (description) this.addTextInternal(description);
   }
 
-  /**
-   * Marusya can't have link without image.
-   */
+  /** В Марусе возможна только 1 ссылка, и та вместо картинки */
   protected addLinkInternal({ title, url, imageId }: Link) {
     const { card } = this.body.response;
     if (card && card.type !== 'Link') {

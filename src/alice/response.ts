@@ -13,6 +13,7 @@ type AliceResBody = Omit<ResBody, ''>;
 export class AliceResponse extends CommonResponse<AliceResBody, AliceRequest> {
   isAlice(): this is AliceResponse { return true; }
 
+  /** В Алисе возможен только 1 бабл с текстом */
   protected addTextInternal(text: string) {
     // todo: если response.text есть и заканчивается буквой, а не знаком препинания, то нужно туда дописать точку.
     // Иначе все сольётся в одно предложение.
@@ -26,6 +27,7 @@ export class AliceResponse extends CommonResponse<AliceResBody, AliceRequest> {
     response.text = concatWithNewline(response.text, text);
   }
 
+  /** В Алисе возможна только 1 картинка */
   protected addImageInternal({ imageId, title, description }: Image) {
     const { response } = this.body;
     response.card = {
@@ -45,8 +47,9 @@ export class AliceResponse extends CommonResponse<AliceResBody, AliceRequest> {
   }
 
   protected addSuggestInternal(suggest: string[]) {
-    // keep links!
-    this.body.response.buttons = suggest.map(title => ({ title, hide: true }));
+    this.body.response.buttons!.push(
+      ...suggest.map(title => ({ title, hide: true }))
+    );
   }
 
   protected addLinkInternal({ title, url }: Link) {

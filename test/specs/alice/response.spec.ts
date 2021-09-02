@@ -42,7 +42,8 @@ describe('alice response', () => {
   });
 
   it('suggest', () => {
-    res.addSuggest([ 'кнопка 1', 'кнопка 2' ]);
+    res.addSuggest([ 'кнопка 1' ]);
+    res.addSuggest([ 'кнопка 2' ]);
     assert.deepEqual(res.body.response, {
       text: '',
       tts: '',
@@ -142,8 +143,18 @@ describe('alice response', () => {
     });
   });
 
-  it.skip('link + suggest', () => {
-    assert(1);
+  it('link + suggest', () => {
+    res.addLink({ title: 'ссылка', url: 'https://ya.ru' });
+    res.addSuggest([ 'кнопка 1' ]);
+    assert.deepEqual(res.body.response, {
+      text: '',
+      tts: '',
+      end_session: false,
+      buttons: [
+        { url: 'https://ya.ru', title: 'ссылка', hide: false },
+        { title: 'кнопка 1', hide: true },
+      ],
+    });
   });
 
 });
