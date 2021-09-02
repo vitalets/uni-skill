@@ -41,8 +41,9 @@ export class AlexaResponse extends CommonResponse<AlexaResBody, AlexaRequest> {
     this.body.response.card = { type: 'Standard', title, text, image };
   }
 
-  protected addVoiceInternal(fullSsml: string) {
-    (this.body.response.outputSpeech as ui.SsmlOutputSpeech).ssml = `<speak>${fullSsml}</speak>`;
+  protected addVoiceInternal(_: string) {
+    (this.body.response.outputSpeech as ui.SsmlOutputSpeech).ssml =
+      `<speak>${this.uniBody.ssml}</speak>`;
   }
 
   protected addSuggestInternal() {

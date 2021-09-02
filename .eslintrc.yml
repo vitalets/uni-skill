@@ -25,4 +25,4 @@ rules:
   space-before-function-paren: [error, { anonymous: always, named: never, asyncArrow: always }]
   '@typescript-eslint/explicit-module-boundary-types': 0
   '@typescript-eslint/no-non-null-assertion': 0
-  '@typescript-eslint/no-unused-vars': error
+  '@typescript-eslint/no-unused-vars': [error, { argsIgnorePattern: _ }]

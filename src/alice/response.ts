@@ -4,7 +4,7 @@
 import { ResBody } from 'alice-types';
 import { CommonResponse } from '../common/response';
 import { Image, Link, State } from '../common/types';
-import { concatWithNewline } from '../utils';
+import { concatWithNewline, concatWithSpace } from '../utils';
 import { AliceRequest } from './request';
 
 // Use fake Omit to have 'AliceResBody' in ts messages.
@@ -42,8 +42,10 @@ export class AliceResponse extends CommonResponse<AliceResBody, AliceRequest> {
     if (description) response.text = concatWithNewline(response.text, description);
   }
 
-  protected addVoiceInternal(fullSsml: string) {
-    this.body.response.tts = fullSsml;
+  protected addVoiceInternal(ssml: string) {
+    const { response } = this.body;
+    // todo: convert ssml to alice format
+    response.tts = concatWithSpace(response.tts, ssml);
   }
 
   protected addSuggestInternal(suggest: string[]) {

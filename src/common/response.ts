@@ -6,7 +6,13 @@
  */
 
 import { UniBody, Hook, Image, Link } from './types';
-import { concatWithSeparator, concatWithNewline, stripSpeakTags, stripEmoji } from '../utils';
+import {
+  concatWithSpace,
+  concatWithNewline,
+  stripSpeakTags,
+  stripEmoji,
+  stripAccents,
+} from '../utils';
 
 export abstract class CommonResponse<TBody, TReq> {
   /** Тело платформенного ответа */
@@ -46,7 +52,7 @@ export abstract class CommonResponse<TBody, TReq> {
 
   /** Добавить текст */
   addText(text: string) {
-    text = this.applyTextHook(text);
+    text = stripAccents(this.applyTextHook(text));
     this.uniBody.text = concatWithNewline(this.uniBody.text, text);
     this.addTextInternal(text);
     return this;
@@ -55,8 +61,8 @@ export abstract class CommonResponse<TBody, TReq> {
   /** Добавить озвучку */
   addVoice(ssml: string) {
     ssml = stripEmoji(stripSpeakTags(this.applyVoiceHook(ssml)));
-    this.uniBody.ssml = concatWithSeparator(this.uniBody.ssml, ssml, ' ');
-    this.addVoiceInternal(this.uniBody.ssml);
+    this.uniBody.ssml = concatWithSpace(this.uniBody.ssml, ssml);
+    this.addVoiceInternal(ssml);
     return this;
   }
 

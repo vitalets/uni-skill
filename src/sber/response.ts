@@ -4,9 +4,11 @@
 import { Button, NLPResponseATU } from '@salutejs/types';
 import { CommonResponse } from '../common/response';
 import { Image, Link } from '../common/types';
+import { concatWithSpace } from '../utils';
 import { getImageItem } from './image';
 import { getLinkItem } from './link';
 import { SberRequest } from './request';
+import { handleAccents } from './ssml';
 
 // todo: support other messageNames, not only NLPResponseATU
 
@@ -24,8 +26,10 @@ export class SberResponse extends CommonResponse<SberResBody, SberRequest> {
     this.body.payload.items.push(getImageItem(image));
   }
 
-  protected addVoiceInternal(fullSsml: string) {
-    this.body.payload.pronounceText = fullSsml;
+  protected addVoiceInternal(ssml: string) {
+    const { payload } = this.body;
+    ssml = handleAccents(ssml);
+    payload.pronounceText = concatWithSpace(payload.pronounceText, ssml);
   }
 
   protected addSuggestInternal(suggest: string[]) {
