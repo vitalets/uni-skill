@@ -9,8 +9,8 @@ describe('marusya response', () => {
   });
 
   it('text', () => {
-    res.addBubble('привет');
-    res.addBubble('как дела');
+    res.addText('привет');
+    res.addText('как дела');
     assert.deepEqual(res.body.response, {
       text: [ 'привет', 'как дела' ],
       tts: '',
@@ -31,8 +31,8 @@ describe('marusya response', () => {
   });
 
   it('text + voice', () => {
-    res.addVoiceBubble('привет');
-    res.addVoiceBubble('как дела');
+    res.addVoiceText('привет');
+    res.addVoiceText('как дела');
     assert.deepEqual(res.body.response, {
       text: [ 'привет', 'как дела' ],
       tts: 'привет как дела',
@@ -75,7 +75,7 @@ describe('marusya response', () => {
   });
 
   it('image', () => {
-    res.addBubble({ imageId: '42', title: 'картинка', description: 'описание' });
+    res.addImage({ imageId: '42', title: 'картинка', description: 'описание' });
     assert.deepEqual(res.body.response, {
       text: [ 'картинка', 'описание' ],
       tts: '',
@@ -89,9 +89,9 @@ describe('marusya response', () => {
   });
 
   it('text + image + text', () => {
-    res.addBubble('привет');
-    res.addBubble({ imageId: '42', title: 'картинка', description: 'описание' });
-    res.addBubble('как дела');
+    res.addText('привет');
+    res.addImage({ imageId: '42', title: 'картинка', description: 'описание' });
+    res.addText('как дела');
     assert.deepEqual(res.body.response, {
       text: [ 'привет', 'картинка', 'описание', 'как дела' ],
       tts: '',
@@ -105,7 +105,7 @@ describe('marusya response', () => {
   });
 
   it('link', () => {
-    res.addBubble('привет');
+    res.addText('привет');
     res.addLink({ title: 'ссылка', url: 'https://ya.ru', imageId: '123' });
     assert.deepEqual(res.body.response, {
       text: [ 'привет' ],
@@ -124,7 +124,7 @@ describe('marusya response', () => {
 
   it('image + link', () => {
     assert.throws(() => {
-      res.addBubble({ imageId: '42', title: 'картинка', description: 'описание' });
+      res.addImage({ imageId: '42', title: 'картинка', description: 'описание' });
       res.addLink({ title: 'ссылка', url: 'https://ya.ru', imageId: '123' });
     }, /Response already contains card: BigImage/);
   });

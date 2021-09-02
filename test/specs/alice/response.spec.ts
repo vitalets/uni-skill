@@ -9,8 +9,8 @@ describe('alice response', () => {
   });
 
   it('text', () => {
-    res.addBubble('привет');
-    res.addBubble('как дела');
+    res.addText('привет');
+    res.addText('как дела');
     assert.deepEqual(res.body.response, {
       text: 'привет\nкак дела',
       tts: '',
@@ -31,8 +31,8 @@ describe('alice response', () => {
   });
 
   it('text + voice', () => {
-    res.addVoiceBubble('привет');
-    res.addVoiceBubble('как дела');
+    res.addVoiceText('привет');
+    res.addVoiceText('как дела');
     assert.deepEqual(res.body.response, {
       text: 'привет\nкак дела',
       tts: 'привет как дела',
@@ -65,7 +65,7 @@ describe('alice response', () => {
   });
 
   it('image', () => {
-    res.addBubble({ imageId: '42', title: 'картинка', description: 'описание' });
+    res.addImage({ imageId: '42', title: 'картинка', description: 'описание' });
     assert.deepEqual(res.body.response, {
       text: 'картинка\nописание',
       tts: '',
@@ -81,9 +81,9 @@ describe('alice response', () => {
   });
 
   it('text + image + text', () => {
-    res.addBubble('привет');
-    res.addBubble({ imageId: '42', title: 'картинка', description: 'описание' });
-    res.addBubble('как дела');
+    res.addText('привет');
+    res.addImage({ imageId: '42', title: 'картинка', description: 'описание' });
+    res.addText('как дела');
     assert.deepEqual(res.body.response, {
       text: 'привет\nкартинка\nописание\nкак дела',
       tts: '',
@@ -114,7 +114,7 @@ describe('alice response', () => {
   });
 
   it('link', () => {
-    res.addBubble('привет');
+    res.addText('привет');
     res.addLink({ title: 'ссылка', url: 'https://ya.ru' });
     assert.deepEqual(res.body.response, {
       text: 'привет',
@@ -125,7 +125,7 @@ describe('alice response', () => {
   });
 
   it('image + link', () => {
-    res.addBubble({ imageId: '42', title: 'картинка', description: 'описание' });
+    res.addImage({ imageId: '42', title: 'картинка', description: 'описание' });
     res.addLink({ title: 'ссылка', url: 'https://ya.ru' });
     assert.deepEqual(res.body.response, {
       text: 'картинка\nописание',
@@ -140,6 +140,10 @@ describe('alice response', () => {
       end_session: false,
       buttons: [],
     });
+  });
+
+  it.skip('link + suggest', () => {
+    assert(1);
   });
 
 });

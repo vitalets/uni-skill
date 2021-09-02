@@ -3,7 +3,7 @@
  */
 import { ResBody } from 'alice-types';
 import { CommonResponse } from '../common/response';
-import { ImageBubble, Link, State } from '../common/types';
+import { Image, Link, State } from '../common/types';
 import { concatWithNewline } from '../utils';
 import { AliceRequest } from './request';
 
@@ -26,7 +26,7 @@ export class AliceResponse extends CommonResponse<AliceResBody, AliceRequest> {
     response.text = concatWithNewline(response.text, text);
   }
 
-  protected addImageInternal({ imageId, title, description }: ImageBubble) {
+  protected addImageInternal({ imageId, title, description }: Image) {
     const { response } = this.body;
     response.card = {
       type: 'BigImage',
@@ -40,11 +40,12 @@ export class AliceResponse extends CommonResponse<AliceResBody, AliceRequest> {
     if (description) response.text = concatWithNewline(response.text, description);
   }
 
-  protected setVoiceInternal(text: string) {
-    this.body.response.tts = text;
+  protected addVoiceInternal(fullSsml: string) {
+    this.body.response.tts = fullSsml;
   }
 
   protected addSuggestInternal(suggest: string[]) {
+    // keep links!
     this.body.response.buttons = suggest.map(title => ({ title, hide: true }));
   }
 

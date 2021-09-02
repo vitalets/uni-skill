@@ -4,7 +4,7 @@
  */
 import { ResponseEnvelope, ui } from 'ask-sdk-model';
 import { CommonResponse } from '../common/response';
-import { ImageBubble, State } from '../common/types';
+import { Image, State } from '../common/types';
 import { concatWithNewline } from '../utils';
 import { AlexaRequest } from './request';
 
@@ -32,7 +32,7 @@ export class AlexaResponse extends CommonResponse<AlexaResBody, AlexaRequest> {
   /**
    * see: https://developer.amazon.com/en-US/docs/alexa/custom-skills/best-practices-for-skill-card-design.html
    */
-  protected addImageInternal({ imageId, title, description }: ImageBubble) {
+  protected addImageInternal({ imageId, title, description }: Image) {
     const { card } = this.body.response;
     const existingText = card?.type === 'Simple' && card.content || '';
     const text = concatWithNewline(existingText, description);
@@ -41,8 +41,8 @@ export class AlexaResponse extends CommonResponse<AlexaResBody, AlexaRequest> {
     this.body.response.card = { type: 'Standard', title, text, image };
   }
 
-  protected setVoiceInternal(text: string) {
-    (this.body.response.outputSpeech as ui.SsmlOutputSpeech).ssml = `<speak>${text}</speak>`;
+  protected addVoiceInternal(fullSsml: string) {
+    (this.body.response.outputSpeech as ui.SsmlOutputSpeech).ssml = `<speak>${fullSsml}</speak>`;
   }
 
   protected addSuggestInternal() {

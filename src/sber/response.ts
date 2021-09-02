@@ -3,7 +3,7 @@
  */
 import { NLPResponseATU } from '@salutejs/types';
 import { CommonResponse } from '../common/response';
-import { ImageBubble, Link } from '../common/types';
+import { Image, Link } from '../common/types';
 import { getImageItem } from './image';
 import { getLinkItem } from './link';
 import { SberRequest } from './request';
@@ -20,12 +20,12 @@ export class SberResponse extends CommonResponse<SberResBody, SberRequest> {
     this.body.payload.items.push({ bubble: { text }});
   }
 
-  protected addImageInternal(image: ImageBubble) {
+  protected addImageInternal(image: Image) {
     this.body.payload.items.push(getImageItem(image));
   }
 
-  protected setVoiceInternal(text: string) {
-    this.body.payload.pronounceText = text;
+  protected addVoiceInternal(fullSsml: string) {
+    this.body.payload.pronounceText = fullSsml;
   }
 
   protected addSuggestInternal(suggest: string[]) {

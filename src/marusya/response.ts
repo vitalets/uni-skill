@@ -3,7 +3,7 @@
  */
 import { ResBody } from 'marusya-types';
 import { CommonResponse } from '../common/response';
-import { ImageBubble, Link, State } from '../common/types';
+import { Image, Link, State } from '../common/types';
 import { MarusyaRequest } from './request';
 
 // Use fake Omit to have 'MarusyaResBody' in ts messages.
@@ -16,7 +16,19 @@ export class MarusyaResponse extends CommonResponse<MarusyaResBody, MarusyaReque
     (this.body.response.text as string[]).push(text);
   }
 
-  protected addImageInternal({ imageId, title, description }: ImageBubble) {
+  protected addVoiceInternal(fullSsml: string) {
+    this.body.response.tts = fullSsml;
+  }
+
+  protected addSuggestInternal(suggest: string[]) {
+    this.body.response.buttons = suggest.map(title => ({ title }));
+  }
+
+  protected endSessionInternal(value: boolean) {
+    this.body.response.end_session = value;
+  }
+
+  protected addImageInternal({ imageId, title, description }: Image) {
     const { card } = this.body.response;
     if (card && card.type !== 'BigImage') {
       throw new Error(`Response already contains card: ${card.type}`);
@@ -27,14 +39,6 @@ export class MarusyaResponse extends CommonResponse<MarusyaResBody, MarusyaReque
     };
     if (title) this.addTextInternal(title);
     if (description) this.addTextInternal(description);
-  }
-
-  protected setVoiceInternal(text: string) {
-    this.body.response.tts = text;
-  }
-
-  protected addSuggestInternal(suggest: string[]) {
-    this.body.response.buttons = suggest.map(title => ({ title }));
   }
 
   /**
@@ -53,10 +57,6 @@ export class MarusyaResponse extends CommonResponse<MarusyaResBody, MarusyaReque
       text: '',
       image_id: Number(imageId),
     };
-  }
-
-  protected endSessionInternal(value: boolean) {
-    this.body.response.end_session = value;
   }
 
   /** Для userState используем дополнительный ключ data, чтобы легче было сбрасывать стейт */

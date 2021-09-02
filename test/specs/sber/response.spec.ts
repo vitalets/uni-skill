@@ -10,8 +10,8 @@ describe('sber response', () => {
   });
 
   it('text', () => {
-    res.addBubble('привет');
-    res.addBubble('как дела');
+    res.addText('привет');
+    res.addText('как дела');
     assert.deepEqual(res.body.payload.items, [
       { bubble: { text: 'привет' } },
       { bubble: { text: 'как дела' } },
@@ -25,8 +25,8 @@ describe('sber response', () => {
   });
 
   it('text + voice', () => {
-    res.addVoiceBubble('привет');
-    res.addVoiceBubble('как дела');
+    res.addVoiceText('привет');
+    res.addVoiceText('как дела');
     assert.deepEqual(res.body.payload.pronounceText, 'привет как дела');
     assert.deepEqual(res.body.payload.items, [
       { bubble: { text: 'привет' } },
@@ -51,7 +51,7 @@ describe('sber response', () => {
 
   it('image', () => {
     const imageId = 'https://image.png|hash12345';
-    res.addBubble({ imageId, title: 'картинка', description: 'описание', ratio: 0.5 });
+    res.addImage({ imageId, title: 'картинка', description: 'описание', ratio: 0.5 });
     const imgItem = (res.body.payload.items[0].card as GalleryCard).items[0];
     assert.deepInclude(imgItem.image, { url: 'https://image.png', hash: 'hash12345' });
     assert.deepInclude(imgItem.image, { size: { aspect_ratio: 0.5, width: 'large' }});
@@ -60,10 +60,10 @@ describe('sber response', () => {
   });
 
   it('text + image + text', () => {
-    res.addBubble('привет');
+    res.addText('привет');
     const imageId = 'https://image.png|hash12345';
-    res.addBubble({ imageId, title: 'картинка', description: 'описание', ratio: 0.5 });
-    res.addBubble('как дела');
+    res.addImage({ imageId, title: 'картинка', description: 'описание', ratio: 0.5 });
+    res.addText('как дела');
 
     assert.deepEqual(res.body.payload.items[0], { bubble: { text: 'привет' } });
     const imgItem = (res.body.payload.items[1].card as GalleryCard).items[0];
@@ -75,10 +75,10 @@ describe('sber response', () => {
   });
 
   it('modifications of body saved after updates', () => {
-    res.addBubble({ imageId: 'foo|bar', title: 'картинка', description: 'описание', ratio: 0.5 });
+    res.addImage({ imageId: 'foo|bar', title: 'картинка', description: 'описание', ratio: 0.5 });
     // @ts-expect-error card is unknown
     res.body.payload.items[0].card.items[0].image.size.width = 'resizable';
-    res.addBubble('привет');
+    res.addText('привет');
     // @ts-expect-error card is unknown
     assert.deepInclude(res.body.payload.items[0].card.items[0].image, {
       size: { aspect_ratio: 0.5, width: 'resizable' }

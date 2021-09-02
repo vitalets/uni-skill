@@ -5,8 +5,8 @@
  * они раскидываются по телу ответа и модифицировать их сложно.
  */
 
-import { Bubble, UniBody, Hook, ImageBubble, Link } from './types';
-import { concatWithSeparator, stripSpeakTags, stripEmoji } from '../utils';
+import { UniBody, Hook, Image, Link } from './types';
+import { concatWithSeparator, concatWithNewline, stripSpeakTags, stripEmoji } from '../utils';
 
 export abstract class CommonResponse<TBody, TReq> {
   /** Тело платформенного ответа */
@@ -19,10 +19,11 @@ export abstract class CommonResponse<TBody, TReq> {
   request: TReq;
   /** Тело универсального ответа */
   protected uniBody: UniBody = {
-    bubbles: [],
-    suggest: [],
+    text: '',
+    ssml: '',
+    images: [],
     links: [],
-    voice: '',
+    suggest: [],
     endSession: false,
   };
 
@@ -43,33 +44,45 @@ export abstract class CommonResponse<TBody, TReq> {
   /** Флаг ответа для Алексы */
   isAlexa() { return false; }
 
-  /** Добавить бабл: текст или картинка (в Алисе всегда 1 бабл) */
-  addBubble(bubble: Bubble) {
-    if (typeof bubble === 'string') {
-      this.addTextBubble(bubble);
-    } else if ('imageId' in bubble) {
-      this.addImageBubble(bubble);
-    } else {
-      throw new Error(`Unknown bubble type: ${bubble}`);
-    }
+  /** Добавить текст */
+  addText(text: string) {
+    text = this.applyTextHook(text);
+    this.uniBody.text = concatWithNewline(this.uniBody.text, text);
+    this.addTextInternal(text);
     return this;
   }
 
   /** Добавить озвучку */
-  addVoice(text = '') {
-    const processedText = stripEmoji(stripSpeakTags(this.applyVoiceHook(text)));
-    this.uniBody.voice = concatWithSeparator(this.uniBody.voice, processedText, ' ');
-    this.setVoiceInternal(this.uniBody.voice);
+  addVoice(ssml: string) {
+    ssml = stripEmoji(stripSpeakTags(this.applyVoiceHook(ssml)));
+    this.uniBody.ssml = concatWithSeparator(this.uniBody.ssml, ssml, ' ');
+    this.addVoiceInternal(this.uniBody.ssml);
+    return this;
+  }
+
+  /** Добавить текст с озвучкой */
+  addVoiceText(ssml: string) {
+    this.addVoice(ssml);
+    // todo: extract text from ssml
+    this.addText(ssml);
     return this;
   }
 
   /** Добавить саджест */
-  addSuggest(suggest: string | string[]) {
-    const arr = (Array.isArray(suggest) ? suggest : [ suggest ])
-      .filter(Boolean)
-      .map(item => this.applyTextHook(item) as string);
-    this.uniBody.suggest.push(...arr);
-    this.addSuggestInternal(arr);
+  addSuggest(suggest: string[]) {
+    suggest = suggest.map(item => this.applyTextHook(item));
+    this.uniBody.suggest.push(...suggest);
+    this.addSuggestInternal(suggest);
+    return this;
+  }
+
+  /** Добавить картинку */
+  addImage({ imageId, title, description, ratio }: Image) {
+    title = this.applyTextHook(title);
+    description = this.applyTextHook(description);
+    const image = { imageId, title, description, ratio };
+    this.uniBody.images.push(image);
+    this.addImageInternal(image);
     return this;
   }
 
@@ -81,60 +94,35 @@ export abstract class CommonResponse<TBody, TReq> {
   }
 
   /** Установить флаг завершения сессии */
-  endSession(value: boolean) {
+  endSession(value = true) {
     this.uniBody.endSession = value;
     this.endSessionInternal(value);
-    return this;
-  }
-
-  /** Добавить бабл с озвучкой. Для картинки будут озвучены title/description. */
-  addVoiceBubble(bubble: Bubble) {
-    this.addBubble(bubble);
-    if (typeof bubble === 'string') {
-      this.addVoice(bubble);
-    } else {
-      const { title, description } = bubble;
-      this.addVoice(title);
-      this.addVoice(description);
-    }
     return this;
   }
 
   /** Возвращает внутреннее представление данных, полезно для отладки и логирования. */
   getUniBody() { return this.uniBody; }
   /** Установить хук, который будет обрабатывать все тексты для отображения. */
-  setTextHook(fn: Hook) { this.textHook = fn; return this; }
+  setTextHook(fn: Hook) { this.textHook = fn; }
   /** Установить хук, который будет обрабатывать все тексты для озвучки. */
-  setVoiceHook(fn: Hook) { this.voiceHook = fn; return this; }
+  setVoiceHook(fn: Hook) { this.voiceHook = fn; }
 
-  private addTextBubble(text?: string) {
-    text = this.applyTextHook(text);
-    if (text) {
-      this.uniBody.bubbles.push(text);
-      this.addTextInternal(text);
-    }
+  private applyTextHook<T extends string | undefined>(str: T) {
+    return this.textHook && typeof str === 'string'
+      ? this.textHook(str)
+      : str;
   }
 
-  private addImageBubble({ imageId, title, description, ratio }: ImageBubble) {
-    title = this.applyTextHook(title);
-    description = this.applyTextHook(description);
-    const image = { imageId, title, description, ratio };
-    this.uniBody.bubbles.push(image);
-    this.addImageInternal(image);
-  }
-
-  private applyTextHook(text?: string) {
-    return (this.textHook && typeof text === 'string') ? this.textHook(text) : text;
-  }
-
-  private applyVoiceHook(text?: string) {
-    return (this.voiceHook && typeof text === 'string') ? this.voiceHook(text) : text;
+  private applyVoiceHook<T extends string | undefined>(str: T) {
+    return this.voiceHook && typeof str === 'string'
+      ? this.voiceHook(str)
+      : str;
   }
 
   protected abstract init(): TBody;
   protected abstract addTextInternal(text: string): void;
-  protected abstract addImageInternal(image: ImageBubble): void;
-  protected abstract setVoiceInternal(text: string): void;
+  protected abstract addImageInternal(image: Image): void;
+  protected abstract addVoiceInternal(fullSsml: string): void;
   protected abstract addSuggestInternal(suggest: string[]): void;
   protected abstract addLinkInternal(link: Link): void;
   protected abstract endSessionInternal(value: boolean): void;

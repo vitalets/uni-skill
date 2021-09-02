@@ -1,12 +1,12 @@
 import { CardCommand, GalleryItem, ImageView, Margins1, TextView } from '@salutejs/types';
-import { ImageBubble } from '../common/types';
+import { Image } from '../common/types';
 
 export function getImageItem({
   imageId,
   title = '',
   description = '',
   ratio = 1,
-}: ImageBubble): CardCommand {
+}: Image): CardCommand {
   const [ url, hash ] = imageId.split('|');
   const galleryItem: GalleryItem = {
     type: 'media_gallery_item',

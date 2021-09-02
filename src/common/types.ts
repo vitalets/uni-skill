@@ -2,8 +2,7 @@
  * Types
  */
 
-export type Bubble = string | ImageBubble;
-export interface ImageBubble {
+export interface Image {
   /** id изображения (для сбера "<url>|<hash>") */
   imageId: string;
   /** Крупная подпись */
@@ -25,10 +24,11 @@ export type Hook = (text: string) => string;
 
 /** Внутренний формат хранения данных, полезно для отладки и логирования */
 export interface UniBody {
-  bubbles: Bubble[];
-  suggest: string[];
+  text: string;
+  ssml: string;
+  images: Image[];
   links: Link[];
-  voice: string;
+  suggest: string[];
   endSession: boolean;
 }
 

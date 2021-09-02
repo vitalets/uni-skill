@@ -9,8 +9,8 @@ describe('alexa response', () => {
   });
 
   it('text', () => {
-    res.addBubble('привет');
-    res.addBubble('как дела');
+    res.addText('привет');
+    res.addText('как дела');
     assert.deepEqual(res.body.response, {
       outputSpeech: {
         type: 'SSML',
@@ -38,8 +38,8 @@ describe('alexa response', () => {
   });
 
   it('text + voice', () => {
-    res.addVoiceBubble('привет');
-    res.addVoiceBubble('как дела');
+    res.addVoiceText('привет');
+    res.addVoiceText('как дела');
     assert.deepEqual(res.body.response, {
       outputSpeech: {
         type: 'SSML',
@@ -77,7 +77,7 @@ describe('alexa response', () => {
   });
 
   it('image', () => {
-    res.addBubble({
+    res.addImage({
       imageId: 'https://small-image|https://large-image',
       title: 'картинка',
       description: 'описание'
@@ -101,9 +101,9 @@ describe('alexa response', () => {
   });
 
   it('text + image + text', () => {
-    res.addBubble('привет');
-    res.addBubble({ imageId: 'https://image', title: 'картинка', description: 'описание' });
-    res.addBubble('как дела');
+    res.addText('привет');
+    res.addImage({ imageId: 'https://image', title: 'картинка', description: 'описание' });
+    res.addText('как дела');
     assert.deepEqual(res.body.response, {
       outputSpeech: {
         type: 'SSML',
