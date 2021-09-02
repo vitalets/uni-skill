@@ -2,14 +2,13 @@
  * Alice request.
  */
 import { ReqBody } from 'alice-types';
-import { BaseRequest } from '../base/request';
-import { IRequest } from '../types/request';
+import { CommonRequest } from '../base/request';
 import { State } from '../types/response';
 
 // Use fake Omit to have 'AliceReqBody' in ts messages.
 type AliceReqBody = Omit<ReqBody, ''>;
 
-export class AliceRequest extends BaseRequest<AliceReqBody> implements IRequest<AliceReqBody> {
+export class AliceRequest extends CommonRequest<AliceReqBody> {
   static match(reqBody: unknown): reqBody is AliceReqBody {
     return Boolean((reqBody as AliceReqBody)?.session?.skill_id);
   }

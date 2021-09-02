@@ -2,8 +2,7 @@
  * Marusya request.
  */
 import { ReqBody } from 'marusya-types';
-import { BaseRequest } from '../base/request';
-import { IRequest } from '../types/request';
+import { CommonRequest } from '../base/request';
 import { State } from '../types/response';
 
 // Use fake Omit to have 'MarusyaReqBody' in ts messages.
@@ -11,7 +10,7 @@ type MarusyaReqBody = Omit<ReqBody, ''>;
 
 const MARUSYA_APP_TYPES = [ 'mobile', 'speaker', 'VK', 'other' ];
 
-export class MarusyaRequest extends BaseRequest<MarusyaReqBody> implements IRequest<MarusyaReqBody> {
+export class MarusyaRequest extends CommonRequest<MarusyaReqBody> {
   static match(reqBody: unknown): reqBody is MarusyaReqBody {
     const appType = (reqBody as MarusyaReqBody)?.session?.application?.application_type;
     return Boolean(appType) && MARUSYA_APP_TYPES.includes(appType);

@@ -3,13 +3,12 @@
  * See: https://developer.amazon.com/en-US/docs/alexa/custom-skills/request-and-response-json-reference.html
  */
 import { RequestEnvelope } from 'ask-sdk-model';
-import { BaseRequest } from '../base/request';
-import { IRequest } from '../types/request';
+import { CommonRequest } from '../base/request';
 
 // Use fake Omit to have 'AlexaReqBody' in ts messages.
 type AlexaReqBody = Omit<RequestEnvelope, ''>;
 
-export class AlexaRequest extends BaseRequest<AlexaReqBody> implements IRequest<AlexaReqBody> {
+export class AlexaRequest extends CommonRequest<AlexaReqBody> {
   static match(reqBody: unknown): reqBody is AlexaReqBody {
     return Boolean((reqBody as AlexaReqBody)?.context);
   }
