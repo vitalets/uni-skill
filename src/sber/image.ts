@@ -1,5 +1,5 @@
 import { CardCommand, GalleryItem, ImageView, Margins1, TextView } from '@salutejs/types';
-import { ImageBubble } from '../types/response';
+import { ImageBubble } from '../base/types';
 
 export function getImageItem({
   imageId,

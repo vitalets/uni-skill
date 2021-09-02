@@ -1,5 +1,5 @@
 import { CardCommand, ButtonCellView } from '@salutejs/types';
-import { Link } from '../types/response';
+import { Link } from '../base/types';
 
 export function getLinkItem({ title, url }: Link): CardCommand {
   const linkItem: ButtonCellView = {

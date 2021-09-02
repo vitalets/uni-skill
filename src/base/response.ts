@@ -1,15 +1,22 @@
 /**
- * Base response.
+ * Универсальный интерфейс ответа навыка.
+ * Работает и на чтение, и на запись.
+ * Запись происходит по принципу "только добавление". Так сделано, потому что после добавления данных
+ * они раскидываются по телу ответа и модифицировать их сложно.
  */
 
-import { Bubble, UniBody, Hook, ImageBubble, Link } from '../types/response';
+import { Bubble, UniBody, Hook, ImageBubble, Link } from './types';
 import { concatWithSeparator, stripSpeakTags, stripEmoji } from '../utils';
 
-export abstract class BaseResponse<TBody, TReq> {
+export abstract class CommonResponse<TBody, TReq> {
   /** Тело платформенного ответа */
   body: TBody;
+  /** Пол ассистента */
+  isMale = false;
+  /** Обращение на ты/вы */
+  isOfficial = true;
   /** Запрос, для которого этот ответ */
-  protected request: TReq;
+  request: TReq;
   /** Тело универсального ответа */
   protected uniBody: UniBody = {
     bubbles: [],
@@ -22,19 +29,21 @@ export abstract class BaseResponse<TBody, TReq> {
   protected textHook?: Hook;
   protected voiceHook?: Hook;
 
-  isMale = false;
-  isOfficial = true;
-
   constructor(request: TReq) {
     this.request = request;
     this.body = this.init();
   }
 
+  /** Флаг ответа для Алисы */
   isAlice() { return false; }
+  /** Флаг ответа для Сбера */
   isSber() { return false; }
+  /** Флаг ответа для Маруси */
   isMarusya() { return false; }
+  /** Флаг ответа для Алексы */
   isAlexa() { return false; }
 
+  /** Добавить бабл: текст или картинка (в Алисе всегда 1 бабл) */
   addBubble(bubble: Bubble) {
     if (typeof bubble === 'string') {
       this.addTextBubble(bubble);
@@ -46,6 +55,7 @@ export abstract class BaseResponse<TBody, TReq> {
     return this;
   }
 
+  /** Добавить озвучку */
   addVoice(text = '') {
     const processedText = stripEmoji(stripSpeakTags(this.applyVoiceHook(text)));
     this.uniBody.voice = concatWithSeparator(this.uniBody.voice, processedText, ' ');
@@ -53,6 +63,7 @@ export abstract class BaseResponse<TBody, TReq> {
     return this;
   }
 
+  /** Добавить саджест */
   addSuggest(suggest: string | string[]) {
     const arr = (Array.isArray(suggest) ? suggest : [ suggest ])
       .filter(Boolean)
@@ -62,18 +73,21 @@ export abstract class BaseResponse<TBody, TReq> {
     return this;
   }
 
+  /** Добавить ссылку */
   addLink(link: Link) {
     this.uniBody.links.push(link);
     this.addLinkInternal(link);
     return this;
   }
 
+  /** Установить флаг завершения сессии */
   endSession(value: boolean) {
     this.uniBody.endSession = value;
     this.endSessionInternal(value);
     return this;
   }
 
+  /** Добавить бабл с озвучкой. Для картинки будут озвучены title/description. */
   addVoiceBubble(bubble: Bubble) {
     this.addBubble(bubble);
     if (typeof bubble === 'string') {
@@ -86,8 +100,11 @@ export abstract class BaseResponse<TBody, TReq> {
     return this;
   }
 
+  /** Возвращает внутреннее представление данных, полезно для отладки и логирования. */
   getUniBody() { return this.uniBody; }
+  /** Установить хук, который будет обрабатывать все тексты для отображения. */
   setTextHook(fn: Hook) { this.textHook = fn; return this; }
+  /** Установить хук, который будет обрабатывать все тексты для озвучки. */
   setVoiceHook(fn: Hook) { this.voiceHook = fn; return this; }
 
   private addTextBubble(text?: string) {

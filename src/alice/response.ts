@@ -2,15 +2,15 @@
  * Alice response.
  */
 import { ResBody } from 'alice-types';
-import { BaseResponse } from '../base/response';
-import { ImageBubble, IResponse, Link, State } from '../types/response';
+import { CommonResponse } from '../base/response';
+import { ImageBubble, Link, State } from '../base/types';
 import { concatWithNewline } from '../utils';
 import { AliceRequest } from './request';
 
 // Use fake Omit to have 'AliceResBody' in ts messages.
 type AliceResBody = Omit<ResBody, ''>;
 
-export class AliceResponse extends BaseResponse<AliceResBody, AliceRequest> implements IResponse<AliceResBody> {
+export class AliceResponse extends CommonResponse<AliceResBody, AliceRequest> {
   isAlice(): this is AliceResponse { return true; }
 
   protected addTextInternal(text: string) {

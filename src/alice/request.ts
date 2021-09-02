@@ -3,7 +3,7 @@
  */
 import { ReqBody } from 'alice-types';
 import { CommonRequest } from '../base/request';
-import { State } from '../types/response';
+import { State } from '../base/types';
 
 // Use fake Omit to have 'AliceReqBody' in ts messages.
 type AliceReqBody = Omit<ReqBody, ''>;

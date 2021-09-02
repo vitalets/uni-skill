@@ -2,14 +2,14 @@
  * Marusya response.
  */
 import { ResBody } from 'marusya-types';
-import { BaseResponse } from '../base/response';
-import { ImageBubble, IResponse, Link, State } from '../types/response';
+import { CommonResponse } from '../base/response';
+import { ImageBubble, Link, State } from '../base/types';
 import { MarusyaRequest } from './request';
 
 // Use fake Omit to have 'MarusyaResBody' in ts messages.
 type MarusyaResBody = Omit<ResBody, ''>;
 
-export class MarusyaResponse extends BaseResponse<MarusyaResBody, MarusyaRequest> implements IResponse<MarusyaResBody> {
+export class MarusyaResponse extends CommonResponse<MarusyaResBody, MarusyaRequest> {
   isMarusya(): this is MarusyaResponse { return true; }
 
   protected addTextInternal(text: string) {

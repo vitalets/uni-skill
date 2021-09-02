@@ -2,8 +2,8 @@
  * Sber response.
  */
 import { NLPResponseATU } from '@salutejs/types';
-import { BaseResponse } from '../base/response';
-import { ImageBubble, IResponse, Link } from '../types/response';
+import { CommonResponse } from '../base/response';
+import { ImageBubble, Link } from '../base/types';
 import { getImageItem } from './image';
 import { getLinkItem } from './link';
 import { SberRequest } from './request';
@@ -13,7 +13,7 @@ import { SberRequest } from './request';
 // Use fake Omit to have 'SberResBody' in ts messages.
 type SberResBody = Omit<NLPResponseATU, ''>;
 
-export class SberResponse extends BaseResponse<SberResBody, SberRequest> implements IResponse<SberResBody> {
+export class SberResponse extends CommonResponse<SberResBody, SberRequest> {
   isSber(): this is SberResponse { return true; }
 
   protected addTextInternal(text: string) {

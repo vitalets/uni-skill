@@ -3,15 +3,15 @@
  * See: https://developer.amazon.com/en-US/docs/alexa/custom-skills/request-and-response-json-reference.html
  */
 import { ResponseEnvelope, ui } from 'ask-sdk-model';
-import { BaseResponse } from '../base/response';
-import { ImageBubble, IResponse, State } from '../types/response';
+import { CommonResponse } from '../base/response';
+import { ImageBubble, State } from '../base/types';
 import { concatWithNewline } from '../utils';
 import { AlexaRequest } from './request';
 
 // Use fake Omit to have 'AlexaResBody' in ts messages.
 type AlexaResBody = Omit<ResponseEnvelope, ''>;
 
-export class AlexaResponse extends BaseResponse<AlexaResBody, AlexaRequest> implements IResponse<AlexaResBody> {
+export class AlexaResponse extends CommonResponse<AlexaResBody, AlexaRequest> {
   isAlexa(): this is AlexaResponse { return true; }
 
   protected addTextInternal(text: string) {
