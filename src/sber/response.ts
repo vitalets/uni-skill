@@ -8,7 +8,7 @@ import { concatWithSpace } from '../utils';
 import { getImageItem } from './image';
 import { getLinkItem } from './link';
 import { SberRequest } from './request';
-import { handleAccents } from './ssml';
+import { convertAccents } from './ssml';
 
 // todo: support other messageNames, not only NLPResponseATU
 
@@ -28,7 +28,7 @@ export class SberResponse extends CommonResponse<SberResBody, SberRequest> {
 
   protected addVoiceInternal(ssml: string) {
     const { payload } = this.body;
-    ssml = handleAccents(ssml);
+    ssml = convertAccents(ssml);
     payload.pronounceText = concatWithSpace(payload.pronounceText, ssml);
   }
 
