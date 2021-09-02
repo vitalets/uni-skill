@@ -3,7 +3,7 @@
  * See: https://developer.amazon.com/en-US/docs/alexa/custom-skills/request-and-response-json-reference.html
  */
 import { RequestEnvelope } from 'ask-sdk-model';
-import { CommonRequest } from '../base/request';
+import { CommonRequest } from '../common/request';
 
 // Use fake Omit to have 'AlexaReqBody' in ts messages.
 type AlexaReqBody = Omit<RequestEnvelope, ''>;

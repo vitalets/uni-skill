@@ -2,8 +2,8 @@
  * Marusya response.
  */
 import { ResBody } from 'marusya-types';
-import { CommonResponse } from '../base/response';
-import { ImageBubble, Link, State } from '../base/types';
+import { CommonResponse } from '../common/response';
+import { ImageBubble, Link, State } from '../common/types';
 import { MarusyaRequest } from './request';
 
 // Use fake Omit to have 'MarusyaResBody' in ts messages.

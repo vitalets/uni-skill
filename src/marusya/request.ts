@@ -2,8 +2,8 @@
  * Marusya request.
  */
 import { ReqBody } from 'marusya-types';
-import { CommonRequest } from '../base/request';
-import { State } from '../base/types';
+import { CommonRequest } from '../common/request';
+import { State } from '../common/types';
 
 // Use fake Omit to have 'MarusyaReqBody' in ts messages.
 type MarusyaReqBody = Omit<ReqBody, ''>;

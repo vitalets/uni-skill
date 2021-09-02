@@ -3,8 +3,8 @@
  * See: https://developer.amazon.com/en-US/docs/alexa/custom-skills/request-and-response-json-reference.html
  */
 import { ResponseEnvelope, ui } from 'ask-sdk-model';
-import { CommonResponse } from '../base/response';
-import { ImageBubble, State } from '../base/types';
+import { CommonResponse } from '../common/response';
+import { ImageBubble, State } from '../common/types';
 import { concatWithNewline } from '../utils';
 import { AlexaRequest } from './request';
 

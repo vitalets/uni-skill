@@ -2,8 +2,8 @@
  * Sber response.
  */
 import { NLPResponseATU } from '@salutejs/types';
-import { CommonResponse } from '../base/response';
-import { ImageBubble, Link } from '../base/types';
+import { CommonResponse } from '../common/response';
+import { ImageBubble, Link } from '../common/types';
 import { getImageItem } from './image';
 import { getLinkItem } from './link';
 import { SberRequest } from './request';
