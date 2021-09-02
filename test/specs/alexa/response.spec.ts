@@ -100,7 +100,7 @@ describe('alexa response', () => {
     });
   });
 
-  it('text - image - text', () => {
+  it('text + image + text', () => {
     res.addBubble('привет');
     res.addBubble({ imageId: 'https://image', title: 'картинка', description: 'описание' });
     res.addBubble('как дела');
@@ -125,6 +125,17 @@ describe('alexa response', () => {
   it('sessionState', () => {
     res.sessionState = { foo: 42 };
     assert.deepEqual(res.body.sessionAttributes, { foo: 42 });
+  });
+
+  it('link (noop)', () => {
+    res.addLink({ title: 'ссылка', url: 'https://ya.ru' });
+    assert.deepEqual(res.body.response, {
+      outputSpeech: {
+        type: 'SSML',
+        ssml: ''
+      },
+      shouldEndSession: false
+    });
   });
 
 });

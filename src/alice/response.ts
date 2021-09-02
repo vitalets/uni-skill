@@ -3,7 +3,7 @@
  */
 import { ResBody } from 'alice-types';
 import { BaseResponse } from '../base/response';
-import { ImageBubble, IResponse, State } from '../types/response';
+import { ImageBubble, IResponse, Link, State } from '../types/response';
 import { concatWithNewline } from '../utils';
 import { AliceRequest } from './request';
 
@@ -46,6 +46,15 @@ export class AliceResponse extends BaseResponse<AliceResBody, AliceRequest> impl
 
   protected addSuggestInternal(suggest: string[]) {
     this.body.response.buttons = suggest.map(title => ({ title, hide: true }));
+  }
+
+  protected addLinkInternal({ title, url }: Link) {
+    const { card } = this.body.response;
+    if (card?.type === 'BigImage') {
+      card.button = { url, text: title };
+    } else {
+      this.body.response.buttons!.push({ url, title, hide: false });
+    }
   }
 
   protected endSessionInternal(value: boolean) {

@@ -64,6 +64,16 @@ describe('marusya response', () => {
     });
   });
 
+  it('sessionState', () => {
+    res.sessionState = { foo: 42 };
+    assert.deepEqual(res.body.session_state, { foo: 42 });
+  });
+
+  it('userState', () => {
+    res.userState = { foo: 42 };
+    assert.deepEqual(res.body.user_state_update, { data: { foo: 42 }});
+  });
+
   it('image', () => {
     res.addBubble({ imageId: '42', title: 'картинка', description: 'описание' });
     assert.deepEqual(res.body.response, {
@@ -78,7 +88,7 @@ describe('marusya response', () => {
     });
   });
 
-  it('text - image - text', () => {
+  it('text + image + text', () => {
     res.addBubble('привет');
     res.addBubble({ imageId: '42', title: 'картинка', description: 'описание' });
     res.addBubble('как дела');
@@ -94,14 +104,29 @@ describe('marusya response', () => {
     });
   });
 
-  it('sessionState', () => {
-    res.sessionState = { foo: 42 };
-    assert.deepEqual(res.body.session_state, { foo: 42 });
+  it('link', () => {
+    res.addBubble('привет');
+    res.addLink({ title: 'ссылка', url: 'https://ya.ru', imageId: '123' });
+    assert.deepEqual(res.body.response, {
+      text: [ 'привет' ],
+      tts: '',
+      card: {
+        type: 'Link',
+        url: 'https://ya.ru',
+        title: 'ссылка',
+        text: '',
+        image_id: 123,
+      },
+      end_session: false,
+      buttons: [],
+    });
   });
 
-  it('userState', () => {
-    res.userState = { foo: 42 };
-    assert.deepEqual(res.body.user_state_update, { data: { foo: 42 }});
+  it('image + link', () => {
+    assert.throws(() => {
+      res.addBubble({ imageId: '42', title: 'картинка', description: 'описание' });
+      res.addLink({ title: 'ссылка', url: 'https://ya.ru', imageId: '123' });
+    }, /Response already contains card: BigImage/);
   });
 
 });

@@ -46,7 +46,11 @@ export class AlexaResponse extends BaseResponse<AlexaResBody, AlexaRequest> impl
   }
 
   protected addSuggestInternal() {
-    // Alexa does not have suggest
+    // noop: Alexa does not support suggest
+  }
+
+  protected addLinkInternal() {
+    // noop: Alexa does not support links
   }
 
   protected endSessionInternal(value: boolean) {

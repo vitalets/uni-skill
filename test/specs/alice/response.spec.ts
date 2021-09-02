@@ -80,7 +80,7 @@ describe('alice response', () => {
     });
   });
 
-  it('text - image - text', () => {
+  it('text + image + text', () => {
     res.addBubble('привет');
     res.addBubble({ imageId: '42', title: 'картинка', description: 'описание' });
     res.addBubble('как дела');
@@ -111,6 +111,35 @@ describe('alice response', () => {
   it('userState', () => {
     res.userState = { foo: 42 };
     assert.deepEqual(res.body.user_state_update, { data: { foo: 42 }});
+  });
+
+  it('link', () => {
+    res.addBubble('привет');
+    res.addLink({ title: 'ссылка', url: 'https://ya.ru' });
+    assert.deepEqual(res.body.response, {
+      text: 'привет',
+      tts: '',
+      end_session: false,
+      buttons: [{ url: 'https://ya.ru', title: 'ссылка', hide: false }],
+    });
+  });
+
+  it('image + link', () => {
+    res.addBubble({ imageId: '42', title: 'картинка', description: 'описание' });
+    res.addLink({ title: 'ссылка', url: 'https://ya.ru' });
+    assert.deepEqual(res.body.response, {
+      text: 'картинка\nописание',
+      tts: '',
+      card: {
+        type: 'BigImage',
+        image_id: '42',
+        title: 'картинка',
+        description: 'описание',
+        button: { url: 'https://ya.ru', text: 'ссылка' }
+      },
+      end_session: false,
+      buttons: [],
+    });
   });
 
 });

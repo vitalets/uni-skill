@@ -59,7 +59,7 @@ describe('sber response', () => {
     assert.deepInclude(imgItem.bottom_text, { text: 'описание' });
   });
 
-  it('text - image - text', () => {
+  it('text + image + text', () => {
     res.addBubble('привет');
     const imageId = 'https://image.png|hash12345';
     res.addBubble({ imageId, title: 'картинка', description: 'описание', ratio: 0.5 });
@@ -82,6 +82,30 @@ describe('sber response', () => {
     // @ts-expect-error card is unknown
     assert.deepInclude(res.body.payload.items[0].card.items[0].image, {
       size: { aspect_ratio: 0.5, width: 'resizable' }
+    });
+  });
+
+  it('link', () => {
+    res.addLink({ title: 'ссылка', url: 'https://ya.ru' });
+    assert.deepEqual(res.body.payload.items[0], {
+      card: {
+        type: 'list_card',
+        cells: [
+          {
+            type: 'button_cell_view',
+            content: {
+              text: 'ссылка',
+              typeface: 'button1',
+              style: 'default',
+              type: 'accept',
+              actions: [{
+                type: 'deep_link',
+                deep_link: 'https://ya.ru'
+              }],
+            }
+          }
+        ]
+      }
     });
   });
 

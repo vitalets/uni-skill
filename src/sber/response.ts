@@ -3,8 +3,9 @@
  */
 import { NLPResponseATU } from '@salutejs/types';
 import { BaseResponse } from '../base/response';
-import { ImageBubble, IResponse } from '../types/response';
+import { ImageBubble, IResponse, Link } from '../types/response';
 import { getImageItem } from './image';
+import { getLinkItem } from './link';
 import { SberRequest } from './request';
 
 // todo: support other messageNames, not only NLPResponseATU
@@ -31,6 +32,10 @@ export class SberResponse extends BaseResponse<SberResBody, SberRequest> impleme
     this.body.payload.suggestions!.buttons = suggest.map(title => {
       return { title, action: { type: 'text', text: title }};
     });
+  }
+
+  protected addLinkInternal(link: Link) {
+    this.body.payload.items.push(getLinkItem(link));
   }
 
   protected endSessionInternal(value: boolean) {

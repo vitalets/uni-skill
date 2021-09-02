@@ -2,7 +2,7 @@
  * Base response.
  */
 
-import { Bubble, UniBody, Hook, ImageBubble } from '../types/response';
+import { Bubble, UniBody, Hook, ImageBubble, Link } from '../types/response';
 import { concatWithSeparator, stripSpeakTags, stripEmoji } from '../utils';
 
 export abstract class BaseResponse<TBody, TReq> {
@@ -14,6 +14,7 @@ export abstract class BaseResponse<TBody, TReq> {
   protected uniBody: UniBody = {
     bubbles: [],
     suggest: [],
+    links: [],
     voice: '',
     endSession: false,
   };
@@ -58,6 +59,12 @@ export abstract class BaseResponse<TBody, TReq> {
       .map(item => this.applyTextHook(item) as string);
     this.uniBody.suggest.push(...arr);
     this.addSuggestInternal(arr);
+    return this;
+  }
+
+  addLink(link: Link) {
+    this.uniBody.links.push(link);
+    this.addLinkInternal(link);
     return this;
   }
 
@@ -112,5 +119,6 @@ export abstract class BaseResponse<TBody, TReq> {
   protected abstract addImageInternal(image: ImageBubble): void;
   protected abstract setVoiceInternal(text: string): void;
   protected abstract addSuggestInternal(suggest: string[]): void;
+  protected abstract addLinkInternal(link: Link): void;
   protected abstract endSessionInternal(value: boolean): void;
 }

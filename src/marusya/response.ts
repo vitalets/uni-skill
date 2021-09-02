@@ -3,7 +3,7 @@
  */
 import { ResBody } from 'marusya-types';
 import { BaseResponse } from '../base/response';
-import { ImageBubble, IResponse, State } from '../types/response';
+import { ImageBubble, IResponse, Link, State } from '../types/response';
 import { MarusyaRequest } from './request';
 
 // Use fake Omit to have 'MarusyaResBody' in ts messages.
@@ -17,6 +17,10 @@ export class MarusyaResponse extends BaseResponse<MarusyaResBody, MarusyaRequest
   }
 
   protected addImageInternal({ imageId, title, description }: ImageBubble) {
+    const { card } = this.body.response;
+    if (card && card.type !== 'BigImage') {
+      throw new Error(`Response already contains card: ${card.type}`);
+    }
     this.body.response.card = {
       type: 'BigImage',
       image_id: Number(imageId),
@@ -31,6 +35,24 @@ export class MarusyaResponse extends BaseResponse<MarusyaResBody, MarusyaRequest
 
   protected addSuggestInternal(suggest: string[]) {
     this.body.response.buttons = suggest.map(title => ({ title }));
+  }
+
+  /**
+   * Marusya can't have link without image.
+   */
+  protected addLinkInternal({ title, url, imageId }: Link) {
+    const { card } = this.body.response;
+    if (card && card.type !== 'Link') {
+      throw new Error(`Response already contains card: ${card.type}`);
+    }
+    if (!imageId) throw new Error('ImageId is required for Marusya link');
+    this.body.response.card = {
+      type: 'Link',
+      url,
+      title,
+      text: '',
+      image_id: Number(imageId),
+    };
   }
 
   protected endSessionInternal(value: boolean) {

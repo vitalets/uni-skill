@@ -24,6 +24,8 @@ export interface IResponse<TBody> {
   addSuggest(suggest: string | string[]): this;
   /** Установить флаг завершения сессии */
   endSession(value: boolean): this;
+  /** Добавить ссылку */
+  addLink(link: Link): this;
   /** Пол ассистента */
   isMale: boolean;
   /** Обращение на ты/вы */
@@ -48,12 +50,20 @@ export interface ImageBubble {
   ratio?: number;
 }
 
+export interface Link {
+  url: string;
+  title: string;
+  /** imageId is only for Marusya */
+  imageId?: string;
+}
+
 export type Hook = (text: string) => string;
 
 /** Внутренний формат хранения данных, полезно для отладки и логирования */
 export interface UniBody {
   bubbles: Bubble[];
   suggest: string[];
+  links: Link[];
   voice: string;
   endSession: boolean;
 }
