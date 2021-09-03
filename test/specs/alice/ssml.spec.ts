@@ -2,10 +2,10 @@ import { AliceResponse } from '../../../src/alice/response';
 import data from '../../../data/alice/request.json';
 
 describe('alice ssml ', () => {
-  function assertVoice(ssml: string, expectedTts: string) {
+  function assertVoice(ssml: string, expected: string) {
     const res = createRes(data) as AliceResponse;
     res.addVoice(ssml);
-    assert.equal(res.body.response.tts, expectedTts, ssml);
+    assert.equal(res.body.response.tts, expected, ssml);
   }
 
   it('convert pause (ms)', () => {

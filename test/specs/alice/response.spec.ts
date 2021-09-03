@@ -31,11 +31,11 @@ describe('alice response', () => {
   });
 
   it('text + voice', () => {
-    res.addVoiceText('прив+ет');
+    res.addVoiceText('привет');
     res.addVoiceText('как дела');
     assert.deepEqual(res.body.response, {
       text: 'привет\nкак дела',
-      tts: 'прив+ет как дела',
+      tts: 'привет как дела',
       end_session: false,
       buttons: [],
     });

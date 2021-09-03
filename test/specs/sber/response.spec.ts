@@ -25,9 +25,9 @@ describe('sber response', () => {
   });
 
   it('text + voice', () => {
-    res.addVoiceText('прив+ет');
+    res.addVoiceText('привет');
     res.addVoiceText('как дела');
-    assert.deepEqual(res.body.payload.pronounceText, 'приве\'т как дела');
+    assert.deepEqual(res.body.payload.pronounceText, 'привет как дела');
     assert.deepEqual(res.body.payload.items, [
       { bubble: { text: 'привет' } },
       { bubble: { text: 'как дела' } },

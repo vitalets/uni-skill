@@ -3,7 +3,7 @@
  */
 
 export function convertSsmlForSber(s: string) {
-  return convertAccents(s);
+  return convertAudio(convertAccents(s));
 }
 
 /**
@@ -13,3 +13,11 @@ const ACCENT_REGEXP = /\+([аяоёэеиыую])/ig;
 function convertAccents(s: string) {
   return s.replace(ACCENT_REGEXP, '$1\'');
 }
+
+/**
+ * В сбере у <audio> атрибут text вместо src.
+ */
+ const SSML_AUDIO_REGEXP = /<audio\s+src="([^"]+)"\s*\/>/ig;
+ function convertAudio(s: string) {
+   return s.replace(SSML_AUDIO_REGEXP, '<audio text="$1" />');
+ }
