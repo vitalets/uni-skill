@@ -17,9 +17,20 @@ describe('sber ssml ', () => {
 
   it('convert audio', () => {
     assertVoice(
-      'звук <audio src="file.wav" />',
-      'звук <audio text="file.wav" />',
+      'звук <audio src="file.wav"/>',
+      'звук <audio text="file.wav"/>',
     );
+  });
+
+  it('wrap emotions', () => {
+    assertVoice('Ура! В начале строки', '<audio text="Ура!"/> В начале строки');
+    assertVoice('В середине угу, строки', 'В середине <audio text="угу"/>, строки');
+    assertVoice('В конце строки, м?', 'В конце строки, <audio text="м?"/>');
+    // dont wrap
+    assertVoice('мура!', 'мура!');
+    assertVoice('мой', 'мой');
+    assertVoice('Ёой', 'Ёой');
+    assertVoice('угу123', 'угу123');
   });
 
 });
