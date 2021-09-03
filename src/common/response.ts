@@ -9,9 +9,10 @@ import { UniBody, Hook, Image, Link } from './types';
 import {
   concatWithSpace,
   concatWithNewline,
-  stripSpeakTags,
+  stripSpeakTag,
   stripEmoji,
   stripAccents,
+  stripAllTags,
 } from '../utils';
 
 export abstract class CommonResponse<TBody, TReq> {
@@ -52,7 +53,7 @@ export abstract class CommonResponse<TBody, TReq> {
 
   /** Добавить текст */
   addText(text: string) {
-    text = stripAccents(this.applyTextHook(text));
+    text = stripAllTags(stripAccents(this.applyTextHook(text)));
     this.uniBody.text = concatWithNewline(this.uniBody.text, text);
     this.addTextInternal(text);
     return this;
@@ -60,7 +61,7 @@ export abstract class CommonResponse<TBody, TReq> {
 
   /** Добавить озвучку */
   addVoice(ssml: string) {
-    ssml = stripEmoji(stripSpeakTags(this.applyVoiceHook(ssml)));
+    ssml = stripEmoji(stripSpeakTag(this.applyVoiceHook(ssml)));
     this.uniBody.ssml = concatWithSpace(this.uniBody.ssml, ssml);
     this.addVoiceInternal(ssml);
     return this;

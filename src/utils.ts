@@ -16,8 +16,12 @@ export function concatWithSpace(s1: string | undefined, s2: string | undefined) 
   return concatWithSeparator(s1, s2, ' ');
 }
 
-export function stripSpeakTags(s: string | undefined) {
+export function stripSpeakTag(s: string | undefined) {
   return s ? s.replace(/<\/?speak>/gi, '').trim() : s;
+}
+
+export function stripAllTags(s?: string) {
+  return (s || '').replace(/<([^>]+)>/ig, '');
 }
 
 /**
@@ -36,7 +40,10 @@ export function stripEmoji(s: string | undefined) {
   });
 }
 
-/** Вырезаем ударения '+' перед гласными */
+/**
+ * Вырезаем ударения '+' перед гласными.
+ * todo: вырезать марусины (`) и сберовские (') ударения?
+ */
 export function stripAccents(s: string) {
   return s.replace(/\+([аяоёэеиыую])/ig, '$1');
 }
