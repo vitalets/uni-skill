@@ -6,6 +6,7 @@ import { CommonResponse } from '../common/response';
 import { Image, Link, State } from '../common/types';
 import { concatWithSpace } from '../utils';
 import { MarusyaRequest } from './request';
+import { convertSsmlForMarusya } from './ssml';
 
 // Use fake Omit to have 'MarusyaResBody' in ts messages.
 type MarusyaResBody = Omit<ResBody, ''>;
@@ -19,7 +20,7 @@ export class MarusyaResponse extends CommonResponse<MarusyaResBody, MarusyaReque
 
   protected addVoiceInternal(ssml: string) {
     const { response } = this.body;
-    // todo: convert ssml to marusya format
+    ssml = convertSsmlForMarusya(ssml);
     response.tts = concatWithSpace(response.tts, ssml);
   }
 
