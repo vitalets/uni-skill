@@ -2,8 +2,9 @@
  * Alexa request.
  * See: https://developer.amazon.com/en-US/docs/alexa/custom-skills/request-and-response-json-reference.html
  */
-import { RequestEnvelope } from 'ask-sdk-model';
+import { IntentRequest, RequestEnvelope } from 'ask-sdk-model';
 import { CommonRequest } from '../common/request';
+import { Intent } from '../common/types';
 
 // Use fake Omit to have 'AlexaReqBody' in ts messages.
 type AlexaReqBody = Omit<RequestEnvelope, ''>;
@@ -26,10 +27,30 @@ export class AlexaRequest extends CommonRequest<AlexaReqBody> {
     return true;
     // return Boolean(this.body.context?.System?.device?.supportedInterfaces?.['Alexa.Presentation.APL']);
   }
-  get isAuthorized() { return Boolean(this.body.context.System.user.accessToken); }
-  isCloseApp() { return this.body.request.type === 'SessionEndedRequest'; }
+  get isAuthorized() {
+    return Boolean(this.body.context.System.user.accessToken);
+  }
+
+  isCloseApp() {
+    return this.body.request.type === 'SessionEndedRequest';
+  }
+
+  getIntent(name: string) {
+    if (this.isIntentRequest() && this.body.request.intent.name === name) {
+      const slots = this.body.request.intent.slots || {};
+      const intent: Intent = { name, slots: {} };
+      for (const slotName of Object.keys(slots || {})) {
+        intent.slots[slotName] = slots[slotName].value;
+      }
+      return intent;
+    }
+  }
 
   /** own */
+
+  isIntentRequest(): this is this & { body: { request: IntentRequest } } {
+    return this.body.request.type === 'IntentRequest';
+  }
 
   get sessionState() { return this.body.session!.attributes; }
 }

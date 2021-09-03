@@ -4,6 +4,8 @@
  * Некоторые сделаны методами, чтобы работали тайпгарды.
  */
 
+import { Intent } from './types';
+
 export abstract class CommonRequest<TBody> {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static match(reqBody: unknown): boolean { throw new Error(`Not implemented.`); }
@@ -36,4 +38,6 @@ export abstract class CommonRequest<TBody> {
   abstract readonly hasScreen: boolean;
   /** Авторизован пользователь или нет */
   abstract readonly isAuthorized: boolean;
+  /** Получить интент */
+  abstract getIntent(name: string): Intent | undefined;
 }

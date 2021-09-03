@@ -33,3 +33,8 @@ export interface UniBody {
 }
 
 export type State = Record<string, unknown> | undefined;
+
+export interface Intent {
+  name: string;
+  slots: Record<string, unknown>;
+}

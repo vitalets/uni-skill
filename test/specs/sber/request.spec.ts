@@ -29,4 +29,10 @@ describe('sber request', () => {
     assert.equal(req.isCloseApp(), true);
   });
 
+  it('intent', () => {
+    assert.deepEqual(req.getIntent('run_app'), {
+      name: 'run_app',
+      slots: {},
+    });
+  });
 });

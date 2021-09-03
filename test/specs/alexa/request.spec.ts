@@ -32,4 +32,11 @@ describe('alexa request', () => {
     const req = createReq(IntentRequest, data => data.session.attributes = { baz: 44 }) as AlexaRequest;
     assert.deepEqual(req.sessionState, { baz: 44 });
   });
+
+  it('intent', () => {
+    assert.deepEqual(req.getIntent('NumberGuessIntent'), {
+      name: 'NumberGuessIntent',
+      slots: { number: '10' }
+    });
+  });
 });

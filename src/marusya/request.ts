@@ -34,6 +34,7 @@ export class MarusyaRequest extends CommonRequest<MarusyaReqBody> {
   get hasScreen() { return Boolean(this.body.meta.interfaces.screen); }
   get isAuthorized() { return Boolean(this.body.session.user); }
   isCloseApp() { return this.body.request.command === 'on_interrupt'; }
+  getIntent(_: string) { return undefined; }
 
   /** own */
 

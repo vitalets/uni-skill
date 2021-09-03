@@ -48,6 +48,15 @@ export class SberRequest extends CommonRequest<SberReqBody> {
     return this.body.messageName === 'CLOSE_APP';
   }
 
+  getIntent(name: string) {
+    if (this.isMessageToSkill()) {
+      return {
+        name,
+        slots: {}
+      };
+    }
+  }
+
   /** own */
 
   isMessageToSkill(): this is this & { body: NLPRequestMTS } {

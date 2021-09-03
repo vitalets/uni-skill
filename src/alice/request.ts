@@ -26,6 +26,17 @@ export class AliceRequest extends CommonRequest<AliceReqBody> {
   get isAuthorized() { return Boolean(this.body.session.user); }
   isCloseApp() { return false; }
 
+  getIntent(name: string) {
+    const aliceIntent = this.body.request.nlu?.intents?.[name];
+    if (aliceIntent) {
+      return {
+        name,
+        // todo: extract slots
+        slots: {}
+      };
+    }
+  }
+
   /** own */
 
   /** Для userState используем дополнительный ключ data, чтобы легче было сбрасывать стейт */
