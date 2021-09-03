@@ -6,7 +6,7 @@ import { CommonResponse } from '../common/response';
 import { Image, Link, State } from '../common/types';
 import { concatWithNewline, concatWithSpace } from '../utils';
 import { AliceRequest } from './request';
-import { convertPause } from './ssml';
+import { convertSsmlForAlice } from './ssml';
 
 // Use fake Omit to have 'AliceResBody' in ts messages.
 type AliceResBody = Omit<ResBody, ''>;
@@ -45,7 +45,7 @@ export class AliceResponse extends CommonResponse<AliceResBody, AliceRequest> {
 
   protected addVoiceInternal(ssml: string) {
     const { response } = this.body;
-    ssml = convertPause(ssml);
+    ssml = convertSsmlForAlice(ssml);
     response.tts = concatWithSpace(response.tts, ssml);
   }
 

@@ -2,9 +2,14 @@
  * see: https://developer.sberdevices.ru/docs/ru/developer_tools/ssml/supported_characters
  */
 
+export function convertSsmlForSber(s: string) {
+  return convertAccents(s);
+}
+
 /**
  * В сбере ударения делаются через апостроф.
  */
-export function convertAccents(s: string) {
-  return s.replace(/\+([аяоёэеиыую])/ig, '$1\'');
+const ACCENT_REGEXP = /\+([аяоёэеиыую])/ig;
+function convertAccents(s: string) {
+  return s.replace(ACCENT_REGEXP, '$1\'');
 }
