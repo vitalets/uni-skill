@@ -37,6 +37,18 @@ describe('alexa response', () => {
     });
   });
 
+  it('voice', () => {
+    res.addVoice('привет');
+    res.addVoice('как дела');
+    assert.deepEqual(res.body.response, {
+      outputSpeech: {
+        type: 'SSML',
+        ssml: '<speak>привет как дела</speak>'
+      },
+      shouldEndSession: false
+    });
+  });
+
   it('text + voice', () => {
     res.addVoiceText('привет');
     res.addVoiceText('как дела');
@@ -134,6 +146,23 @@ describe('alexa response', () => {
       outputSpeech: {
         type: 'SSML',
         ssml: ''
+      },
+      shouldEndSession: false
+    });
+  });
+
+  it('reprompt', () => {
+    res.addReprompt('привет');
+    assert.deepEqual(res.body.response, {
+      outputSpeech: {
+        type: 'SSML',
+        ssml: ''
+      },
+      reprompt: {
+        outputSpeech: {
+          type: 'SSML',
+          ssml: '<speak>привет</speak>'
+        }
       },
       shouldEndSession: false
     });

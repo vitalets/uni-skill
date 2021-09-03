@@ -5,7 +5,7 @@
 import { ResponseEnvelope, ui } from 'ask-sdk-model';
 import { CommonResponse } from '../common/response';
 import { Image, State } from '../common/types';
-import { concatWithNewline } from '../utils';
+import { concatWithNewline, concatWithSpace, stripSpeakTag } from '../utils';
 import { AlexaRequest } from './request';
 
 // Use fake Omit to have 'AlexaResBody' in ts messages.
@@ -13,6 +13,14 @@ type AlexaResBody = Omit<ResponseEnvelope, ''>;
 
 export class AlexaResponse extends CommonResponse<AlexaResBody, AlexaRequest> {
   isAlexa(): this is AlexaResponse { return true; }
+
+  addReprompt(ssml: string) {
+    const reprompt: ui.Reprompt = this.body.response.reprompt || {
+      outputSpeech: { type: 'SSML', ssml: '' },
+    };
+    this.concatSsml(reprompt.outputSpeech as ui.SsmlOutputSpeech, ssml);
+    this.body.response.reprompt = reprompt;
+  }
 
   protected addTextInternal(text: string) {
     const { card } = this.body.response;
@@ -41,9 +49,8 @@ export class AlexaResponse extends CommonResponse<AlexaResBody, AlexaRequest> {
     this.body.response.card = { type: 'Standard', title, text, image };
   }
 
-  protected addVoiceInternal(_: string) {
-    (this.body.response.outputSpeech as ui.SsmlOutputSpeech).ssml =
-      `<speak>${this.uniBody.ssml}</speak>`;
+  protected addVoiceInternal(ssml: string) {
+    this.concatSsml(this.body.response.outputSpeech as ui.SsmlOutputSpeech, ssml);
   }
 
   protected addSuggestInternal() {
@@ -68,16 +75,15 @@ export class AlexaResponse extends CommonResponse<AlexaResBody, AlexaRequest> {
           type: 'SSML',
           ssml: ''
         },
-        // reprompt: {
-        //   outputSpeech: {
-        //     type: 'SSML',
-        //     ssml: ''
-        //   }
-        // },
         shouldEndSession: false
       },
       sessionAttributes: {},
       version: '1.0'
     };
+  }
+
+  private concatSsml(outputSpeech: ui.SsmlOutputSpeech, ssml: string) {
+    ssml = concatWithSpace(stripSpeakTag(outputSpeech.ssml), stripSpeakTag(ssml));
+    outputSpeech.ssml = `<speak>${ssml}</speak>`;
   }
 }
