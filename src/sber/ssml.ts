@@ -54,7 +54,7 @@ const SBER_EMOTIONS = [
   'ммм!',
   'упс',
 ].map(escapeRegexp).join('|');
-const SBER_EMOTIONS_REGEXP = new RegExp(`(^|[^а-яё0-9])(${SBER_EMOTIONS})($|[^а-яё0-9])`, 'gi');
+const SBER_EMOTIONS_REGEXP = new RegExp(`(^|[\\s.,:\\-!?])(${SBER_EMOTIONS})($|[\\s.,:\\-!?])`, 'gi');
 function wrapEmotions(s: string) {
   return s.replace(SBER_EMOTIONS_REGEXP, '$1<audio text="$2"/>$3');
 }

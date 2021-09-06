@@ -31,6 +31,7 @@ describe('sber ssml ', () => {
     assertVoice('мой', 'мой');
     assertVoice('Ёой', 'Ёой');
     assertVoice('угу123', 'угу123');
+    assertVoice('<audio text="Ура!"/>', '<audio text="Ура!"/>');
   });
 
 });
