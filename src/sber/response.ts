@@ -49,8 +49,7 @@ export class SberResponse extends CommonResponse<SberResBody, SberRequest> {
   }
 
   protected init(): SberResBody {
-    this.isMale = this.request.body.payload.character.gender === 'male';
-    this.isOfficial = this.request.body.payload.character.appeal === 'official';
+    this.initCharacter();
     return {
       messageName: 'ANSWER_TO_USER',
       sessionId: this.request.sessionId,
@@ -68,5 +67,12 @@ export class SberResponse extends CommonResponse<SberResBody, SberRequest> {
         finished: false,
       }
     };
+  }
+
+  private initCharacter() {
+    const { gender, appeal, name } = this.request.body.payload.character;
+    this.isMale = gender === 'male';
+    this.isOfficial = appeal === 'official';
+    this.assistantName = name;
   }
 }

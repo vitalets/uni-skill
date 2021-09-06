@@ -13,6 +13,7 @@ type MarusyaResBody = Omit<ResBody, ''>;
 
 export class MarusyaResponse extends CommonResponse<MarusyaResBody, MarusyaRequest> {
   isMarusya(): this is MarusyaResponse { return true; }
+  assistantName = 'Маруся';
 
   protected addTextInternal(text: string) {
     (this.body.response.text as string[]).push(text);

@@ -22,6 +22,8 @@ export abstract class CommonResponse<TBody, TReq> {
   isMale = false;
   /** Обращение на ты/вы */
   isOfficial = true;
+  /** Имя ассистента */
+  assistantName = '';
   /** Запрос, для которого этот ответ */
   request: TReq;
   /** Тело универсального ответа */

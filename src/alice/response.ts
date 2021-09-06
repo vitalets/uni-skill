@@ -13,6 +13,7 @@ type AliceResBody = Omit<ResBody, ''>;
 
 export class AliceResponse extends CommonResponse<AliceResBody, AliceRequest> {
   isAlice(): this is AliceResponse { return true; }
+  assistantName = 'Алиса';
 
   /** В Алисе возможен только 1 бабл с текстом */
   protected addTextInternal(text: string) {

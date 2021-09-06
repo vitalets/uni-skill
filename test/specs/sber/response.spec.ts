@@ -9,6 +9,21 @@ describe('sber response', () => {
     res = createRes(data) as SberResponse;
   });
 
+  it('isMale', () => {
+    const res = createRes(data, data => data.payload.character.gender = 'male') as SberResponse;
+    assert.equal(res.isMale, true);
+  });
+
+  it('isOfficial', () => {
+    const res = createRes(data, data => data.payload.character.appeal = 'unofficial') as SberResponse;
+    assert.equal(res.isOfficial, false);
+  });
+  
+  it('assistantName', () => {
+    const res = createRes(data, data => data.payload.character.name = 'Афина') as SberResponse;
+    assert.equal(res.assistantName, 'Афина');
+  });
+
   it('text', () => {
     res.addText('привет');
     res.addText('как дела');

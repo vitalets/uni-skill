@@ -13,6 +13,7 @@ type AlexaResBody = Omit<ResponseEnvelope, ''>;
 
 export class AlexaResponse extends CommonResponse<AlexaResBody, AlexaRequest> {
   isAlexa(): this is AlexaResponse { return true; }
+  assistantName = 'Alexa';
 
   addReprompt(ssml: string) {
     const reprompt: ui.Reprompt = this.body.response.reprompt || {

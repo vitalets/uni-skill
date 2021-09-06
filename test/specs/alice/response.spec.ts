@@ -8,6 +8,10 @@ describe('alice response', () => {
     res = createRes(data) as AliceResponse;
   });
 
+  it('isMale', () => assert.equal(res.isMale, false));
+  it('isOfficial', () => assert.equal(res.isOfficial, true));
+  it('assistantName', () => assert.equal(res.assistantName, 'Алиса'));
+
   it('text', () => {
     res.addText('привет');
     res.addText('как дела');

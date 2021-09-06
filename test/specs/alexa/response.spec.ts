@@ -8,6 +8,10 @@ describe('alexa response', () => {
     res = createRes(IntentRequest) as AlexaResponse;
   });
 
+  it('isMale', () => assert.equal(res.isMale, false));
+  it('isOfficial', () => assert.equal(res.isOfficial, true));
+  it('assistantName', () => assert.equal(res.assistantName, 'Alexa'));
+
   it('text', () => {
     res.addText('привет');
     res.addText('как дела');
@@ -167,5 +171,4 @@ describe('alexa response', () => {
       shouldEndSession: false
     });
   });
-
 });
