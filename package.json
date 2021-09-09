@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@salutejs/types": "^0.7.0",
-    "alice-types": "^1.2.1",
+    "alice-types": "^1.3.0",
     "ask-sdk-core": "^2.11.0",
     "ask-sdk-model": "^1.36.1",
     "marusya-types": "^1.0.1"
