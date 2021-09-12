@@ -8,7 +8,7 @@ import { State } from '../common/types';
 // Use fake Omit to have 'MarusyaReqBody' in ts messages.
 type MarusyaReqBody = Omit<ReqBody, ''>;
 
-const MARUSYA_APP_TYPES = [ 'mobile', 'speaker', 'VK', 'other' ];
+const MARUSYA_APP_TYPES = [ 'mobile', 'speaker', 'VK', 'other', 'web' ];
 
 export class MarusyaRequest extends CommonRequest<MarusyaReqBody> {
   static match(reqBody: unknown): reqBody is MarusyaReqBody {
