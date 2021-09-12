@@ -13,7 +13,9 @@ const MARUSYA_APP_TYPES = [ 'mobile', 'speaker', 'VK', 'other', 'web' ];
 export class MarusyaRequest extends CommonRequest<MarusyaReqBody> {
   static match(reqBody: unknown): reqBody is MarusyaReqBody {
     const appType = (reqBody as MarusyaReqBody)?.session?.application?.application_type;
-    return Boolean(appType) && MARUSYA_APP_TYPES.includes(appType);
+    // undocumented field, but seems to exist in all Marusya reqs
+    const cityId = (reqBody as MarusyaReqBody)?.meta?._city_ru;
+    return Boolean(cityId) || Boolean(appType) && MARUSYA_APP_TYPES.includes(appType);
   }
   isMarusya(): this is MarusyaRequest { return true; }
   get userId() {
