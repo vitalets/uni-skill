@@ -26,28 +26,28 @@
     "alice-types": "^1.3.0",
     "ask-sdk-core": "^2.11.0",
     "ask-sdk-model": "^1.36.1",
-    "marusya-types": "^1.0.1"
+    "marusya-types": "^1.0.2"
   },
   "devDependencies": {
-    "@types/chai": "^4.2.17",
-    "@types/mocha": "^8.2.2",
-    "@types/node": "^15.0.1",
-    "@types/sinon": "^10.0.2",
-    "@typescript-eslint/eslint-plugin": "^4.22.0",
-    "@typescript-eslint/parser": "^4.22.0",
+    "@types/chai": "^4.2.22",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^16.10.2",
+    "@types/sinon": "^10.0.4",
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
+    "@typescript-eslint/parser": "^4.33.0",
     "ask-cli": "^2.24.1",
     "ask-sdk-local-debug": "^1.1.0",
     "chai": "^4.3.4",
     "dotenv": "^10.0.0",
     "eslint": "^7.24.0",
-    "eslint-plugin-mocha": "^8.1.0",
-    "lint-staged": "^10.5.4",
-    "mocha": "^8.3.2",
+    "eslint-plugin-mocha": "^9.0.0",
+    "lint-staged": "^11.2.0",
+    "mocha": "^9.1.2",
     "sinon": "^11.1.1",
-    "skill-dev-proxy": "^2.0.10",
-    "ts-node": "^10.1.0",
+    "skill-dev-proxy": "^2.0.13",
+    "ts-node": "^10.2.1",
     "ts-node-dev": "^1.1.8",
-    "typescript": "^4.2.4"
+    "typescript": "^4.4.3"
   },
   "author": {
     "name": "Vitaliy Potapov"
