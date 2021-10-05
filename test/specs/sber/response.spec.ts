@@ -18,7 +18,7 @@ describe('sber response', () => {
     const res = createRes(data, data => data.payload.character.appeal = 'unofficial') as SberResponse;
     assert.equal(res.isOfficial, false);
   });
-  
+
   it('assistantName', () => {
     const res = createRes(data, data => data.payload.character.name = 'Афина') as SberResponse;
     assert.equal(res.assistantName, 'Афина');
@@ -102,7 +102,7 @@ describe('sber response', () => {
   });
 
   it('link', () => {
-    res.addLink({ title: 'ссылка', url: 'https://ya.ru' });
+    res.addLink({ title: 'ссылка', url: 'https://ya.ru', imageId: '' });
     assert.deepEqual(res.body.payload.items[0], {
       card: {
         type: 'list_card',

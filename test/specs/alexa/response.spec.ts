@@ -145,7 +145,7 @@ describe('alexa response', () => {
   });
 
   it('link (noop)', () => {
-    res.addLink({ title: 'ссылка', url: 'https://ya.ru' });
+    res.addLink({ title: 'ссылка', url: 'https://ya.ru', imageId: '' });
     assert.deepEqual(res.body.response, {
       outputSpeech: {
         type: 'SSML',

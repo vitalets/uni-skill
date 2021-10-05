@@ -120,7 +120,7 @@ describe('alice response', () => {
 
   it('link', () => {
     res.addText('привет');
-    res.addLink({ title: 'ссылка', url: 'https://ya.ru' });
+    res.addLink({ title: 'ссылка', url: 'https://ya.ru', imageId: '' });
     assert.deepEqual(res.body.response, {
       text: 'привет',
       tts: '',
@@ -131,7 +131,7 @@ describe('alice response', () => {
 
   it('image + link', () => {
     res.addImage({ imageId: '42', title: 'картинка', description: 'описание' });
-    res.addLink({ title: 'ссылка', url: 'https://ya.ru' });
+    res.addLink({ title: 'ссылка', url: 'https://ya.ru', imageId: '' });
     assert.deepEqual(res.body.response, {
       text: 'картинка\nописание',
       tts: '',
@@ -148,7 +148,7 @@ describe('alice response', () => {
   });
 
   it('link + suggest', () => {
-    res.addLink({ title: 'ссылка', url: 'https://ya.ru' });
+    res.addLink({ title: 'ссылка', url: 'https://ya.ru', imageId: '' });
     res.addSuggest([ 'кнопка 1' ]);
     assert.deepEqual(res.body.response, {
       text: '',

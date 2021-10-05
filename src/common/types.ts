@@ -16,8 +16,8 @@ export interface Image {
 export interface Link {
   url: string;
   title: string;
-  /** imageId is only for Marusya */
-  imageId?: string;
+  /** ImageId is only for Marusya. It's better to make it required and pass empty string for other platforms */
+  imageId: string;
 }
 
 export type Hook = (text: string) => string;
