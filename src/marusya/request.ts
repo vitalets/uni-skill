@@ -8,14 +8,14 @@ import { State } from '../common/types';
 // Use fake Omit to have 'MarusyaReqBody' in ts messages.
 type MarusyaReqBody = Omit<ReqBody, ''>;
 
-const MARUSYA_APP_TYPES = [ 'mobile', 'speaker', 'VK', 'other', 'web' ];
+const MARUSYA_APP_TYPES = [ 'mobile', 'speaker', 'vk', 'other', 'web' ];
 
 export class MarusyaRequest extends CommonRequest<MarusyaReqBody> {
   static match(reqBody: unknown): reqBody is MarusyaReqBody {
     const appType = (reqBody as MarusyaReqBody)?.session?.application?.application_type;
     // undocumented field, but seems to exist in all Marusya reqs
     const cityId = (reqBody as MarusyaReqBody)?.meta?._city_ru;
-    return Boolean(cityId) || Boolean(appType) && MARUSYA_APP_TYPES.includes(appType);
+    return Boolean(cityId) || Boolean(appType) && MARUSYA_APP_TYPES.includes(appType.toLowerCase());
   }
   isMarusya(): this is MarusyaRequest { return true; }
   get userId() {
