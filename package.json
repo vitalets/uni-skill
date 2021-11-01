@@ -15,7 +15,7 @@
     "test": "npm run build -w core && npm t -ws",
     "build": "npm run build -ws",
     "check": "npm run build && tsnd --respawn scripts/check",
-    "release": "npm run lint && npm t && npm run build && lerna version && lerna publish"
+    "release": "npm run lint && npm t && npm run build && lerna publish"
   },
   "lint-staged": {
     "{core,alice,sber,marusya,alexa}/{src,test}/**/*.ts": "eslint --ext .ts"
