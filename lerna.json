@@ -1,0 +1,10 @@
+{
+  "packages": [
+    "core",
+    "alice",
+    "sber",
+    "marusya",
+    "alexa"
+  ],
+  "version": "1.0.0"
+}

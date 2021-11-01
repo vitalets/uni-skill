@@ -15,6 +15,7 @@
     "test": "npm run build -w core && npm t -ws",
     "build": "npm run build -ws",
     "check": "npm run build && tsnd --respawn scripts/check",
+    "bump": "lerna version",
     "release": "npm run lint && npm t && npm run build && npm version $VER && npm publish && git push --follow-tags --no-verify",
     "release-patch": "VER=patch npm run release",
     "release-minor": "VER=minor npm run release"
@@ -35,6 +36,7 @@
     "dotenv": "^10.0.0",
     "eslint": "^7.24.0",
     "eslint-plugin-mocha": "^9.0.0",
+    "lerna": "^4.0.0",
     "lint-staged": "^11.2.0",
     "mocha": "^9.1.2",
     "sinon": "^11.1.1",
