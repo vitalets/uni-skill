@@ -2,7 +2,7 @@
  * Базовая реализация ответа.
  */
 
-import { IResponse, Hook, Image, Link, TextOptions, UniBody } from './types';
+import { IResponse, Hook, Image, Link, UniBody } from './types';
 import {
   concatWithSpace,
   concatWithNewline,
@@ -50,8 +50,7 @@ export abstract class BaseResponse<TBody, TReq> implements Partial<IResponse<TBo
   isMarusya() { return false; }
   isAlexa() { return false; }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  addText(text: string, options: TextOptions = {}) {
+  addText(text: string) {
     text = stripAllTags(stripAccents(this.applyTextHook(text)));
     this.uniBody.text = concatWithNewline(this.uniBody.text, text);
     this.addTextInternal(text);

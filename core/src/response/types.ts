@@ -29,11 +29,11 @@ export interface IResponse<TBody, TReq> {
   /** Имя ассистента */
   assistantName: string;
   /** Добавить текстовый бабл */
-  addText(text: string, options?: TextOptions): this;
+  addText(text: string): this;
   /** Добавить озвучку */
   addVoice(ssml: string): this;
   /** Добавить текстовый бабл с озвучкой */
-  addVoiceText(ssml: string, options?: TextOptions): this;
+  addVoiceText(ssml: string): this;
   /** Добавить саджест */
   addSuggest(suggest: string[]): this;
   /** Добавить картинку */
@@ -42,11 +42,6 @@ export interface IResponse<TBody, TReq> {
   addLink(link: Link): this;
   /** Установить флаг завершения сессии */
   endSession(value?: boolean): this;
-}
-
-export interface TextOptions {
-  startBubble?: boolean;
-  endBubble?: boolean;
 }
 
 export interface Image {
