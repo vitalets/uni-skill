@@ -30,7 +30,6 @@
     "ask-cli": "^2.24.1",
     "ask-sdk-local-debug": "^1.1.0",
     "chai": "^4.3.4",
-    "dotenv": "^10.0.0",
     "eslint": "^7.24.0",
     "eslint-plugin-mocha": "^9.0.0",
     "lerna": "^4.0.0",
