@@ -15,10 +15,7 @@
     "test": "npm run build -w core && npm t -ws",
     "build": "npm run build -ws",
     "check": "npm run build && tsnd --respawn scripts/check",
-    "bump": "lerna version",
-    "release": "npm run lint && npm t && npm run build && npm version $VER && npm publish && git push --follow-tags --no-verify",
-    "release-patch": "VER=patch npm run release",
-    "release-minor": "VER=minor npm run release"
+    "release": "npm run lint && npm t && npm run build && lerna version && lerna publish"
   },
   "lint-staged": {
     "{core,alice,sber,marusya,alexa}/{src,test}/**/*.ts": "eslint --ext .ts"
