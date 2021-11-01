@@ -13,7 +13,9 @@ extends BaseRequest<AliceReqBody, AliceResponse>
 implements IRequest<AliceReqBody, AliceResponse> {
   static create(reqBody: unknown) {
     const body = reqBody as AliceReqBody;
-    if (body?.session?.skill_id) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const isMarusya = Boolean((body as any)?.session?.application?.application_type);
+    if (body?.session?.skill_id && !isMarusya) {
       return new AliceRequest(body);
     }
   }
