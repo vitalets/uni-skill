@@ -1,7 +1,7 @@
 {
   "name": "@uni-skill/marusya",
   "description": "Uni-skill: Marusya",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "main": "dist/index.js",
   "files": [
     "dist",
@@ -13,7 +13,7 @@
     "build": "tsc -b tsconfig.build.json"
   },
   "dependencies": {
-    "@uni-skill/core": "^4.0.0",
+    "@uni-skill/core": "^4.0.1",
     "marusya-types": "^1.0.3"
   },
   "author": {
