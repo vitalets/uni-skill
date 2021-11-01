@@ -39,7 +39,7 @@ export interface IResponse<TBody, TReq> {
   /** Добавить картинку */
   addImage(image: Image): this;
   /** Добавить ссылку */
-  addLink(link: Link): this;
+  addLinks(links: Link[]): this;
   /** Установить флаг завершения сессии */
   endSession(value?: boolean): this;
 }

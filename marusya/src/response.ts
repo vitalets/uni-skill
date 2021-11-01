@@ -57,12 +57,21 @@ implements IResponse<MarusyaResBody, MarusyaRequest> {
   }
 
   /** В Марусе возможна только 1 ссылка, и та вместо картинки */
-  protected addLinkInternal({ title, url, imageId }: Link) {
+  protected addLinksInternal(links: Link[]) {
     const { card } = this.body.response;
-    if (card && card.type !== 'Link') {
-      throw new Error(`Response already contains card: ${card.type}`);
+    if (card) {
+      const msg = card.type === 'Link'
+        ? `Response already contains link: ${JSON.stringify(card)}`
+        : `Response already contains another card: ${JSON.stringify(card)}`;
+      throw new Error(msg);
     }
-    if (!imageId) throw new Error('ImageId is required for Marusya link');
+    if (links.length > 1) {
+      throw new Error(`Marusya can show only one link`);
+    }
+    const { url, title, imageId } = links[0];
+    if (!imageId) {
+      throw new Error('ImageId is required for Marusya link');
+    }
     this.body.response.card = {
       type: 'Link',
       url,

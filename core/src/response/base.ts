@@ -37,7 +37,7 @@ export abstract class BaseResponse<TBody, TReq> implements Partial<IResponse<TBo
   protected abstract addImageInternal(image: Image): void;
   protected abstract addVoiceInternal(fullSsml: string): void;
   protected abstract addSuggestInternal(suggest: string[]): void;
-  protected abstract addLinkInternal(link: Link): void;
+  protected abstract addLinksInternal(links: Link[]): void;
   protected abstract endSessionInternal(value: boolean): void;
 
   constructor(request: TReq) {
@@ -72,6 +72,7 @@ export abstract class BaseResponse<TBody, TReq> implements Partial<IResponse<TBo
   }
 
   addSuggest(suggest: string[]) {
+    if (!suggest?.length) return this;
     suggest = suggest.map(item => this.applyTextHook(item));
     this.uniBody.suggest.push(...suggest);
     this.addSuggestInternal(suggest);
@@ -87,9 +88,10 @@ export abstract class BaseResponse<TBody, TReq> implements Partial<IResponse<TBo
     return this;
   }
 
-  addLink(link: Link) {
-    this.uniBody.links.push(link);
-    this.addLinkInternal(link);
+  addLinks(links: Link[]) {
+    if (!links?.length) return this;
+    this.uniBody.links.push(...links);
+    this.addLinksInternal(links);
     return this;
   }
 

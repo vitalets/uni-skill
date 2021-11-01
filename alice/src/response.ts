@@ -13,6 +13,7 @@ import {
 } from '@uni-skill/core';
 import { AliceRequest } from './request';
 import { convertSsmlForAlice } from './ssml';
+import { addLinksToCard, addLinksToTextBubble } from './links';
 
 // Use fake Omit to have 'AliceResBody' in ts messages.
 type AliceResBody = Omit<ResBody, ''>;
@@ -23,10 +24,8 @@ implements IResponse<AliceResBody, AliceRequest> {
   isAlice(): this is AliceResponse { return true; }
   assistantName = 'Алиса';
 
-  /** В Алисе возможен только 1 бабл с текстом */
+  /** В Алисе возможен только 1 бабл с текстом, поэтому отбиваем переносом строки */
   protected addTextInternal(text: string) {
-    // todo: если response.text есть и заканчивается буквой, а не знаком препинания, то нужно туда дописать точку.
-    // Иначе все сольётся в одно предложение.
     const { response } = this.body;
     const { card } = response;
     if (card?.type === 'BigImage') {
@@ -64,13 +63,12 @@ implements IResponse<AliceResBody, AliceRequest> {
     );
   }
 
-  protected addLinkInternal({ title, url }: Link) {
+  protected addLinksInternal(links: Link[]) {
     const { card } = this.body.response;
-    /* Для BigImage возможна только одна ссылка */
     if (card?.type === 'BigImage') {
-      card.button = { url, text: title };
+      addLinksToCard(links, card);
     } else {
-      this.body.response.buttons!.push({ url, title, hide: false });
+      addLinksToTextBubble(links, this.body.response.buttons!);
     }
   }
 

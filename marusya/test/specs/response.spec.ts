@@ -118,7 +118,7 @@ describe('marusya response', () => {
   it('link', () => {
     const res = createResponse(data);
     res.addText('привет');
-    res.addLink({ title: 'ссылка', url: 'https://ya.ru', imageId: '123' });
+    res.addLinks([{ title: 'ссылка', url: 'https://ya.ru', imageId: '123' }]);
     assert.deepEqual(res.body.response, {
       text: [ 'привет' ],
       tts: '',
@@ -138,8 +138,8 @@ describe('marusya response', () => {
     const res = createResponse(data);
     assert.throws(() => {
       res.addImage({ imageId: '42', title: 'картинка', description: 'описание', ratio: 1 });
-      res.addLink({ title: 'ссылка', url: 'https://ya.ru', imageId: '123' });
-    }, /Response already contains card: BigImage/);
+      res.addLinks([{ title: 'ссылка', url: 'https://ya.ru', imageId: '123' }]);
+    }, /Response already contains another card/);
   });
 
 });

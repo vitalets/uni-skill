@@ -46,8 +46,10 @@ implements IResponse<SberResBody, SberRequest> {
     );
   }
 
-  protected addLinkInternal(link: Link) {
-    this.body.payload.items.push(getLinkItem(link));
+  protected addLinksInternal(links: Link[]) {
+    for (const link of links) {
+      this.body.payload.items.push(getLinkItem(link));
+    }
   }
 
   protected endSessionInternal(value: boolean) {

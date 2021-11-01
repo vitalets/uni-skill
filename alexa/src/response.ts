@@ -66,7 +66,7 @@ implements IResponse<AlexaResBody, AlexaRequest> {
     // noop: Alexa does not support suggest
   }
 
-  protected addLinkInternal() {
+  protected addLinksInternal() {
     // noop: Alexa does not support links
   }
 

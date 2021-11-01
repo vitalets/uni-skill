@@ -107,7 +107,7 @@ describe('sber response', () => {
 
   it('link', () => {
     const res = createResponse(data);
-    res.addLink({ title: 'ссылка', url: 'https://ya.ru', imageId: '' });
+    res.addLinks([{ title: 'ссылка', url: 'https://ya.ru', imageId: '' }]);
     assert.deepEqual(res.body.payload.items[0], {
       card: {
         type: 'list_card',
