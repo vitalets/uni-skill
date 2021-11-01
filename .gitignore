@@ -9,6 +9,8 @@ npm-debug.log
 .env*
 
 dist
+*.tsbuildinfo
+
 /todo.txt
 /playground
 /ssml.txt

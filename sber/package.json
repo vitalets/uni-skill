@@ -1,0 +1,31 @@
+{
+  "name": "@uni-skill/sber",
+  "description": "Uni-skill: Sber",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "lint": "eslint '{src,test}/**/*.ts' --ext .ts",
+    "test": "mocha -r ts-node/register ../test/setup.ts 'test/**/*.ts'",
+    "build": "tsc -b tsconfig.build.json"
+  },
+  "dependencies": {
+    "@uni-skill/core": "^1.0.0",
+    "@salutejs/types": "^0.7.0"
+  },
+  "author": {
+    "name": "Vitaliy Potapov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/vitalets/uni-skill.git",
+    "directory": "sber"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,32 @@
+{
+  "name": "@uni-skill/alexa",
+  "description": "Uni-skill: Alexa",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "lint": "eslint '{src,test}/**/*.ts' --ext .ts",
+    "test": "mocha -r ts-node/register ../test/setup.ts 'test/**/*.ts'",
+    "check:alexa": "tsc -p tsconfig.alexa.json --watch & ask run --watch --region EU && kill $!",
+    "build": "tsc -b tsconfig.build.json"
+  },
+  "dependencies": {
+    "ask-sdk-core": "^2.11.0",
+    "ask-sdk-model": "^1.36.1"
+  },
+  "author": {
+    "name": "Vitaliy Potapov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/vitalets/uni-skill.git",
+    "directory": "alexa"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT"
+}
