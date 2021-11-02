@@ -14,11 +14,9 @@ export function handler(reqBody: unknown) {
 }
 
 function createRequest(reqBody: unknown) {
-  const request = [
-    AliceRequest.create(reqBody),
-    SberRequest.create(reqBody),
-    MarusyaRequest.create(reqBody),
-  ].find(Boolean);
+  const request = AliceRequest.create(reqBody)
+    || SberRequest.create(reqBody)
+    || MarusyaRequest.create(reqBody);
   if (!request) throw new Error(`Unknown platform: ${JSON.stringify(reqBody)}`);
   return request;
 }
