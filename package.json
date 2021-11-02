@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "lint": "eslint '{core,alice,sber,marusya,alexa}/{src,test}/**/*.ts' --ext .ts",
-    "test": "npm run build -w core && npm t -ws",
+    "test": "npm run build -w core && lerna run --parallel test",
     "build": "npm run build -ws",
     "check": "npm run build && tsnd --respawn scripts/check",
     "release": "npm run lint && npm t && npm run build && lerna publish"
