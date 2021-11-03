@@ -4,6 +4,7 @@
     "target": "es2020",
     "module": "commonjs",
     "declaration": true,
+    "declarationMap": true,
     "strict": true,
     "resolveJsonModule": true,
     "allowJs": true,
