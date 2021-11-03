@@ -32,7 +32,7 @@ implements IRequest<AliceReqBody, AliceResponse> {
   get isNewSession() { return this.body.session.new; }
   get hasScreen() { return Boolean(this.body.meta.interfaces.screen); }
   get isAuthorized() { return Boolean(this.body.session.user); }
-  isCloseApp() { return false; }
+  isEndSession() { return false; }
 
   getIntent(name: string) {
     const aliceIntent = this.body.request.nlu?.intents?.[name];

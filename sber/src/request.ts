@@ -23,7 +23,7 @@ implements IRequest<SberReqBody, SberResponse> {
   get sessionId() { return this.body.sessionId; }
   get messageId() { return this.body.messageId; }
   get userMessage(): string {
-    return this.isMessageToSkill() || this.isCloseApp()
+    return this.isMessageToSkill() || this.isEndSession()
       ? (this.body.payload.message.original_text || '').toLocaleLowerCase()
       : '';
   }
@@ -38,7 +38,7 @@ implements IRequest<SberReqBody, SberResponse> {
   }
 
   get isNewSession(): boolean {
-    return this.isMessageToSkill() || this.isCloseApp()
+    return this.isMessageToSkill() || this.isEndSession()
       ? this.body.payload.new_session
       : (this.isRunApp() ? true : false);
   }
@@ -50,7 +50,7 @@ implements IRequest<SberReqBody, SberResponse> {
 
   get isAuthorized() { return Boolean(this.body.uuid.sub); }
 
-  isCloseApp(): this is this & { body: NLPRequestСA } {
+  isEndSession(): this is this & { body: NLPRequestСA } {
     return this.body.messageName === 'CLOSE_APP';
   }
 

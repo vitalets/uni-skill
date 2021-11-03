@@ -9,12 +9,12 @@ describe('alexa request', () => {
     assert.match(req.userId, /amzn1.+/, 'userId');
     assert.equal(req.userMessage, '', 'userMessage');
     assert.equal(req.clientInfo, 'Alexa device', 'clientInfo');
-    assert.equal(req.isCloseApp(), false, 'isCloseApp');
+    assert.equal(req.isEndSession(), false, 'isEndSession');
   });
 
-  it('isCloseApp', () => {
+  it('isEndSession', () => {
     const req = createRequest(SessionEndedRequest);
-    assert.equal(req.isCloseApp(), true);
+    assert.equal(req.isEndSession(), true);
   });
 
   it('sessionState', () => {

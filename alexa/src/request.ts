@@ -37,7 +37,7 @@ implements IRequest<AlexaReqBody, AlexaResponse> {
     return Boolean(this.body.context.System.user.accessToken);
   }
 
-  isCloseApp() {
+  isEndSession() {
     return this.body.request.type === 'SessionEndedRequest';
   }
 

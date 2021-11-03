@@ -9,12 +9,12 @@ describe('sber request', () => {
     assert.match(req.userId, /8tet.+/, 'userId');
     assert.equal(req.userMessage, 'начинаем раз два три', 'userMessage');
     assert.equal(req.clientInfo, 'IOS 14.7.1; iPhone9,3; COMPANION 21.8.1000', 'clientInfo');
-    assert.equal(req.isCloseApp(), false, 'isCloseApp');
+    assert.equal(req.isEndSession(), false, 'isEndSession');
   });
 
-  it('isCloseApp: true', () => {
+  it('isEndSession: true', () => {
     const req = createRequest(closeAppData);
-    assert.equal(req.isCloseApp(), true);
+    assert.equal(req.isEndSession(), true);
   });
 
   it('intent', () => {

@@ -8,7 +8,7 @@ describe('alice request', () => {
     assert.match(req.userId, /92DE93E7BC5D.+/, 'userId');
     assert.equal(req.userMessage, 'привет 1', 'userMessage');
     assert.equal(req.clientInfo, 'ru.yandex.mobile/7300 (Apple iPhone; iphone 14.6)', 'clientInfo');
-    assert.equal(req.isCloseApp(), false, 'isCloseApp');
+    assert.equal(req.isEndSession(), false, 'isEndSession');
   });
 
   it('sessionState', () => {

@@ -18,7 +18,7 @@ export interface IRequest<TBody, TRes> {
   /** Флаг запроса от Алексы */
   isAlexa(): boolean;
   /** Флаг закрытия скила (в Алисе всегда false) */
-  isCloseApp(): boolean;
+  isEndSession(): boolean;
   /** ID пользователя */
   userId: string;
   /** ID сессии */

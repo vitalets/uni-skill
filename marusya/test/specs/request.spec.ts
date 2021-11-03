@@ -8,14 +8,14 @@ describe('marusya request', () => {
     assert.equal(req.userId, '52f12d70fb4077f68880010513d3382156f4b3a34fe176baae6ff9d74c006c51', 'userId');
     assert.equal(req.userMessage, 'привет', 'userMessage');
     assert.equal(req.clientInfo, 'MailRu-VC/1.0; app: other', 'clientInfo');
-    assert.equal(req.isCloseApp(), false, 'isCloseApp');
+    assert.equal(req.isEndSession(), false, 'isEndSession');
   });
 
-  it('isCloseApp: true', () => {
+  it('isEndSession: true', () => {
     const newData = patch(data, data => data.request.command = 'on_interrupt');
     const req = createRequest(newData);
     assert.equal(req.userMessage, 'привет');
-    assert.equal(req.isCloseApp(), true);
+    assert.equal(req.isEndSession(), true);
   });
 
   it('sessionState', () => {

@@ -32,7 +32,7 @@ implements IRequest<MarusyaReqBody, MarusyaResponse> {
   get messageId() { return this.body.session.message_id; }
   get userMessage() {
     const { command, original_utterance } = this.body.request;
-    const msg = this.isCloseApp() ? original_utterance : ( command || original_utterance);
+    const msg = this.isEndSession() ? original_utterance : ( command || original_utterance);
     return msg || '';
   }
   get clientInfo() {
@@ -41,7 +41,7 @@ implements IRequest<MarusyaReqBody, MarusyaResponse> {
   get isNewSession() { return this.body.session.new; }
   get hasScreen() { return Boolean(this.body.meta.interfaces.screen); }
   get isAuthorized() { return Boolean(this.body.session.user); }
-  isCloseApp() { return this.body.request.command === 'on_interrupt'; }
+  isEndSession() { return this.body.request.command === 'on_interrupt'; }
   getIntent(_: string) { return undefined; }
 
   /** own */
