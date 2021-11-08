@@ -1,6 +1,6 @@
 {
-  "name": "@uni-skill/alice",
-  "description": "Uni-skill: Alice",
+  "name": "@uni-skill/marusya",
+  "description": "Uni-skill: Marusya",
   "version": "4.1.0",
   "main": "dist/index.js",
   "files": [
@@ -10,12 +10,12 @@
   ],
   "scripts": {
     "lint": "eslint '{src,test}/**/*.ts' --ext .ts",
-    "test": "mocha -r ts-node/register ../test/setup.ts 'test/**/*.ts'",
+    "test": "mocha --config ../../test/.mocharc.js",
     "build": "tsc -b tsconfig.build.json"
   },
   "dependencies": {
     "@uni-skill/core": "^4.1.0",
-    "alice-types": "^1.3.0"
+    "marusya-types": "^1.0.3"
   },
   "author": {
     "name": "Vitaliy Potapov"
@@ -23,7 +23,7 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/vitalets/uni-skill.git",
-    "directory": "alice"
+    "directory": "marusya"
   },
   "publishConfig": {
     "access": "public"

@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "lint": "eslint '{src,test}/**/*.ts' --ext .ts",
-    "test": "mocha -r ts-node/register ../test/setup.ts 'test/**/*.ts'",
+    "test": "mocha --config ../../test/.mocharc.js",
     "build": "tsc -b tsconfig.build.json"
   },
   "author": {

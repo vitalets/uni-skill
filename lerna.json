@@ -1,10 +1,6 @@
 {
   "packages": [
-    "core",
-    "alice",
-    "sber",
-    "marusya",
-    "alexa"
+    "p/*"
   ],
   "version": "4.1.0"
 }

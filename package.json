@@ -4,15 +4,11 @@
   "private": true,
   "version": "1.0.0",
   "workspaces": [
-    "core",
-    "alice",
-    "sber",
-    "marusya",
-    "alexa"
+    "p/*"
   ],
   "scripts": {
-    "lint": "eslint '{core,alice,sber,marusya,alexa}/{src,test}/**/*.ts' --ext .ts",
-    "test": "npm run build -w core && lerna run --parallel test",
+    "lint": "eslint 'p/**/{src,test}/**/*.ts' --ext .ts",
+    "test": "npm run build -w p/core && lerna run --parallel test",
     "build": "npm run build -ws",
     "check": "npm run build && tsnd --respawn scripts/check",
     "release": "npm run lint && npm t && npm run build && lerna publish"

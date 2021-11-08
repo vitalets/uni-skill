@@ -17,10 +17,10 @@
   // projects
   "files": [],
   "references": [
-    { "path": "./core" },
-    { "path": "./alice" },
-    { "path": "./sber" },
-    { "path": "./marusya" },
-    { "path": "./alexa" },
+    { "path": "./p/core" },
+    { "path": "./p/alice" },
+    { "path": "./p/sber" },
+    { "path": "./p/marusya" },
+    { "path": "./p/alexa" },
   ]
 }
