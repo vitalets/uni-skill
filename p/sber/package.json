@@ -1,7 +1,7 @@
 {
   "name": "@uni-skill/sber",
   "description": "Uni-skill: Sber",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "main": "dist/index.js",
   "files": [
     "src",
@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@salutejs/types": "^0.7.0",
-    "@uni-skill/core": "^4.1.0"
+    "@uni-skill/core": "^4.2.0"
   },
   "author": {
     "name": "Vitaliy Potapov"
