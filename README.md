@@ -6,10 +6,19 @@
 * Алиса
 * Сбер
 * Маруся
+* Алекса
 
 ## Установка
-```
-npm i @uni-skill/alice @uni-skill/sber @uni-skill/marusya
+В зависимости от нужных платформ устанавливаются следующие пакеты:
+```sh
+# алиса
+npm i @uni-skill/alice
+# сбер
+npm i @uni-skill/sber
+# маруся
+npm i @uni-skill/marusya
+# алекса
+npm i @uni-skill/alexa
 ```
 
 ## Использование
@@ -39,9 +48,10 @@ function createRequest(reqBody: unknown) {
 }
 ```
 
-## Свойства и методы
-* [Request](src/common/request.ts)
-* [Response](src/common/response.ts)
+## Документация
+Документация по доступным свойствам и методам универсального запроса/ответа:
+* [Request](p/core/src/request/types.ts)
+* [Response](p/core/src/response/types.ts)
 
 ## Специфика платформ
 Для добавления платформо-зависимых элементов, нужно занести код под соответствующий if.
