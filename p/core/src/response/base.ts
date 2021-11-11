@@ -103,10 +103,15 @@ export abstract class BaseResponse<TBody, TReq> implements Partial<UniResponse<T
 
 //   /** Возвращает внутреннее представление данных, полезно для отладки и логирования. */
 //   getUniBody() { return this.uniBody; }
-//   /** Установить хук, который будет обрабатывать все тексты для отображения. */
-//   setTextHook(fn: Hook) { this.textHook = fn; }
-//   /** Установить хук, который будет обрабатывать все тексты для озвучки. */
-//   setVoiceHook(fn: Hook) { this.voiceHook = fn; }
+  setTextHook(fn: Hook) {
+    this.textHook = fn;
+    return this;
+  }
+
+  setVoiceHook(fn: Hook) {
+    this.voiceHook = fn;
+    return this;
+  }
 
   private applyTextHook<T extends string | undefined>(str: T) {
     return this.textHook && typeof str === 'string'

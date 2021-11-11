@@ -42,6 +42,10 @@ export interface UniResponse<TBody, TReq> {
   addLinks(links: Link[]): this;
   /** Установить флаг завершения сессии */
   endSession(value?: boolean): this;
+  /** Установить хук, который будет обрабатывать все _отображаемые_ тексты */
+  setTextHook(fn: Hook): this;
+  /** Установить хук, который будет обрабатывать все _озвучиваемые_ тексты */
+  setVoiceHook(fn: Hook): this;
 }
 
 export interface Image {
