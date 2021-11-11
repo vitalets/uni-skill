@@ -22,28 +22,28 @@ implements UniResponse<MarusyaResBody, MarusyaRequest> {
   isMarusya(): this is MarusyaResponse { return true; }
   assistantName = 'Маруся';
 
-  protected addTextInternal(text: string) {
+  protected platformAddText(text: string) {
     (this.body.response.text as string[]).push(text);
   }
 
-  protected addVoiceInternal(ssml: string) {
+  protected platformAddVoice(ssml: string) {
     const { response } = this.body;
     ssml = convertSsmlForMarusya(ssml);
     response.tts = concatWithSpace(response.tts, ssml);
   }
 
-  protected addSuggestInternal(suggest: string[]) {
+  protected platformAddSuggest(suggest: string[]) {
     this.body.response.buttons!.push(
       ...suggest.map(title => ({ title }))
     );
   }
 
-  protected endSessionInternal(value: boolean) {
+  protected platformEndSession(value: boolean) {
     this.body.response.end_session = value;
   }
 
   /** В Марусе возможна только 1 картинка */
-  protected addImageInternal({ imageId, title, description }: Image) {
+  protected platformAddImage({ imageId, title, description }: Image) {
     const { card } = this.body.response;
     if (card && card.type !== 'BigImage') {
       throw new Error(`Response already contains card: ${card.type}`);
@@ -52,12 +52,12 @@ implements UniResponse<MarusyaResBody, MarusyaRequest> {
       type: 'BigImage',
       image_id: Number(imageId),
     };
-    if (title) this.addTextInternal(title);
-    if (description) this.addTextInternal(description);
+    if (title) this.platformAddText(title);
+    if (description) this.platformAddText(description);
   }
 
   /** В Марусе возможна только 1 ссылка, и та вместо картинки */
-  protected addLinksInternal(links: Link[]) {
+  protected platformAddLinks(links: Link[]) {
     const { card } = this.body.response;
     if (card) {
       const msg = card.type === 'Link'

@@ -24,21 +24,21 @@ extends BaseResponse<SberResBody, SberRequest>
 implements UniResponse<SberResBody, SberRequest> {
   isSber(): this is SberResponse { return true; }
 
-  protected addTextInternal(text: string) {
+  protected platformAddText(text: string) {
     this.body.payload.items.push({ bubble: { text }});
   }
 
-  protected addImageInternal(image: Image) {
+  protected platformAddImage(image: Image) {
     this.body.payload.items.push(getImageItem(image));
   }
 
-  protected addVoiceInternal(ssml: string) {
+  protected platformAddVoice(ssml: string) {
     const { payload } = this.body;
     ssml = convertSsmlForSber(ssml);
     payload.pronounceText = concatWithSpace(payload.pronounceText, ssml);
   }
 
-  protected addSuggestInternal(suggest: string[]) {
+  protected platformAddSuggest(suggest: string[]) {
     this.body.payload.suggestions!.buttons.push(
       ...suggest.map((title): Button => {
         return { title, action: { type: 'text', text: title }};
@@ -46,13 +46,13 @@ implements UniResponse<SberResBody, SberRequest> {
     );
   }
 
-  protected addLinksInternal(links: Link[]) {
+  protected platformAddLinks(links: Link[]) {
     for (const link of links) {
       this.body.payload.items.push(getLinkItem(link));
     }
   }
 
-  protected endSessionInternal(value: boolean) {
+  protected platformEndSession(value: boolean) {
     this.body.payload.finished = value;
   }
 

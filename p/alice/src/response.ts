@@ -25,7 +25,7 @@ implements UniResponse<AliceResBody, AliceRequest> {
   assistantName = 'Алиса';
 
   /** В Алисе возможен только 1 бабл с текстом, поэтому отбиваем переносом строки */
-  protected addTextInternal(text: string) {
+  protected platformAddText(text: string) {
     const { response } = this.body;
     const { card } = response;
     if (card?.type === 'BigImage') {
@@ -37,7 +37,7 @@ implements UniResponse<AliceResBody, AliceRequest> {
   }
 
   /** В Алисе возможна только 1 картинка */
-  protected addImageInternal({ imageId, title, description }: Image) {
+  protected platformAddImage({ imageId, title, description }: Image) {
     const { response } = this.body;
     response.card = {
       type: 'BigImage',
@@ -51,19 +51,19 @@ implements UniResponse<AliceResBody, AliceRequest> {
     if (description) response.text = concatWithNewline(response.text, description);
   }
 
-  protected addVoiceInternal(ssml: string) {
+  protected platformAddVoice(ssml: string) {
     const { response } = this.body;
     ssml = convertSsmlForAlice(ssml);
     response.tts = concatWithSpace(response.tts, ssml);
   }
 
-  protected addSuggestInternal(suggest: string[]) {
+  protected platformAddSuggest(suggest: string[]) {
     this.body.response.buttons!.push(
       ...suggest.map(title => ({ title, hide: true }))
     );
   }
 
-  protected addLinksInternal(links: Link[]) {
+  protected platformAddLinks(links: Link[]) {
     const { card } = this.body.response;
     if (card?.type === 'BigImage') {
       addLinksToCard(links, card);
@@ -72,7 +72,7 @@ implements UniResponse<AliceResBody, AliceRequest> {
     }
   }
 
-  protected endSessionInternal(value: boolean) {
+  protected platformEndSession(value: boolean) {
     this.body.response.end_session = value;
   }
 

@@ -31,7 +31,7 @@ implements UniResponse<AlexaResBody, AlexaRequest> {
     this.body.response.reprompt = reprompt;
   }
 
-  protected addTextInternal(text: string) {
+  protected platformAddText(text: string) {
     const { card } = this.body.response;
     if (card?.type === 'Simple') {
       card.content = concatWithNewline(card.content, text);
@@ -49,7 +49,7 @@ implements UniResponse<AlexaResBody, AlexaRequest> {
   /**
    * see: https://developer.amazon.com/en-US/docs/alexa/custom-skills/best-practices-for-skill-card-design.html
    */
-  protected addImageInternal({ imageId, title, description }: Image) {
+  protected platformAddImage({ imageId, title, description }: Image) {
     const { card } = this.body.response;
     const existingText = card?.type === 'Simple' && card.content || '';
     const text = concatWithNewline(existingText, description);
@@ -58,19 +58,19 @@ implements UniResponse<AlexaResBody, AlexaRequest> {
     this.body.response.card = { type: 'Standard', title, text, image };
   }
 
-  protected addVoiceInternal(ssml: string) {
+  protected platformAddVoice(ssml: string) {
     this.concatSsml(this.body.response.outputSpeech as ui.SsmlOutputSpeech, ssml);
   }
 
-  protected addSuggestInternal() {
+  protected platformAddSuggest() {
     // noop: Alexa does not support suggest
   }
 
-  protected addLinksInternal() {
+  protected platformAddLinks() {
     // noop: Alexa does not support links
   }
 
-  protected endSessionInternal(value: boolean) {
+  protected platformEndSession(value: boolean) {
     this.body.response.shouldEndSession = value;
   }
 

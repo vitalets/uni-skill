@@ -33,12 +33,12 @@ export abstract class BaseResponse<TBody, TReq> implements Partial<UniResponse<T
   protected voiceHook?: Hook;
 
   protected abstract init(): TBody;
-  protected abstract addTextInternal(text: string): void;
-  protected abstract addImageInternal(image: Image): void;
-  protected abstract addVoiceInternal(fullSsml: string): void;
-  protected abstract addSuggestInternal(suggest: string[]): void;
-  protected abstract addLinksInternal(links: Link[]): void;
-  protected abstract endSessionInternal(value: boolean): void;
+  protected abstract platformAddText(text: string): void;
+  protected abstract platformAddImage(image: Image): void;
+  protected abstract platformAddVoice(fullSsml: string): void;
+  protected abstract platformAddSuggest(suggest: string[]): void;
+  protected abstract platformAddLinks(links: Link[]): void;
+  protected abstract platformEndSession(value: boolean): void;
 
   constructor(request: TReq) {
     this.request = request;
@@ -53,14 +53,14 @@ export abstract class BaseResponse<TBody, TReq> implements Partial<UniResponse<T
   addText(text: string) {
     text = stripAllTags(stripAccents(this.applyTextHook(text)));
     this.uniBody.text = concatWithNewline(this.uniBody.text, text);
-    this.addTextInternal(text);
+    this.platformAddText(text);
     return this;
   }
 
   addVoice(ssml: string) {
     ssml = stripEmoji(stripSpeakTag(this.applyVoiceHook(ssml)));
     this.uniBody.ssml = concatWithSpace(this.uniBody.ssml, ssml);
-    this.addVoiceInternal(ssml);
+    this.platformAddVoice(ssml);
     return this;
   }
 
@@ -75,7 +75,7 @@ export abstract class BaseResponse<TBody, TReq> implements Partial<UniResponse<T
     if (!suggest?.length) return this;
     suggest = suggest.map(item => this.applyTextHook(item));
     this.uniBody.suggest.push(...suggest);
-    this.addSuggestInternal(suggest);
+    this.platformAddSuggest(suggest);
     return this;
   }
 
@@ -84,20 +84,20 @@ export abstract class BaseResponse<TBody, TReq> implements Partial<UniResponse<T
     description = this.applyTextHook(description);
     const image = { imageId, title, description, ratio };
     this.uniBody.images.push(image);
-    this.addImageInternal(image);
+    this.platformAddImage(image);
     return this;
   }
 
   addLinks(links: Link[]) {
     if (!links?.length) return this;
     this.uniBody.links.push(...links);
-    this.addLinksInternal(links);
+    this.platformAddLinks(links);
     return this;
   }
 
   endSession(value = true) {
     this.uniBody.endSession = value;
-    this.endSessionInternal(value);
+    this.platformEndSession(value);
     return this;
   }
 
