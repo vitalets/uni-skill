@@ -4,7 +4,7 @@
  */
 import { ResponseEnvelope, ui } from 'ask-sdk-model';
 import {
-  IResponse,
+  UniResponse,
   BaseResponse,
   Image,
   State,
@@ -19,7 +19,7 @@ type AlexaResBody = Omit<ResponseEnvelope, ''>;
 
 export class AlexaResponse
 extends BaseResponse<AlexaResBody, AlexaRequest>
-implements IResponse<AlexaResBody, AlexaRequest> {
+implements UniResponse<AlexaResBody, AlexaRequest> {
   isAlexa(): this is AlexaResponse { return true; }
   assistantName = 'Alexa';
 

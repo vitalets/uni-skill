@@ -3,7 +3,7 @@
  */
 import { Button, NLPResponseATU } from '@salutejs/types';
 import {
-  IResponse,
+  UniResponse,
   BaseResponse,
   Image,
   Link,
@@ -21,7 +21,7 @@ type SberResBody = Omit<NLPResponseATU, ''>;
 
 export class SberResponse
 extends BaseResponse<SberResBody, SberRequest>
-implements IResponse<SberResBody, SberRequest> {
+implements UniResponse<SberResBody, SberRequest> {
   isSber(): this is SberResponse { return true; }
 
   protected addTextInternal(text: string) {

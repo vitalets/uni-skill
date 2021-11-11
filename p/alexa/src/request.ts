@@ -3,7 +3,7 @@
  * See: https://developer.amazon.com/en-US/docs/alexa/custom-skills/request-and-response-json-reference.html
  */
 import { IntentRequest, RequestEnvelope } from 'ask-sdk-model';
-import { IRequest, BaseRequest, Intent } from '@uni-skill/core';
+import { UniRequest, BaseRequest, Intent } from '@uni-skill/core';
 import { AlexaResponse } from './response';
 
 // Use fake Omit to have 'AlexaReqBody' in ts messages.
@@ -11,7 +11,7 @@ type AlexaReqBody = Omit<RequestEnvelope, ''>;
 
 export class AlexaRequest
 extends BaseRequest<AlexaReqBody, AlexaResponse>
-implements IRequest<AlexaReqBody, AlexaResponse> {
+implements UniRequest<AlexaReqBody, AlexaResponse> {
   static create(reqBody: unknown) {
     const body = reqBody as AlexaReqBody;
     if (body?.context) {

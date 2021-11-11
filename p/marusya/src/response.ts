@@ -3,7 +3,7 @@
  */
 import { ResBody } from 'marusya-types';
 import {
-  IResponse,
+  UniResponse,
   BaseResponse,
   Image,
   State,
@@ -18,7 +18,7 @@ type MarusyaResBody = Omit<ResBody, ''>;
 
 export class MarusyaResponse
 extends BaseResponse<MarusyaResBody, MarusyaRequest>
-implements IResponse<MarusyaResBody, MarusyaRequest> {
+implements UniResponse<MarusyaResBody, MarusyaRequest> {
   isMarusya(): this is MarusyaResponse { return true; }
   assistantName = 'Маруся';
 

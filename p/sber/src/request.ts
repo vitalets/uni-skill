@@ -2,7 +2,7 @@
  * Sber request.
  */
 import { NLPRequest, NLPRequestMTS, NLPRequestСA, NLPRequestRA, NLPRequestSA } from '@salutejs/types';
-import { IRequest, BaseRequest } from '@uni-skill/core';
+import { UniRequest, BaseRequest } from '@uni-skill/core';
 import { SberResponse } from './response';
 
 // Use fake Omit to have 'SberReqBody' in ts messages.
@@ -10,7 +10,7 @@ type SberReqBody = Omit<NLPRequest, ''>;
 
 export class SberRequest
 extends BaseRequest<SberReqBody, SberResponse>
-implements IRequest<SberReqBody, SberResponse> {
+implements UniRequest<SberReqBody, SberResponse> {
   static create(reqBody: unknown) {
     const body = reqBody as SberReqBody;
     if (body?.messageName) {

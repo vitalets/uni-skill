@@ -2,7 +2,7 @@
  * Alice request.
  */
 import { ReqBody } from 'alice-types';
-import { IRequest, BaseRequest, State } from '@uni-skill/core';
+import { UniRequest, BaseRequest, State } from '@uni-skill/core';
 import { AliceResponse } from './response';
 
 // Use fake Omit to have 'AliceReqBody' in ts messages.
@@ -10,7 +10,7 @@ type AliceReqBody = Omit<ReqBody, ''>;
 
 export class AliceRequest
 extends BaseRequest<AliceReqBody, AliceResponse>
-implements IRequest<AliceReqBody, AliceResponse> {
+implements UniRequest<AliceReqBody, AliceResponse> {
   static create(reqBody: unknown) {
     const body = reqBody as AliceReqBody;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

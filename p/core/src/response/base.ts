@@ -2,7 +2,7 @@
  * Базовая реализация ответа.
  */
 
-import { IResponse, Hook, Image, Link, UniBody } from './types';
+import { UniResponse, Hook, Image, Link, UniBody } from './types';
 import {
   concatWithSpace,
   concatWithNewline,
@@ -12,7 +12,7 @@ import {
   stripAllTags,
 } from '../utils';
 
-export abstract class BaseResponse<TBody, TReq> implements Partial<IResponse<TBody, TReq>> {
+export abstract class BaseResponse<TBody, TReq> implements Partial<UniResponse<TBody, TReq>> {
   body: TBody;
   request: TReq;
   isMale = false;

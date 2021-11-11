@@ -3,7 +3,7 @@
  */
 import { ResBody } from 'alice-types';
 import {
-  IResponse,
+  UniResponse,
   BaseResponse,
   Image,
   State,
@@ -20,7 +20,7 @@ type AliceResBody = Omit<ResBody, ''>;
 
 export class AliceResponse
 extends BaseResponse<AliceResBody, AliceRequest>
-implements IResponse<AliceResBody, AliceRequest> {
+implements UniResponse<AliceResBody, AliceRequest> {
   isAlice(): this is AliceResponse { return true; }
   assistantName = 'Алиса';
 

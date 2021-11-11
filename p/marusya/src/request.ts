@@ -2,7 +2,7 @@
  * Marusya request.
  */
 import { ReqBody } from 'marusya-types';
-import { IRequest, BaseRequest, State } from '@uni-skill/core';
+import { UniRequest, BaseRequest, State } from '@uni-skill/core';
 import { MarusyaResponse } from './response';
 
 // Use fake Omit to have 'MarusyaReqBody' in ts messages.
@@ -12,7 +12,7 @@ const MARUSYA_APP_TYPES = [ 'mobile', 'speaker', 'vk', 'other', 'web' ];
 
 export class MarusyaRequest
 extends BaseRequest<MarusyaReqBody, MarusyaResponse>
-implements IRequest<MarusyaReqBody, MarusyaResponse> {
+implements UniRequest<MarusyaReqBody, MarusyaResponse> {
   static create(reqBody: unknown) {
     const body = reqBody as MarusyaReqBody;
     const appType = body?.session?.application?.application_type?.toLowerCase();

@@ -2,9 +2,9 @@
  * Базовая реализация запроса.
  */
 
-import { IRequest } from './types';
+import { UniRequest } from './types';
 
-export class BaseRequest<TBody, TRes> implements Partial<IRequest<TBody, TRes>> {
+export class BaseRequest<TBody, TRes> implements Partial<UniRequest<TBody, TRes>> {
   constructor(reqBody: TBody) { this.body = reqBody; }
   body: TBody;
   isAlice() { return false; }

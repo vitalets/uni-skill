@@ -4,7 +4,7 @@
  * Некоторые сделаны методами, чтобы работали тайпгарды.
  */
 
-export interface IRequest<TBody, TRes> {
+export interface UniRequest<TBody, TRes> {
   /** Тело запроса */
   body: TBody;
   /** Создать ответ для этого запроса */
@@ -39,10 +39,10 @@ export interface IRequest<TBody, TRes> {
   getIntent(name: string): Intent | undefined;
 }
 
-export interface IRequestConstructor<TBody, TRes> {
+export interface UniRequestConstructor<TBody, TRes> {
   /** Попытка создать инстанс запроса по телу */
-  create(reqBody: unknown): IRequest<TBody, TRes> | undefined;
-  new(reqBody: TBody): IRequest<TBody, TRes>;
+  create(reqBody: unknown): UniRequest<TBody, TRes> | undefined;
+  new(reqBody: TBody): UniRequest<TBody, TRes>;
 }
 
 export type State = Record<string, unknown> | undefined;
