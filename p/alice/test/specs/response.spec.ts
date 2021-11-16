@@ -4,6 +4,7 @@ describe('alice response', () => {
 
   it('main props', () => {
     const res = createResponse(data);
+    assert.equal(res.platform, 'alice', 'platform');
     assert.equal(res.isMale, false, 'isMale');
     assert.equal(res.isOfficial, true, 'isOfficial');
     assert.equal(res.assistantName, 'Алиса', 'assistantName');

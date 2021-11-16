@@ -4,6 +4,7 @@ describe('alexa response', () => {
 
   it('main props', () => {
     const res = createResponse(data);
+    assert.equal(res.platform, 'alexa', 'platform');
     assert.equal(res.isMale, false, 'isMale');
     assert.equal(res.isOfficial, true, 'isOfficial');
     assert.equal(res.assistantName, 'Alexa', 'assistantName');

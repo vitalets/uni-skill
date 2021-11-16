@@ -11,8 +11,10 @@ import {
   stripAccents,
   stripAllTags,
 } from '../utils';
+import { UniRequest } from '../request/types';
 
-export abstract class BaseResponse<TBody, TReq> implements Partial<UniResponse<TBody, TReq>> {
+export abstract class BaseResponse<TBody, TReq extends UniRequest<unknown, unknown>>
+implements Partial<UniResponse<TBody, TReq>> {
   body: TBody;
   request: TReq;
   isMale = false;
@@ -44,6 +46,8 @@ export abstract class BaseResponse<TBody, TReq> implements Partial<UniResponse<T
     this.request = request;
     this.body = this.init();
   }
+
+  get platform() { return this.request.platform; }
 
   isAlice() { return false; }
   isSber() { return false; }

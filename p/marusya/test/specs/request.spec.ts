@@ -5,6 +5,7 @@ describe('marusya request', () => {
   it('main props', () => {
     const req = createRequest(data);
     assert.equal(req.isMarusya(), true, 'isMarusya');
+    assert.equal(req.platform, 'marusya', 'platform');
     assert.equal(req.userId, '52f12d70fb4077f68880010513d3382156f4b3a34fe176baae6ff9d74c006c51', 'userId');
     assert.equal(req.userMessage, 'привет', 'userMessage');
     assert.equal(req.clientInfo, 'MailRu-VC/1.0; app: other', 'clientInfo');

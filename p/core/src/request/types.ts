@@ -7,6 +7,8 @@
 export interface UniRequest<TBody, TRes> {
   /** Тело запроса */
   body: TBody;
+  /** Платформа */
+  platform: string;
   /** Создать ответ для этого запроса */
   createResponse(): TRes;
   /** Флаг запроса от Алисы */

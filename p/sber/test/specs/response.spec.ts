@@ -2,6 +2,11 @@ import { GalleryCard } from '@salutejs/types';
 import data from '../../data/request/message-to-skill.json';
 
 describe('sber response', () => {
+  it('main props', () => {
+    const res = createResponse(data);
+    assert.equal(res.platform, 'sber', 'platform');
+  });
+
   it('isMale', () => {
     const newData = patch(data, data => data.payload.character.gender = 'male');
     const res = createResponse(newData);

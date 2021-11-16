@@ -9,8 +9,8 @@
   "scripts": {
     "lint": "eslint 'p/**/{src,test}/**/*.ts' --ext .ts",
     "test": "npm run build -w p/core && lerna run --parallel test",
-    "build": "npm run build -ws",
-    "clean": "tsc -b  --clean",
+    "build": "npm run build -ws --clean",
+    "clean": "tsc -b --clean",
     "check": "npm run build && tsnd --respawn scripts/check",
     "release": "npm run lint && npm t && npm run build && lerna publish"
   },

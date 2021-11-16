@@ -12,6 +12,8 @@
 export interface UniResponse<TBody, TReq> {
   /** Тело платформенного ответа */
   body: TBody;
+  /** Платформа */
+  platform: string;
   /** Запрос, для которого этот ответ */
   request: TReq;
   /** Флаг ответа для Алисы */

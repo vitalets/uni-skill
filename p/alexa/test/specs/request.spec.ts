@@ -6,6 +6,7 @@ describe('alexa request', () => {
   it('main props', () => {
     const req = createRequest(data);
     assert.equal(req.isAlexa(), true, 'isAlexa');
+    assert.equal(req.platform, 'alexa', 'platform');
     assert.match(req.userId, /amzn1.+/, 'userId');
     assert.equal(req.userMessage, '', 'userMessage');
     assert.equal(req.clientInfo, 'Alexa device', 'clientInfo');

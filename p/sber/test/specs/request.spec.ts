@@ -6,6 +6,7 @@ describe('sber request', () => {
   it('main props', () => {
     const req = createRequest(data);
     assert.equal(req.isSber(), true);
+    assert.equal(req.platform, 'sber', 'platform');
     assert.match(req.userId, /8tet.+/, 'userId');
     assert.equal(req.userMessage, 'начинаем раз два три', 'userMessage');
     assert.equal(req.clientInfo, 'IOS 14.7.1; iPhone9,3; COMPANION 21.8.1000', 'clientInfo');

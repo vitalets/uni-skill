@@ -5,6 +5,7 @@ describe('alice request', () => {
   it('main props', () => {
     const req = createRequest(data);
     assert.equal(req.isAlice(), true, 'isAlice');
+    assert.equal(req.platform, 'alice', 'platform');
     assert.match(req.userId, /92DE93E7BC5D.+/, 'userId');
     assert.equal(req.userMessage, 'привет 1', 'userMessage');
     assert.equal(req.clientInfo, 'ru.yandex.mobile/7300 (Apple iPhone; iphone 14.6)', 'clientInfo');
