@@ -1,7 +1,7 @@
 {
   "name": "@uni-skill/alexa",
   "description": "Uni-skill: Alexa",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "main": "dist/index.js",
   "files": [
     "src",
