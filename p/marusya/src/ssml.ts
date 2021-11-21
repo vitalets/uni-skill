@@ -7,7 +7,7 @@ export function convertSsmlForMarusya(s: string) {
 }
 
 /**
- * В Алисе вставка звука через свой тег <speaker>
+ * В Марусе вставка звука через свой тег <speaker>
  */
 const SSML_AUDIO_REGEXP = /<audio\s+src="(?<src>[^"]+)"\s*\/>/ig;
 function convertAudio(s: string) {
