@@ -11,6 +11,7 @@
     "test": "npm run build -w p/core && lerna run --parallel test",
     "build": "npm run build -ws --clean",
     "clean": "tsc -b --clean",
+    "deps": "ncu -i --deep && npm i",
     "check": "npm run build && tsnd --respawn scripts/check",
     "release": "npm run lint && npm t && npm run build && lerna publish"
   },
@@ -20,23 +21,23 @@
   "devDependencies": {
     "@types/chai": "^4.2.22",
     "@types/mocha": "^9.0.0",
-    "@types/node": "^16.10.2",
-    "@types/sinon": "^10.0.4",
-    "@typescript-eslint/eslint-plugin": "^4.33.0",
-    "@typescript-eslint/parser": "^4.33.0",
+    "@types/node": "^16.11.9",
+    "@types/sinon": "^10.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
     "ask-cli": "^2.24.1",
     "ask-sdk-local-debug": "^1.1.0",
     "chai": "^4.3.4",
-    "eslint": "^7.24.0",
+    "eslint": "^8.3.0",
     "eslint-plugin-mocha": "^9.0.0",
     "lerna": "^4.0.0",
-    "lint-staged": "^11.2.0",
-    "mocha": "^9.1.2",
-    "sinon": "^11.1.1",
-    "skill-dev-proxy": "^2.0.13",
-    "ts-node": "^10.2.1",
+    "lint-staged": "^12.0.3",
+    "mocha": "^9.1.3",
+    "sinon": "^12.0.1",
+    "skill-dev-proxy": "^2.1.0",
+    "ts-node": "^10.4.0",
     "ts-node-dev": "^1.1.8",
-    "typescript": "^4.4.3"
+    "typescript": "^4.5.2"
   },
   "author": {
     "name": "Vitaliy Potapov"
