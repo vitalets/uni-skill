@@ -17,7 +17,7 @@ import { convertSsmlForSber } from './ssml';
 // todo: support other messageNames, not only NLPResponseATU
 
 // Use fake Omit to have 'SberResBody' in ts messages.
-type SberResBody = Omit<NLPResponseATU, ''>;
+export type SberResBody = Omit<NLPResponseATU, ''>;
 
 export class SberResponse
 extends BaseResponse<SberResBody, SberRequest>
@@ -47,8 +47,9 @@ implements UniResponse<SberResBody, SberRequest> {
   }
 
   protected platformAddLinks(links: Link[]) {
+    const { platformType } = this.body.payload.device;
     for (const link of links) {
-      this.body.payload.items.push(getLinkItem(link));
+      this.body.payload.items.push(getLinkItem(link, platformType));
     }
   }
 
