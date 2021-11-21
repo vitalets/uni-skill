@@ -16,7 +16,7 @@
     "release": "npm run lint && npm t && npm run build && lerna publish"
   },
   "lint-staged": {
-    "{core,alice,sber,marusya,alexa}/{src,test}/**/*.ts": "eslint --ext .ts"
+    "p/**/{src,test}/**/*.ts": "eslint --ext .ts"
   },
   "devDependencies": {
     "@types/chai": "^4.2.22",
