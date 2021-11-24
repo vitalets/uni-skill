@@ -5,4 +5,4 @@
 set -euo pipefail
 
 npx lint-staged
-npm test
+npx lerna run test --parallel --since HEAD
