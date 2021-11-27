@@ -21,8 +21,7 @@ implements Partial<UniResponse<TBody, TReq>> {
   isOfficial = true;
   assistantName = '';
 
-  /** Тело универсального ответа (Убрать?) */
-  protected uniBody: UniBody = {
+  uniBody: UniBody = {
     text: '',
     ssml: '',
     images: [],
