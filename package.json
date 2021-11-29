@@ -13,7 +13,7 @@
     "clean": "tsc -b --clean",
     "deps": "ncu -i --deep && npm i",
     "check": "npm run build && tsnd --respawn scripts/check",
-    "release": "npm run lint && npm t && npm run build && lerna publish"
+    "release": "npm run lint && npm t && npm run build && lerna publish -y"
   },
   "lint-staged": {
     "p/**/{src,test}/**/*.ts": "eslint --ext .ts"
