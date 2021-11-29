@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@uni-skill/core": "^4.3.2",
-    "marusya-types": "^1.0.3"
+    "marusya-types": "^1.1.0"
   },
   "author": {
     "name": "Vitaliy Potapov"
