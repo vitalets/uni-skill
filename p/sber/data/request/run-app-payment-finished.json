@@ -1,0 +1,41 @@
+{
+  "messageId": 773844118,
+  "sessionId": "d236ed1b-eace-3fc6-a442-70d98af4d341",
+  "messageName": "RUN_APP",
+  "payload": {
+    "applicationId": "807d9f63-475f-402b-b11a-0e49c5f5ff85",
+    "appversionId": "8ddfc798-1355-46b7-9cff-0d0fe1a9fcfa",
+    "projectName": "Голосовая открытка",
+    "intent": "run_app",
+    "intent_meta": null,
+    "original_intent": null,
+    "app_info": {
+      "projectId": "2b744099-3f24-497e-8369-8e03338b6f01",
+      "applicationId": "807d9f63-475f-402b-b11a-0e49c5f5ff85",
+      "appversionId": "8ddfc798-1355-46b7-9cff-0d0fe1a9fcfa",
+      "systemName": null,
+      "frontendEndpoint": null,
+      "frontendType": "CHAT_APP",
+      "ageLimit": 6,
+      "affiliationType": "EXTERNAL"
+    },
+    "new_session": false,
+    "server_action": {
+      "action_id": "PAY_DIALOG_FINISHED",
+      "parameters": {
+        "payment_response": {
+          "response_code": 1,
+          "invoice_id": "1895366"
+        },
+        "app_info": {
+          "projectId": "2b744099-3f24-497e-8369-8e03338b6f01"
+        }
+      }
+    }
+  },
+  "uuid": {
+    "userId": "E4DA5658-3C2E-46BA-BDC8-FE7EB35F2DEB",
+    "userChannel": "COMPANION_B2C",
+    "sub": "ybaUGZVbNy9QPIjJWKLBrk/Ewbz5sSTfu9WPbd+bsDhkoYW38uVcEoymgFC4/xbiPZyQ1Uvh/dRiz9mo+u8/0GdWhUQhEZepP8kh2OZRo/vcjrXVFOuu8XXVvbMKMAJ6KnZBiqVkLF+IlSEKuZ3eK0knqd+DwGHl4BfnqiaslAU="
+  }
+}
