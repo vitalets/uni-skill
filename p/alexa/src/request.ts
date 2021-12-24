@@ -20,7 +20,7 @@ implements UniRequest<AlexaReqBody, AlexaResponse> {
   }
   createResponse() { return new AlexaResponse(this); }
   isAlexa(): this is AlexaRequest { return true; }
-  platform = 'alexa';
+  platform = 'alexa' as const;
   get userId() { return this.body.session!.user.userId; }
   get sessionId() { return this.body.session!.sessionId; }
   get messageId() { return 0; }

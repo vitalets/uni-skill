@@ -19,7 +19,7 @@ implements UniRequest<SberReqBody, SberResponse> {
   }
   createResponse() { return new SberResponse(this); }
   isSber(): this is SberRequest { return true; }
-  platform = 'sber';
+  platform = 'sber' as const;
   get userId() { return this.body.uuid.sub || this.body.uuid.userId; }
   get sessionId() { return this.body.sessionId; }
   get messageId() { return this.body.messageId; }

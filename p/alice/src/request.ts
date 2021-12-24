@@ -22,7 +22,7 @@ implements UniRequest<AliceReqBody, AliceResponse> {
   createResponse() { return new AliceResponse(this); }
   isAlice(): this is AliceRequest { return true; }
   isPing() { return this.body.request?.command === 'ping'; }
-  platform = 'alice';
+  platform = 'alice' as const;
   get userId() {
     const { user, application } = this.body.session;
     return user?.user_id || application?.application_id || '';
