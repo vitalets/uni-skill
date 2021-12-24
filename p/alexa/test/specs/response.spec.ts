@@ -181,4 +181,26 @@ describe('alexa response', () => {
       shouldEndSession: false
     });
   });
+
+  it('reset', () => {
+    const res = createResponse(data);
+    res.addVoiceText('привет');
+    res.addVoiceText('как дела');
+    res.addSuggest([ 'кнопка 1' ]);
+    res.reset();
+    res.addVoiceText('ку');
+    res.addSuggest([ 'другая кнопка' ]);
+    assert.deepEqual(res.body.response, {
+      outputSpeech: {
+        type: 'SSML',
+        ssml: '<speak>ку</speak>',
+      },
+      card: {
+        type: 'Simple',
+        title: '',
+        content: 'ку',
+      },
+      shouldEndSession: false
+    });
+  });
 });

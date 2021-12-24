@@ -77,7 +77,7 @@ implements UniResponse<AlexaResBody, AlexaRequest> {
   get sessionState() { return this.body.sessionAttributes; }
   set sessionState(value: State) { this.body.sessionAttributes = value; }
 
-  protected init(): AlexaResBody {
+  protected initBody(): AlexaResBody {
     return {
       response: {
         outputSpeech: {

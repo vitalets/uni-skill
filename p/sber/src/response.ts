@@ -24,6 +24,11 @@ extends BaseResponse<SberResBody, SberRequest>
 implements UniResponse<SberResBody, SberRequest> {
   isSber(): this is SberResponse { return true; }
 
+  constructor(request: SberRequest) {
+    super(request);
+    this.initCharacter();
+  }
+
   protected platformAddText(text: string) {
     this.body.payload.items.push({ bubble: { text }});
   }
@@ -57,8 +62,7 @@ implements UniResponse<SberResBody, SberRequest> {
     this.body.payload.finished = value;
   }
 
-  protected init(): SberResBody {
-    this.initCharacter();
+  protected initBody(): SberResBody {
     return {
       messageName: 'ANSWER_TO_USER',
       sessionId: this.request.sessionId,

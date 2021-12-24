@@ -86,7 +86,7 @@ implements UniResponse<AliceResBody, AliceRequest> {
   get sessionState() { return this.body.session_state; }
   set sessionState(value: State) { this.body.session_state = value; }
 
-  protected init(): AliceResBody {
+  protected initBody(): AliceResBody {
     return {
       response: {
         text: '',

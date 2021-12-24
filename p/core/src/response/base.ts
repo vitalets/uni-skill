@@ -21,19 +21,12 @@ implements Partial<UniResponse<TBody, TReq>> {
   isOfficial = true;
   assistantName = '';
 
-  uniBody: UniBody = {
-    text: '',
-    ssml: '',
-    images: [],
-    links: [],
-    suggest: [],
-    endSession: false,
-  };
+  uniBody: UniBody;
 
   protected textHook?: Hook;
   protected voiceHook?: Hook;
 
-  protected abstract init(): TBody;
+  protected abstract initBody(): TBody;
   protected abstract platformAddText(text: string): void;
   protected abstract platformAddImage(image: Image): void;
   protected abstract platformAddVoice(fullSsml: string): void;
@@ -43,7 +36,8 @@ implements Partial<UniResponse<TBody, TReq>> {
 
   constructor(request: TReq) {
     this.request = request;
-    this.body = this.init();
+    this.body = this.initBody();
+    this.uniBody = this.initUniBody();
   }
 
   get platform() { return this.request.platform; }
@@ -116,6 +110,13 @@ implements Partial<UniResponse<TBody, TReq>> {
     return this;
   }
 
+  reset() {
+    this.body = this.initBody();
+    this.uniBody = this.initUniBody();
+    // todo: переносить ли sessionState?
+    return this;
+  }
+
   private applyTextHook<T extends string | undefined>(str: T) {
     return this.textHook && typeof str === 'string'
       ? this.textHook(str)
@@ -126,5 +127,16 @@ implements Partial<UniResponse<TBody, TReq>> {
     return this.voiceHook && typeof str === 'string'
       ? this.voiceHook(str)
       : str;
+  }
+
+  private initUniBody():UniBody {
+    return {
+      text: '',
+      ssml: '',
+      images: [],
+      links: [],
+      suggest: [],
+      endSession: false,
+    };
   }
 }

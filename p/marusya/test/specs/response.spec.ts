@@ -143,4 +143,21 @@ describe('marusya response', () => {
     }, /Response already contains another card/);
   });
 
+  it('reset', () => {
+    const res = createResponse(data);
+    res.addVoiceText('привет');
+    res.addVoiceText('как дела');
+    res.addSuggest([ 'кнопка 1' ]);
+    res.reset();
+    res.addVoiceText('ку');
+    res.addSuggest([ 'другая кнопка' ]);
+    assert.deepEqual(res.body.response, {
+      text: [ 'ку' ],
+      tts: 'ку',
+      end_session: false,
+      buttons: [
+        { title: 'другая кнопка' },
+      ],
+    });
+  });
 });
