@@ -30,4 +30,12 @@ describe('marusya request', () => {
     const req = createRequest(newData);
     assert.deepEqual(req.userState, { bar: 43 });
   });
+
+  it('ping', () => {
+    const req = createRequest(data);
+    assert.equal(req.isPing(), false);
+    const newData = patch(data, data => data.meta.test = true);
+    const pingReq = createRequest(newData);
+    assert.equal(pingReq.isPing(), true);
+  });
 });

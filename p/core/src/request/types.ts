@@ -21,6 +21,8 @@ export interface UniRequest<TBody, TRes> {
   isAlexa(): boolean;
   /** Флаг закрытия скила (в Алисе всегда false) */
   isEndSession(): boolean;
+  /** Является ли запрос техническим пингом от платформы */
+  isPing(): boolean;
   /** ID пользователя */
   userId: string;
   /** ID сессии */

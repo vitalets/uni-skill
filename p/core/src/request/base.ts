@@ -11,4 +11,5 @@ export class BaseRequest<TBody, TRes> implements Partial<UniRequest<TBody, TRes>
   isSber() { return false; }
   isMarusya() { return false; }
   isAlexa() { return false; }
+  isPing() { return false; }
 }

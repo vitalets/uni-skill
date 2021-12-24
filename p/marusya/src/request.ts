@@ -24,6 +24,7 @@ implements UniRequest<MarusyaReqBody, MarusyaResponse> {
   }
   createResponse() { return new MarusyaResponse(this); }
   isMarusya(): this is MarusyaRequest { return true; }
+  isPing() { return Boolean(this.body.meta?.test); }
   platform = 'marusya';
   get userId() {
     const { user, application } = this.body.session;

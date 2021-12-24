@@ -21,6 +21,7 @@ implements UniRequest<AliceReqBody, AliceResponse> {
   }
   createResponse() { return new AliceResponse(this); }
   isAlice(): this is AliceRequest { return true; }
+  isPing() { return this.body.request?.command === 'ping'; }
   platform = 'alice';
   get userId() {
     const { user, application } = this.body.session;

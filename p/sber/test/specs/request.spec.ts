@@ -25,4 +25,9 @@ describe('sber request', () => {
       slots: {},
     });
   });
+
+  it('ping', () => {
+    const req = createRequest(data);
+    assert.equal(req.isPing(), false);
+  });
 });

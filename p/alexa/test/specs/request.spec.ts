@@ -31,4 +31,9 @@ describe('alexa request', () => {
       slots: { number: '10' }
     });
   });
+
+  it('ping', () => {
+    const req = createRequest(data);
+    assert.equal(req.isPing(), false);
+  });
 });
