@@ -2,7 +2,7 @@
  * Alice request.
  */
 import { ReqBody } from 'alice-types';
-import { UniRequest, BaseRequest, State } from '@uni-skill/core';
+import { UniRequest, BaseRequest, State, Platform } from '@uni-skill/core';
 import { AliceResponse } from './response';
 
 // Use fake Omit to have 'AliceReqBody' in ts messages.
@@ -22,7 +22,7 @@ implements UniRequest<AliceReqBody, AliceResponse> {
   createResponse() { return new AliceResponse(this); }
   isAlice(): this is AliceRequest { return true; }
   isPing() { return this.body.request?.command === 'ping'; }
-  platform = 'alice' as const;
+  platform: Platform = 'alice';
   get userId() {
     const { user, application } = this.body.session;
     return user?.user_id || application?.application_id || '';

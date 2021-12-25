@@ -3,7 +3,7 @@
  * See: https://developer.amazon.com/en-US/docs/alexa/custom-skills/request-and-response-json-reference.html
  */
 import { IntentRequest, RequestEnvelope } from 'ask-sdk-model';
-import { UniRequest, BaseRequest, Intent } from '@uni-skill/core';
+import { UniRequest, BaseRequest, Intent, Platform } from '@uni-skill/core';
 import { AlexaResponse } from './response';
 
 // Use fake Omit to have 'AlexaReqBody' in ts messages.
@@ -20,7 +20,7 @@ implements UniRequest<AlexaReqBody, AlexaResponse> {
   }
   createResponse() { return new AlexaResponse(this); }
   isAlexa(): this is AlexaRequest { return true; }
-  platform = 'alexa' as const;
+  platform: Platform = 'alexa';
   get userId() { return this.body.session!.user.userId; }
   get sessionId() { return this.body.session!.sessionId; }
   get messageId() { return 0; }

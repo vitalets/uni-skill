@@ -2,7 +2,7 @@
  * Marusya request.
  */
 import { ReqBody } from 'marusya-types';
-import { UniRequest, BaseRequest, State } from '@uni-skill/core';
+import { UniRequest, BaseRequest, State, Platform } from '@uni-skill/core';
 import { MarusyaResponse } from './response';
 
 // Use fake Omit to have 'MarusyaReqBody' in ts messages.
@@ -25,7 +25,7 @@ implements UniRequest<MarusyaReqBody, MarusyaResponse> {
   createResponse() { return new MarusyaResponse(this); }
   isMarusya(): this is MarusyaRequest { return true; }
   isPing() { return Boolean(this.body.meta?.test); }
-  platform = 'marusya' as const;
+  platform: Platform = 'marusya';
   get userId() {
     const { user, application } = this.body.session;
     return user?.user_id || application?.application_id || '';

@@ -2,7 +2,7 @@
  * Sber request.
  */
 import { NLPRequest, NLPRequestMTS, NLPRequestСA, NLPRequestRA, NLPRequestSA } from '@salutejs/types';
-import { UniRequest, BaseRequest } from '@uni-skill/core';
+import { UniRequest, BaseRequest, Platform } from '@uni-skill/core';
 import { SberResponse } from './response';
 
 // Use fake Omit to have 'SberReqBody' in ts messages.
@@ -19,7 +19,7 @@ implements UniRequest<SberReqBody, SberResponse> {
   }
   createResponse() { return new SberResponse(this); }
   isSber(): this is SberRequest { return true; }
-  platform = 'sber' as const;
+  platform: Platform = 'sber';
   get userId() { return this.body.uuid.sub || this.body.uuid.userId; }
   get sessionId() { return this.body.sessionId; }
   get messageId() { return this.body.messageId; }

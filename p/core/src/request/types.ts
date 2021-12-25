@@ -8,7 +8,7 @@ export interface UniRequest<TBody, TRes> {
   /** Тело запроса */
   body: TBody;
   /** Платформа */
-  platform: string;
+  platform: Platform;
   /** Создать ответ для этого запроса */
   createResponse(): TRes;
   /** Флаг запроса от Алисы */
@@ -48,6 +48,8 @@ export interface UniRequestConstructor<TBody, TRes> {
   create(reqBody: unknown): UniRequest<TBody, TRes> | undefined;
   new(reqBody: TBody): UniRequest<TBody, TRes>;
 }
+
+export type Platform = 'alice' | 'sber' | 'marusya' | 'alexa';
 
 export type State = Record<string, unknown> | undefined;
 

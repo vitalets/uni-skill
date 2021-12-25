@@ -1,3 +1,5 @@
+import { Platform } from '../request/types';
+
 /**
  * Интерфейс универсального ответа навыка.
  *
@@ -15,7 +17,7 @@ export interface UniResponse<TBody, TReq> {
   /** Тело универсального ответа (очень полезно для логирования и отладки!) */
   uniBody: UniBody;
   /** Платформа */
-  platform: string;
+  platform: Platform;
   /** Запрос, для которого этот ответ */
   request: TReq;
   /** Флаг ответа для Алисы */
