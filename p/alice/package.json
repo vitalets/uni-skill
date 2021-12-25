@@ -1,7 +1,7 @@
 {
   "name": "@uni-skill/alice",
   "description": "Uni-skill: Alice",
-  "version": "4.5.0",
+  "version": "4.6.0",
   "main": "dist/index.js",
   "files": [
     "src",
@@ -14,7 +14,7 @@
     "build": "tsc -b tsconfig.build.json"
   },
   "dependencies": {
-    "@uni-skill/core": "^4.5.0",
+    "@uni-skill/core": "^4.6.0",
     "alice-types": "^1.3.0"
   },
   "author": {
