@@ -52,11 +52,6 @@ export interface UniResponse<TBody, TReq> {
   setTextHook(fn: Hook): this;
   /** Установить хук, который будет обрабатывать все _озвучиваемые_ тексты */
   setVoiceHook(fn: Hook): this;
-  /**
-   * Сбросить в начальное состояние. Это полезно, когда после формирования ответа происходит ошибка,
-   * и нужно вернуть просто текст ошибки.
-   */
-  reset(): this;
 }
 
 export interface Image {

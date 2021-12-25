@@ -135,21 +135,4 @@ describe('sber response', () => {
     });
   });
 
-  it('reset', () => {
-    const res = createResponse(data);
-    res.addVoiceText('привет');
-    res.addVoiceText('как дела');
-    res.addSuggest([ 'кнопка 1' ]);
-    res.reset();
-    res.addVoiceText('ку');
-    res.addSuggest([ 'другая кнопка' ]);
-    assert.deepEqual(res.body.payload.items, [ { bubble: { text: 'ку' } } ]);
-    assert.deepEqual(res.body.payload.pronounceText, 'ку');
-    assert.deepEqual(res.body.payload.suggestions, {
-      buttons: [
-        { title: 'другая кнопка', action: { type: 'text', text: 'другая кнопка' }},
-      ]
-    });
-  });
-
 });

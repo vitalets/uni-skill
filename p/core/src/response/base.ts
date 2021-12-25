@@ -110,13 +110,6 @@ implements Partial<UniResponse<TBody, TReq>> {
     return this;
   }
 
-  reset() {
-    this.body = this.initBody();
-    this.uniBody = this.initUniBody();
-    // todo: переносить ли sessionState?
-    return this;
-  }
-
   private applyTextHook<T extends string | undefined>(str: T) {
     return this.textHook && typeof str === 'string'
       ? this.textHook(str)
