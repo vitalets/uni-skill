@@ -55,6 +55,12 @@ implements UniRequest<SberReqBody, SberResponse> {
     return this.body.messageName === 'CLOSE_APP';
   }
 
+  getTimezone() {
+    return this.isMessageToSkill()
+      ? this.body.payload.meta?.time?.timezone_id || ''
+      : '';
+  }
+
   getIntent(name: string) {
     if (this.isMessageToSkill()) {
       return {

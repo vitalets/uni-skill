@@ -30,4 +30,9 @@ describe('sber request', () => {
     const req = createRequest(data);
     assert.equal(req.isPing(), false);
   });
+
+  it('getTimezone', () => {
+    const req = createRequest(data);
+    assert.equal(req.getTimezone(), 'Europe/Moscow');
+  });
 });

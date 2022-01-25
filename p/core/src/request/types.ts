@@ -39,6 +39,8 @@ export interface UniRequest<TBody, TRes> {
   hasScreen: boolean;
   /** Авторизован пользователь или нет */
   isAuthorized: boolean;
+  /** Таймзона, например Europe/Moscow */
+  getTimezone(): string;
   /** Получить интент */
   getIntent(name: string): Intent | undefined;
 }

@@ -42,6 +42,11 @@ implements UniRequest<AlexaReqBody, AlexaResponse> {
     return this.body.request.type === 'SessionEndedRequest';
   }
 
+  getTimezone() {
+    // see: https://developer.amazon.com/en-US/docs/alexa/smapi/alexa-settings-api-reference.html
+    return '';
+  }
+
   getIntent(name: string) {
     if (this.isIntentRequest() && this.body.request.intent.name === name) {
       const slots = this.body.request.intent.slots || {};

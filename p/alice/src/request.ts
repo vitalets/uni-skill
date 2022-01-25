@@ -35,6 +35,7 @@ implements UniRequest<AliceReqBody, AliceResponse> {
   get hasScreen() { return Boolean(this.body.meta.interfaces.screen); }
   get isAuthorized() { return Boolean(this.body.session.user); }
   isEndSession() { return false; }
+  getTimezone() { return this.body.meta.timezone || ''; }
 
   getIntent(name: string) {
     const aliceIntent = this.body.request.nlu?.intents?.[name];

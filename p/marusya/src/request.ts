@@ -44,6 +44,7 @@ implements UniRequest<MarusyaReqBody, MarusyaResponse> {
   get hasScreen() { return Boolean(this.body.meta.interfaces.screen); }
   get isAuthorized() { return Boolean(this.body.session.user); }
   isEndSession() { return this.body.request.command === 'on_interrupt'; }
+  getTimezone() { return this.body.meta.timezone || ''; }
   getIntent(_: string) { return undefined; }
 
   /** own */

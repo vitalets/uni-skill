@@ -37,4 +37,9 @@ describe('alice request', () => {
     const pingReq = createRequest(newData);
     assert.equal(pingReq.isPing(), true);
   });
+
+  it('getTimezone', () => {
+    const req = createRequest(data);
+    assert.equal(req.getTimezone(), 'Europe/Moscow');
+  });
 });
