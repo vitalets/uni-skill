@@ -1,0 +1,109 @@
+{
+  "messageId": 1643859947229035000,
+  "sessionId": "c14a0003-e41e-3319-9d71-db1c2d87ac03",
+  "messageName": "RUN_APP",
+  "payload": {
+    "intent": "run_app",
+    "caller_app_info": {
+      "projectId": "748786f4-8270-48ca-9f3e-e8f12e08e7a0",
+      "applicationId": "eb5d7c3c-354b-412a-9bdf-7be5023493cb",
+      "appversionId": "2ce0766a-3bb0-4269-8f97-11f9a0e6054a",
+      "systemName": "catalog",
+      "frontendEndpoint": "https://catalog.prom.app.sberdevices.ru/",
+      "frontendType": "WEB_APP",
+      "ageLimit": 0,
+      "affiliationType": "INTERNAL"
+    },
+    "server_action": {
+      "action_id": "run_app",
+      "parameters": {}
+    },
+    "new_session": true,
+    "strategies": {
+      "last_call": null
+    },
+    "character": {
+      "id": "joy",
+      "name": "Джой",
+      "gender": "female",
+      "appeal": "no_official"
+    },
+    "reverseGeocoding": {},
+    "applicationId": "807d9f63-475f-402b-b11a-0e49c5f5ff85",
+    "appversionId": "19a0143f-7b89-4055-9df0-ab9d75dd7f0b",
+    "projectName": "Голосовая открытка",
+    "device": {
+      "platformType": "android",
+      "platformVersion": "9",
+      "surface": "SBERBOX",
+      "surfaceVersion": "1.74.76",
+      "features": {
+        "appTypes": [
+          "APK",
+          "WEB_APP",
+          "DIALOG",
+          "CHAT_APP"
+        ]
+      },
+      "capabilities": {
+        "mic": {
+          "available": true
+        },
+        "screen": {
+          "available": true,
+          "height": 1080,
+          "scale_factor": 2,
+          "width": 1920
+        },
+        "speak": {
+          "available": true
+        }
+      },
+      "deviceId": "SBB01X11AE036069",
+      "deviceManufacturer": "SberDevices",
+      "deviceModel": "sberbox",
+      "additionalInfo": {}
+    },
+    "app_info": {
+      "projectId": "2b744099-3f24-497e-8369-8e03338b6f01",
+      "applicationId": "807d9f63-475f-402b-b11a-0e49c5f5ff85",
+      "appversionId": "19a0143f-7b89-4055-9df0-ab9d75dd7f0b",
+      "systemName": null,
+      "frontendEndpoint": null,
+      "frontendType": "CHAT_APP",
+      "ageLimit": 6,
+      "affiliationType": "EXTERNAL"
+    },
+    "meta": {
+      "current_app": {},
+      "time": {
+        "timestamp": 1643859947223,
+        "timezone_id": "Europe/Moscow",
+        "timezone_offset_sec": 25200
+      },
+      "location": {},
+      "features": {
+        "screen": {
+          "enabled": true
+        },
+        "int_login": {
+          "enabled": true
+        },
+        "demo_mode": {
+          "enabled": false
+        }
+      },
+      "background_apps": [],
+      "child_mode": false
+    },
+    "client_profile": {
+      "aggregated_data": {}
+    },
+    "permitted_actions": []
+  },
+  "uuid": {
+    "userId": "a39b3e53-5155-4b40-8db8-5beaaa123b2d",
+    "sub": "8tet/qbl+CcHB4nE68Kv5WdIZcPCH8JCeoArhHqWlFS+z7iqDAZQ9EEE4wdfI76102FmFj2CvM8n5X/6JKSwPsboVOBDNKPbE1QaDoQ7pflj8c8gwXrqV8SAuo2oDWaxng8gadFhk8QcLjWYfdVI07lr/knABRrh35Dr4z0D5Fc=",
+    "userChannel": "B2C"
+  }
+}
