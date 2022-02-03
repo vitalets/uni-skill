@@ -1,7 +1,7 @@
 {
   "name": "@uni-skill/sber",
   "description": "Uni-skill: Sber",
-  "version": "4.7.0",
+  "version": "4.7.1",
   "main": "dist/index.js",
   "files": [
     "src",
