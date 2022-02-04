@@ -45,9 +45,16 @@ export function stripEmoji(s: string | undefined) {
  * todo: вырезать марусины (`) и сберовские (') ударения?
  */
 export function stripAccents(s: string) {
-  return s.replace(/\+([аяоёэеиыую])/ig, '$1');
+  return (s || '').replace(/\+([аяоёэеиыую])/ig, '$1');
 }
 
 export function escapeRegexp(s: string) {
-  return s.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+  return (s || '').replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+}
+
+/**
+ * Меняем переносы строк на пробелы (это нужно для tts)
+ */
+export function stripNewLines(s: string) {
+  return (s || '').replace(/\n+/g, ' ');
 }

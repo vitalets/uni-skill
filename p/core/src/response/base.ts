@@ -10,6 +10,7 @@ import {
   stripEmoji,
   stripAccents,
   stripAllTags,
+  stripNewLines,
 } from '../utils';
 import { UniRequest } from '../request/types';
 import { ResponseConfig } from '..';
@@ -123,6 +124,7 @@ implements Partial<UniResponse<TBody, TReq>> {
   private handleSsml(ssml: string) {
     ssml = this.applyVoiceHook(ssml);
     ssml = this.applyRespeech(ssml);
+    ssml = stripNewLines(ssml);
     ssml = stripSpeakTag(ssml);
     ssml = stripEmoji(ssml);
     return ssml;
