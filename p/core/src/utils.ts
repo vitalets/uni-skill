@@ -16,8 +16,8 @@ export function concatWithSpace(s1: string | undefined, s2: string | undefined) 
   return concatWithSeparator(s1, s2, ' ');
 }
 
-export function stripSpeakTag(s: string | undefined) {
-  return s ? s.replace(/<\/?speak>/gi, '').trim() : s;
+export function stripSpeakTag(s?: string ) {
+  return (s || '').replace(/<\/?speak>/gi, '').trim();
 }
 
 export function stripAllTags(s?: string) {

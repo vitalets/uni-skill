@@ -20,6 +20,8 @@ export interface UniResponse<TBody, TReq> {
   platform: Platform;
   /** Запрос, для которого этот ответ */
   request: TReq;
+  /** Конфиг */
+  config: ResponseConfig;
   /** Флаг ответа для Алисы */
   isAlice(): boolean;
   /** Флаг ответа для Сбера */
@@ -82,4 +84,9 @@ export interface UniBody {
   links: Link[];
   suggest: string[];
   endSession: boolean;
+}
+
+export interface ResponseConfig {
+  /** использовать ли respeech для всех текстов */
+  respeech: boolean;
 }

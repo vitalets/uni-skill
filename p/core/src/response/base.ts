@@ -12,6 +12,8 @@ import {
   stripAllTags,
 } from '../utils';
 import { UniRequest } from '../request/types';
+import { ResponseConfig } from '..';
+import { handleRespeech } from '../respeech';
 
 export abstract class BaseResponse<TBody, TReq extends UniRequest<unknown, unknown>>
 implements Partial<UniResponse<TBody, TReq>> {
@@ -22,6 +24,9 @@ implements Partial<UniResponse<TBody, TReq>> {
   assistantName = '';
 
   uniBody: UniBody;
+  config: ResponseConfig = {
+    respeech: false
+  };
 
   protected textHook?: Hook;
   protected voiceHook?: Hook;
@@ -48,14 +53,14 @@ implements Partial<UniResponse<TBody, TReq>> {
   isAlexa() { return false; }
 
   addText(text: string) {
-    text = stripAllTags(stripAccents(this.applyTextHook(text)));
+    text = this.handleText(text || '');
     this.uniBody.text = concatWithNewline(this.uniBody.text, text);
     this.platformAddText(text);
     return this;
   }
 
   addVoice(ssml: string) {
-    ssml = stripEmoji(stripSpeakTag(this.applyVoiceHook(ssml)));
+    ssml = this.handleSsml(ssml || '');
     this.uniBody.ssml = concatWithSpace(this.uniBody.ssml, ssml);
     this.platformAddVoice(ssml);
     return this;
@@ -68,20 +73,19 @@ implements Partial<UniResponse<TBody, TReq>> {
     return this;
   }
 
-  addSuggest(suggest: string[]) {
-    if (!suggest?.length) return this;
-    suggest = suggest.map(item => this.applyTextHook(item));
-    this.uniBody.suggest.push(...suggest);
-    this.platformAddSuggest(suggest);
-    return this;
-  }
-
   addImage({ imageId, title, description, ratio }: Image) {
-    title = this.applyTextHook(title);
-    description = this.applyTextHook(description);
+    title = title && this.handleText(title);
+    description = description && this.handleText(description);
     const image = { imageId, title, description, ratio };
     this.uniBody.images.push(image);
     this.platformAddImage(image);
+    return this;
+  }
+
+  addSuggest(suggest: string[]) {
+    if (!suggest?.length) return this;
+    this.uniBody.suggest.push(...suggest);
+    this.platformAddSuggest(suggest);
     return this;
   }
 
@@ -98,8 +102,6 @@ implements Partial<UniResponse<TBody, TReq>> {
     return this;
   }
 
-//   /** Возвращает внутреннее представление данных, полезно для отладки и логирования. */
-//   getUniBody() { return this.uniBody; }
   setTextHook(fn: Hook) {
     this.textHook = fn;
     return this;
@@ -110,16 +112,38 @@ implements Partial<UniResponse<TBody, TReq>> {
     return this;
   }
 
-  private applyTextHook<T extends string | undefined>(str: T) {
-    return this.textHook && typeof str === 'string'
-      ? this.textHook(str)
-      : str;
+  private handleText(text: string) {
+    text = this.applyTextHook(text);
+    text = this.applyRespeech(text);
+    text = stripAccents(text);
+    text = stripAllTags(text);
+    return text;
   }
 
-  private applyVoiceHook<T extends string | undefined>(str: T) {
-    return this.voiceHook && typeof str === 'string'
-      ? this.voiceHook(str)
-      : str;
+  private handleSsml(ssml: string) {
+    ssml = this.applyVoiceHook(ssml);
+    ssml = this.applyRespeech(ssml);
+    ssml = stripSpeakTag(ssml);
+    ssml = stripEmoji(ssml);
+    return ssml;
+  }
+
+  private applyTextHook<T extends string | undefined>(text: T) {
+    return this.textHook && typeof text === 'string'
+      ? this.textHook(text)
+      : text;
+  }
+
+  private applyVoiceHook<T extends string | undefined>(text: T) {
+    return this.voiceHook && typeof text === 'string'
+      ? this.voiceHook(text)
+      : text;
+  }
+
+  private applyRespeech<T extends string | undefined>(text: T) {
+    return this.config.respeech
+      ? handleRespeech(text, { isMale: this.isMale, isOfficial: this.isOfficial })
+      : text;
   }
 
   private initUniBody():UniBody {
