@@ -1,4 +1,4 @@
-import { stripEmoji } from '../src/utils';
+import { stripEmoji } from '../../src/utils';
 
 describe('utils.stripEmoji', () => {
 
