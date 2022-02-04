@@ -1,7 +1,7 @@
 {
   "name": "@uni-skill/core",
   "description": "Uni-skill: core",
-  "version": "4.7.0",
+  "version": "4.8.0",
   "main": "dist/index.js",
   "files": [
     "src",
