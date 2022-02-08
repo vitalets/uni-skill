@@ -46,7 +46,7 @@ export interface UniResponse<TBody, TReq> {
   addSuggest(suggest: string[]): this;
   /** Добавить картинку */
   addImage(image: Image): this;
-  /** Добавить ссылку */
+  /** Добавить ссылки */
   addLinks(links: Link[]): this;
   /** Установить флаг завершения сессии */
   endSession(value?: boolean): this;
