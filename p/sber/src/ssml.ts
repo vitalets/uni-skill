@@ -10,6 +10,7 @@ export function convertSsmlForSber(s: string) {
 
 /**
  * В сбере ударения делаются через апостроф.
+ * Поэтому меняем: +а на а'
  */
 const ACCENT_REGEXP = /\+([аяоёэеиыую])/ig;
 function convertAccents(s: string) {
@@ -18,6 +19,7 @@ function convertAccents(s: string) {
 
 /**
  * В сбере у <audio> атрибут text вместо src.
+ * Поэтому меняем: '<audio src="file.mp3"/>' на '<audio text="file.mp3"/>'
  */
 const SSML_AUDIO_REGEXP = /<audio\s+src="([^"]+)"\s*\/>/ig;
 function convertAudio(s: string) {

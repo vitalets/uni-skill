@@ -8,7 +8,7 @@ export function convertSsmlForAlice(s: string) {
 
 /**
  * В Алисе пауза через свой синтаксис.
- * '<break time="1s" />' --> 'sil <[1000]>'
+ * Поэтому меняем: '<break time="1s" />' на 'sil <[1000]>'
  */
 const SSML_PAUSE_REGEXP = /<break(\s+time="(?<time>[0-9]+)(?<unit>ms|s)")?\s*\/>/ig;
 const DEFAULT_PAUSE_TIME = 500;
@@ -23,7 +23,8 @@ function convertPause(s: string) {
 }
 
 /**
- * В Алисе вставка звука через свой тег <speaker>
+ * В Алисе вставка звука через свой тег <speaker>.
+ * Поэтому меняем: '<audio src="file.mp3"/>' на '<speaker audio="file.mp3">'
  */
 const SSML_AUDIO_REGEXP = /<audio\s+src="([^"]+)"\s*\/>/ig;
 function convertAudio(s: string) {

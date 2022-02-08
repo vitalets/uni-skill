@@ -8,6 +8,9 @@ export function convertSsmlForMarusya(s: string) {
 
 /**
  * В Марусе вставка звука через свой тег <speaker>
+ * Поэтому меняем:
+ * - '<audio src="file.mp3"/>' на '<speaker audio="file.mp3">' (встроенный звук)
+ * - '<audio src="file.mp3"/>' на '<speaker audio_vk_id="file.mp3">' (пользовательский звук)
  */
 const SSML_AUDIO_REGEXP = /<audio\s+src="(?<src>[^"]+)"\s*\/>/ig;
 function convertAudio(s: string) {
