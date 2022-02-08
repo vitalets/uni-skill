@@ -16,8 +16,8 @@ describe('marusya ssml ', () => {
 
   it('convert audio (vk)', () => {
     assertVoice(
-      'звук <audio src="-2000000002_123456789" />',
-      'звук <speaker audio_vk_id="-2000000002_123456789">',
+      'звук <audio src="2000512049_456239061" />',
+      'звук <speaker audio_vk_id="2000512049_456239061">',
     );
   });
 
