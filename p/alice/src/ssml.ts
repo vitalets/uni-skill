@@ -7,8 +7,9 @@ export function convertSsmlForAlice(s: string) {
 }
 
 /**
- * В Алисе пауза через свой синтаксис.
- * Поэтому меняем: '<break time="1s" />' на 'sil <[1000]>'
+ * В Алисе пауза через свой синтаксис. Поэтому меняем:
+ * '<break time="1s"/>' -> 'sil <[1000]>'
+ * '<break time="1000ms"/>' -> 'sil <[1000]>'
  */
 const SSML_PAUSE_REGEXP = /<break(\s+time="(?<time>[0-9]+)(?<unit>ms|s)")?\s*\/>/ig;
 const DEFAULT_PAUSE_TIME = 500;
