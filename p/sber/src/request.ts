@@ -59,6 +59,7 @@ implements UniRequest<SberReqBody, SberResponse> {
     // Раньше тут была проверка на this.isMessageToSkill() || this.isRunApp(),
     // но тайпинги для RUN_APP не содержат payload.meta, хотя он приходит.
     // Поэтому убрал тайпгарды.
+    // Note: даже в MESSAGE_TO_SKILL иногда таймзона отсутствует
     // @ts-expect-error safe get timezone
     return this.body.payload?.meta?.time?.timezone_id || '';
   }
