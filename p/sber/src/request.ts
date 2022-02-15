@@ -1,12 +1,9 @@
 /**
  * Sber request.
  */
-import { NLPRequest, NLPRequestMTS, NLPRequestСA, NLPRequestRA, NLPRequestSA } from '@salutejs/types';
 import { UniRequest, BaseRequest, Platform } from '@uni-skill/core';
 import { SberResponse } from './response';
-
-// Use fake Omit to have 'SberReqBody' in ts messages.
-type SberReqBody = Omit<NLPRequest, ''>;
+import { SberReqBody, NLPRequestMTS, NLPRequestСA, NLPRequestRA, NLPRequestSA } from './types';
 
 export class SberRequest
 extends BaseRequest<SberReqBody, SberResponse>
@@ -24,12 +21,23 @@ implements UniRequest<SberReqBody, SberResponse> {
   get sessionId() { return this.body.sessionId; }
   get messageId() { return this.body.messageId; }
   protected get platformUserMessage(): string | void {
+    // todo: кешировать результат?
     if (this.isMessageToSkill() || this.isEndSession()) {
-      const { asr_normalized_message, original_text } = this.body.payload.message;
-      // Изначально берем asr_normalized_message, т.к. там нормализованы числительные.
-      // Это ближе к другим платформам. Но при тапе в саджест там null, поэтому используем original_text.
+      const { asr, message } = this.body.payload;
+      // Раньше использовался message.asr_normalized_message т.к. там нормализованы числительные.
+      // Отказался от него в пользу asr.hypotheses, т.к. там еще можно выбрать вариант без англ букв.
+      // Рассматриваем только первые две гипотезы, т.к. дальше дичь
+      const hypotheses = asr?.hypotheses || [];
+      const hypoRu = hypotheses.slice(0, 2).find(h => !/[a-z]/i.test(h?.normalizedText));
+      const asrText = hypoRu?.normalizedText || hypotheses[0]?.normalizedText;
+
+      // Еще как вариант брать из tokenized_elements_list[].rawText.
+      // Тогда например вместо "Переведи мне 100 €" получим "Переведи мне 100 евро"
+      // Но пока некритично.
+
+      // При тапе в саджест в asr пусто, поэтому используем original_text.
       // See: https://developers.sber.ru/docs/ru/salute/api/smartapp_api_requests#message-to-skill
-      return asr_normalized_message || original_text;
+      return asrText || message?.original_text;
     }
   }
 
@@ -60,12 +68,10 @@ implements UniRequest<SberReqBody, SberResponse> {
   }
 
   getTimezone() {
-    // Раньше тут была проверка на this.isMessageToSkill() || this.isRunApp(),
-    // но тайпинги для RUN_APP не содержат payload.meta, хотя он приходит.
-    // Поэтому убрал тайпгарды.
     // Note: даже в MESSAGE_TO_SKILL иногда таймзона отсутствует
-    // @ts-expect-error safe get timezone
-    return this.body.payload?.meta?.time?.timezone_id || '';
+    return this.isMessageToSkill() || this.isEndSession() || this.isRunApp()
+      ? (this.body.payload?.meta?.time?.timezone_id || '')
+      : '';
   }
 
   getIntent(name: string) {

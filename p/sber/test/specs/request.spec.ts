@@ -1,6 +1,7 @@
 import data from '../../data/request/message-to-skill.json';
 import messageToSkillTap from '../../data/request/message-to-skill_tap_suggest.json';
 import messageToSkillQuestion from '../../data/request/message-to-skill_question.json';
+import messageToSkillEng from '../../data/request/message-to-skill_eng.json';
 import closeAppData from '../../data/request/close-app.json';
 import runAppData from '../../data/request/run-app-sberbox.json';
 
@@ -27,6 +28,11 @@ describe('sber request', () => {
     assert.equal(req.userMessage, 'какой сегодня день');
   });
 
+  it('userMessage (MESSAGE_TO_SKILL, eng) - берем вариант без английских букв', () => {
+    const req = createRequest(messageToSkillEng);
+    assert.equal(req.userMessage, 'не вор');
+  });
+
   it('main props (RUN_APP, sberbox)', () => {
     const req = createRequest(runAppData);
     assert.equal(req.isSber(), true);
@@ -42,9 +48,9 @@ describe('sber request', () => {
     const req = createRequest(closeAppData);
     assert.equal(req.isSber(), true);
     assert.equal(req.platform, 'sber', 'platform');
-    assert.equal(req.userId, 'xxx', 'userId');
-    assert.equal(req.userMessage, 'переведи 100 евро на мой счёт', 'userMessage');
-    assert.equal(req.clientInfo, 'android 1.0.2; undefined; SBOL 1.0.2', 'clientInfo');
+    assert.match(req.userId, /8tet.+/, 'userId');
+    assert.equal(req.userMessage, 'выйти', 'userMessage');
+    assert.equal(req.clientInfo, 'ANDROID 6.0; PLK-L01; COMPANION 22.01.1.8515', 'clientInfo');
     assert.equal(req.isEndSession(), true, 'isEndSession');
     assert.equal(req.getTimezone(), ''); // в CLOSE_APP таймзона не передаётся
   });

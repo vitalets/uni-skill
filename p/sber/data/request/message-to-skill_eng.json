@@ -1,0 +1,343 @@
+{
+  "messageId": 1644944309388,
+  "sessionId": "ea58e99c-1869-3073-a31c-d96ebf513047",
+  "messageName": "MESSAGE_TO_SKILL",
+  "payload": {
+    "intent": "run_app",
+    "original_intent": "music",
+    "intent_meta": {},
+    "message": {
+      "original_text": "не war",
+      "normalized_text": "не war .",
+      "tokenized_elements_list": [
+        {
+          "text": "не",
+          "raw_text": "не",
+          "grammem_info": {
+            "raw_gram_info": "",
+            "part_of_speech": "PART"
+          },
+          "lemma": "не",
+          "is_stop_word": false,
+          "list_of_dependents": [],
+          "dependency_type": "advmod",
+          "head": 2
+        },
+        {
+          "text": "war",
+          "raw_text": "war",
+          "grammem_info": {
+            "raw_gram_info": "",
+            "part_of_speech": "X"
+          },
+          "lemma": "war",
+          "is_stop_word": false,
+          "list_of_dependents": [
+            1
+          ],
+          "dependency_type": "root",
+          "head": 0
+        },
+        {
+          "raw_text": ".",
+          "text": ".",
+          "lemma": ".",
+          "token_type": "SENTENCE_ENDPOINT_TOKEN",
+          "token_value": {
+            "value": "."
+          },
+          "list_of_token_types_data": [
+            {
+              "token_type": "SENTENCE_ENDPOINT_TOKEN",
+              "token_value": {
+                "value": "."
+              }
+            }
+          ]
+        }
+      ],
+      "entities": {},
+      "original_message_name": "VOICE_FROM_USER",
+      "human_normalized_text": "не war",
+      "asr_normalized_message": "Не war",
+      "human_normalized_text_with_anaphora": "не war"
+    },
+    "annotations": {
+      "censor_data": {
+        "classes": [
+          "politicians",
+          "obscene",
+          "model_response"
+        ],
+        "probas": [
+          0,
+          0,
+          0.047339487820863724
+        ]
+      },
+      "text_sentiment": {
+        "classes": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "probas": [
+          0.10631173104047775,
+          0.038334835320711136,
+          0.8553533554077148
+        ]
+      },
+      "asr_sentiment": {
+        "classes": [
+          "positive",
+          "neutral",
+          "negative"
+        ],
+        "probas": [
+          0.67093945,
+          0.27460897,
+          0.054451562
+        ]
+      },
+      "ner_prediction": [
+        {
+          "raw_text": "не",
+          "lemma": "не",
+          "normalized_token": null,
+          "ner_labels": {
+            "food": "O",
+            "main": "B-LOC",
+            "music": "O",
+            "odqa": "O",
+            "video": "O"
+          },
+          "ner_label_probas": {
+            "food": "0.999",
+            "main": "0.461",
+            "music": "0.827",
+            "odqa": "0.895",
+            "video": "0.938"
+          }
+        },
+        {
+          "raw_text": "war",
+          "lemma": "war",
+          "normalized_token": null,
+          "ner_labels": {
+            "food": "O",
+            "main": "I-LOC",
+            "music": "O",
+            "odqa": "O",
+            "video": "O"
+          },
+          "ner_label_probas": {
+            "food": "1.0",
+            "main": "0.877",
+            "music": "0.395",
+            "odqa": "0.131",
+            "video": "0.778"
+          }
+        },
+        {
+          "raw_text": ".",
+          "lemma": ".",
+          "normalized_token": null,
+          "ner_labels": {
+            "food": "O",
+            "main": "O",
+            "music": "O",
+            "odqa": "O",
+            "video": "O"
+          },
+          "ner_label_probas": {
+            "food": "1.0",
+            "main": "1.0",
+            "music": "1.0",
+            "odqa": "1.0",
+            "video": "1.0"
+          }
+        }
+      ],
+      "normalized_entities": {
+        "main": {}
+      },
+      "unified_normalized_text": "не I-LOC ."
+    },
+    "selected_item": {},
+    "new_session": false,
+    "strategies": {
+      "last_call": null
+    },
+    "character": {
+      "id": "sber",
+      "name": "Сбер",
+      "gender": "male",
+      "appeal": "official"
+    },
+    "asr": {
+      "hypotheses": [
+        {
+          "words": "не war",
+          "normalizedText": "Не war",
+          "extendedWords": [
+            {
+              "tokenType": 1,
+              "token": "не"
+            },
+            {
+              "tokenType": 1,
+              "token": "war"
+            }
+          ]
+        },
+        {
+          "words": "не вор",
+          "normalizedText": "не вор"
+        },
+        {
+          "words": "невод",
+          "normalizedText": "невод"
+        },
+        {
+          "words": "не whore",
+          "normalizedText": "не whore"
+        },
+        {
+          "words": "не vor",
+          "normalizedText": "не vor"
+        },
+        {
+          "words": "не ворд",
+          "normalizedText": "не ворд"
+        },
+        {
+          "words": "невор",
+          "normalizedText": "невор"
+        },
+        {
+          "words": "не вот",
+          "normalizedText": "не вот"
+        },
+        {
+          "words": "never",
+          "normalizedText": "never"
+        },
+        {
+          "words": "the war",
+          "normalizedText": "the war"
+        }
+      ],
+      "sentiment": {
+        "classes": [
+          "positive",
+          "neutral",
+          "negative"
+        ],
+        "probas": [
+          0.67093945,
+          0.27460897,
+          0.054451562
+        ]
+      }
+    },
+    "reverseGeocoding": {},
+    "applicationId": "1b3caf57-a37e-4caa-a582-6fbe84069295",
+    "appversionId": "006404b2-8d69-435a-a1db-a7470f2eb87a",
+    "projectName": "4cf4d40a-68e4-4fa7-99a9-bb9eec5873a5",
+    "device": {
+      "platformType": "ANDROID",
+      "platformVersion": "6.0",
+      "surface": "COMPANION",
+      "surfaceVersion": "22.01.1.8515",
+      "features": {
+        "appTypes": [
+          "DIALOG",
+          "WEB_APP",
+          "CHAT_APP",
+          "EMBEDDED_APP"
+        ],
+        "clientFlags": {
+          "c2bChatAppsEnabled": false,
+          "messengerEnabled": true,
+          "salute20Enabled": true
+        }
+      },
+      "capabilities": {
+        "screen": {
+          "available": true,
+          "height": 1920,
+          "scale_factor": 3,
+          "width": 1080
+        }
+      },
+      "deviceId": "527f287a-488b-4a0b-89b6-6053ea9eaaa9",
+      "deviceManufacturer": "HUAWEI",
+      "deviceModel": "PLK-L01",
+      "additionalInfo": {
+        "host_app_id": "ru.sberbank.sdakit.companion.prod",
+        "host_params": {
+          "appsflyerId": "1635879746997-2353408923158238169"
+        },
+        "sdk_version": "22.01.1.8515"
+      }
+    },
+    "app_info": {
+      "projectId": "cda2c4b9-a51e-409d-8b7c-5dedf7a3ded8",
+      "applicationId": "1b3caf57-a37e-4caa-a582-6fbe84069295",
+      "appversionId": "006404b2-8d69-435a-a1db-a7470f2eb87a",
+      "systemName": null,
+      "frontendEndpoint": null,
+      "frontendType": "CHAT_APP",
+      "ageLimit": 18,
+      "affiliationType": "EXTERNAL"
+    },
+    "meta": {
+      "current_app": {
+        "app_info": {
+          "projectId": "cda2c4b9-a51e-409d-8b7c-5dedf7a3ded8",
+          "applicationId": "1b3caf57-a37e-4caa-a582-6fbe84069295",
+          "appversionId": "006404b2-8d69-435a-a1db-a7470f2eb87a",
+          "affiliationType": "EXTERNAL",
+          "frontendEndpoint": "None",
+          "frontendType": "CHAT_APP",
+          "frontendStateId": "cda2c4b9-a51e-409d-8b7c-5dedf7a3ded8_1b3caf57-a37e-4caa-a582-6fbe84069295_006404b2-8d69-435a-a1db-a7470f2eb87a",
+          "appearance": {
+            "header": {
+              "title": "4cf4d40a-68e4-4fa7-99a9-bb9eec5873a5"
+            }
+          },
+          "ageLimit": 18
+        },
+        "state": {}
+      },
+      "time": {
+        "timezone_id": "Europe/Moscow",
+        "timezone_offset_sec": 10800,
+        "timestamp": 1644944347404
+      },
+      "location": {},
+      "features": {
+        "screen": {
+          "enabled": true
+        },
+        "int_login": {
+          "enabled": true
+        },
+        "demo_mode": {
+          "enabled": false
+        }
+      },
+      "background_apps": [],
+      "child_mode": false
+    },
+    "client_profile": {
+      "aggregated_data": {}
+    },
+    "permitted_actions": []
+  },
+  "uuid": {
+    "userId": "527f287a-488b-4a0b-89b6-6053ea9eaaa9",
+    "sub": "8tet/qbl+CcHB4nE68Kv5WdIZcPCH8JCeoArhHqWlFS+z7iqDAZQ9EEE4wdfI76102FmFj2CvM8n5X/6JKSwPsboVOBDNKPbE1QaDoQ7pflj8c8gwXrqV8SAuo2oDWaxng8gadFhk8QcLjWYfdVI07lr/knABRrh35Dr4z0D5Fc=",
+    "userChannel": "COMPANION_B2C"
+  }
+}

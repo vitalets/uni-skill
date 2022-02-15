@@ -1,0 +1,472 @@
+{
+  "messageId": 1644944309435,
+  "sessionId": "ce80fdc8-c3b8-3c24-aa22-2a7bda948fec",
+  "messageName": "MESSAGE_TO_SKILL",
+  "payload": {
+    "intent": "run_app",
+    "original_intent": "me2me",
+    "intent_meta": {},
+    "message": {
+      "original_text": "переведи мне сто евро",
+      "normalized_text": "перевести я MONEY_TOKEN .",
+      "tokenized_elements_list": [
+        {
+          "text": "переведи",
+          "raw_text": "переведи",
+          "grammem_info": {
+            "aspect": "perf",
+            "mood": "imp",
+            "number": "sing",
+            "person": "2",
+            "transitivity": "tran",
+            "verbform": "fin",
+            "voice": "act",
+            "raw_gram_info": "aspect=perf|mood=imp|number=sing|person=2|transitivity=tran|verbform=fin|voice=act",
+            "part_of_speech": "VERB"
+          },
+          "lemma": "перевести",
+          "is_stop_word": false,
+          "list_of_dependents": [
+            2,
+            3,
+            4
+          ],
+          "dependency_type": "root",
+          "head": 0
+        },
+        {
+          "text": "мне",
+          "raw_text": "мне",
+          "grammem_info": {
+            "case": "dat",
+            "number": "sing",
+            "person": "1",
+            "raw_gram_info": "case=dat|number=sing|person=1",
+            "part_of_speech": "PRON"
+          },
+          "lemma": "я",
+          "is_stop_word": false,
+          "list_of_dependents": [],
+          "dependency_type": "obl",
+          "head": 1
+        },
+        {
+          "text": "100",
+          "raw_text": "100",
+          "lemma": "100",
+          "original_text": "сто",
+          "token_type": "NUM_TOKEN",
+          "token_value": {
+            "value": 100,
+            "adjectival_number": false
+          },
+          "list_of_token_types_data": [
+            {
+              "token_type": "NUM_TOKEN",
+              "token_value": {
+                "value": 100,
+                "adjectival_number": false
+              }
+            }
+          ],
+          "grammem_info": {
+            "numform": "digit",
+            "raw_gram_info": "numform=digit",
+            "part_of_speech": "NUM"
+          },
+          "is_stop_word": false,
+          "list_of_dependents": [],
+          "dependency_type": "nummod",
+          "head": 1,
+          "is_beginning_of_composite": true,
+          "composite_token_type": "MONEY_TOKEN",
+          "composite_token_length": 2,
+          "composite_token_value": {
+            "amount": 100,
+            "currency": "eur"
+          }
+        },
+        {
+          "text": "eur",
+          "raw_text": "евро",
+          "grammem_info": {
+            "degree": "pos",
+            "raw_gram_info": "degree=pos",
+            "part_of_speech": "X"
+          },
+          "lemma": "eur",
+          "is_stop_word": false,
+          "list_of_dependents": [],
+          "dependency_type": "obj",
+          "head": 1,
+          "token_type": "CCY_TOKEN",
+          "token_value": {
+            "value": "eur"
+          },
+          "list_of_token_types_data": [
+            {
+              "token_type": "CCY_TOKEN",
+              "token_value": {
+                "value": "eur"
+              }
+            }
+          ],
+          "is_beginning_of_composite": false,
+          "composite_token_type": "MONEY_TOKEN",
+          "composite_token_length": 2,
+          "composite_token_value": {
+            "amount": 100,
+            "currency": "eur"
+          }
+        },
+        {
+          "raw_text": ".",
+          "text": ".",
+          "lemma": ".",
+          "token_type": "SENTENCE_ENDPOINT_TOKEN",
+          "token_value": {
+            "value": "."
+          },
+          "list_of_token_types_data": [
+            {
+              "token_type": "SENTENCE_ENDPOINT_TOKEN",
+              "token_value": {
+                "value": "."
+              }
+            }
+          ]
+        }
+      ],
+      "entities": {
+        "NUM_TOKEN": [
+          {
+            "value": 100,
+            "adjectival_number": false
+          }
+        ],
+        "MONEY_TOKEN": [
+          {
+            "amount": 100,
+            "currency": "eur"
+          }
+        ],
+        "CCY_TOKEN": [
+          {
+            "value": "eur"
+          }
+        ]
+      },
+      "original_message_name": "VOICE_FROM_USER",
+      "human_normalized_text": "перевести я 100 eur",
+      "asr_normalized_message": "Переведи мне 100 €",
+      "human_normalized_text_with_anaphora": "перевести я 100 eur"
+    },
+    "annotations": {
+      "censor_data": {
+        "classes": [
+          "politicians",
+          "obscene",
+          "model_response"
+        ],
+        "probas": [
+          0,
+          0,
+          0.0018035955727100372
+        ]
+      },
+      "text_sentiment": {
+        "classes": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "probas": [
+          0.0015221616486087441,
+          0.0000741145049687475,
+          0.9984037280082703
+        ]
+      },
+      "asr_sentiment": {
+        "classes": [
+          "positive",
+          "neutral",
+          "negative"
+        ],
+        "probas": [
+          0.00047321914,
+          0.998489,
+          0.0010377463
+        ]
+      },
+      "ner_prediction": [
+        {
+          "raw_text": "переведи",
+          "lemma": "перевести",
+          "normalized_token": null,
+          "ner_labels": {
+            "food": "O",
+            "main": "O",
+            "music": "O",
+            "odqa": "O",
+            "video": "O"
+          },
+          "ner_label_probas": {
+            "food": "1.0",
+            "main": "0.999",
+            "music": "1.0",
+            "odqa": "1.0",
+            "video": "1.0"
+          }
+        },
+        {
+          "raw_text": "мне",
+          "lemma": "я",
+          "normalized_token": null,
+          "ner_labels": {
+            "food": "O",
+            "main": "O",
+            "music": "O",
+            "odqa": "O",
+            "video": "O"
+          },
+          "ner_label_probas": {
+            "food": "1.0",
+            "main": "0.998",
+            "music": "1.0",
+            "odqa": "1.0",
+            "video": "1.0"
+          }
+        },
+        {
+          "raw_text": "100",
+          "lemma": "100",
+          "normalized_token": null,
+          "ner_labels": {
+            "food": "O",
+            "main": "O",
+            "music": "O",
+            "odqa": "O",
+            "video": "O"
+          },
+          "ner_label_probas": {
+            "food": "1.0",
+            "main": "0.926",
+            "music": "1.0",
+            "odqa": "1.0",
+            "video": "1.0"
+          }
+        },
+        {
+          "raw_text": "евро",
+          "lemma": "eur",
+          "normalized_token": null,
+          "ner_labels": {
+            "food": "O",
+            "main": "O",
+            "music": "O",
+            "odqa": "O",
+            "video": "O"
+          },
+          "ner_label_probas": {
+            "food": "1.0",
+            "main": "0.483",
+            "music": "1.0",
+            "odqa": "1.0",
+            "video": "1.0"
+          }
+        },
+        {
+          "raw_text": ".",
+          "lemma": ".",
+          "normalized_token": null,
+          "ner_labels": {
+            "food": "O",
+            "main": "O",
+            "music": "O",
+            "odqa": "O",
+            "video": "O"
+          },
+          "ner_label_probas": {
+            "food": "1.0",
+            "main": "1.0",
+            "music": "1.0",
+            "odqa": "1.0",
+            "video": "1.0"
+          }
+        }
+      ],
+      "normalized_entities": {
+        "main": {}
+      },
+      "unified_normalized_text": "перевести я 100 eur ."
+    },
+    "selected_item": {},
+    "new_session": false,
+    "strategies": {
+      "last_call": null
+    },
+    "character": {
+      "id": "sber",
+      "name": "Сбер",
+      "gender": "male",
+      "appeal": "official"
+    },
+    "asr": {
+      "hypotheses": [
+        {
+          "words": "переведи мне сто евро",
+          "normalizedText": "Переведи мне 100 €",
+          "extendedWords": [
+            {
+              "tokenType": 1,
+              "token": "переведи"
+            },
+            {
+              "tokenType": 1,
+              "token": "мне"
+            },
+            {
+              "tokenType": 1,
+              "token": "сто"
+            },
+            {
+              "tokenType": 1,
+              "token": "евро"
+            }
+          ]
+        },
+        {
+          "words": "переведи мне сто euro",
+          "normalizedText": "переведи мне сто euro"
+        },
+        {
+          "words": "переведи мне сто evro",
+          "normalizedText": "переведи мне сто evro"
+        },
+        {
+          "words": "переведи мне store евро",
+          "normalizedText": "переведи мне store евро"
+        },
+        {
+          "words": "переведи mne сто евро",
+          "normalizedText": "переведи mne сто евро"
+        },
+        {
+          "words": "переведи мне сто евров",
+          "normalizedText": "переведи мне сто евров"
+        }
+      ],
+      "sentiment": {
+        "classes": [
+          "positive",
+          "neutral",
+          "negative"
+        ],
+        "probas": [
+          0.00047321914,
+          0.998489,
+          0.0010377463
+        ]
+      }
+    },
+    "reverseGeocoding": {},
+    "applicationId": "1b3caf57-a37e-4caa-a582-6fbe84069295",
+    "appversionId": "006404b2-8d69-435a-a1db-a7470f2eb87a",
+    "projectName": "4cf4d40a-68e4-4fa7-99a9-bb9eec5873a5",
+    "device": {
+      "platformType": "ANDROID",
+      "platformVersion": "6.0",
+      "surface": "COMPANION",
+      "surfaceVersion": "22.01.1.8515",
+      "features": {
+        "appTypes": [
+          "DIALOG",
+          "WEB_APP",
+          "CHAT_APP",
+          "EMBEDDED_APP"
+        ],
+        "clientFlags": {
+          "c2bChatAppsEnabled": false,
+          "messengerEnabled": true,
+          "salute20Enabled": true
+        }
+      },
+      "capabilities": {
+        "screen": {
+          "available": true,
+          "height": 1920,
+          "scale_factor": 3,
+          "width": 1080
+        }
+      },
+      "deviceId": "527f287a-488b-4a0b-89b6-6053ea9eaaa9",
+      "deviceManufacturer": "HUAWEI",
+      "deviceModel": "PLK-L01",
+      "additionalInfo": {
+        "host_app_id": "ru.sberbank.sdakit.companion.prod",
+        "host_params": {
+          "appsflyerId": "1635879746997-2353408923158238169"
+        },
+        "sdk_version": "22.01.1.8515"
+      }
+    },
+    "app_info": {
+      "projectId": "cda2c4b9-a51e-409d-8b7c-5dedf7a3ded8",
+      "applicationId": "1b3caf57-a37e-4caa-a582-6fbe84069295",
+      "appversionId": "006404b2-8d69-435a-a1db-a7470f2eb87a",
+      "systemName": null,
+      "frontendEndpoint": null,
+      "frontendType": "CHAT_APP",
+      "ageLimit": 18,
+      "affiliationType": "EXTERNAL"
+    },
+    "meta": {
+      "current_app": {
+        "app_info": {
+          "projectId": "cda2c4b9-a51e-409d-8b7c-5dedf7a3ded8",
+          "applicationId": "1b3caf57-a37e-4caa-a582-6fbe84069295",
+          "appversionId": "006404b2-8d69-435a-a1db-a7470f2eb87a",
+          "affiliationType": "EXTERNAL",
+          "frontendEndpoint": "None",
+          "frontendType": "CHAT_APP",
+          "frontendStateId": "cda2c4b9-a51e-409d-8b7c-5dedf7a3ded8_1b3caf57-a37e-4caa-a582-6fbe84069295_006404b2-8d69-435a-a1db-a7470f2eb87a",
+          "appearance": {
+            "header": {
+              "title": "4cf4d40a-68e4-4fa7-99a9-bb9eec5873a5"
+            }
+          },
+          "ageLimit": 18
+        },
+        "state": {}
+      },
+      "time": {
+        "timezone_id": "Europe/Moscow",
+        "timezone_offset_sec": 10800,
+        "timestamp": 1644949047772
+      },
+      "location": {},
+      "features": {
+        "screen": {
+          "enabled": true
+        },
+        "int_login": {
+          "enabled": true
+        },
+        "demo_mode": {
+          "enabled": false
+        }
+      },
+      "background_apps": [],
+      "child_mode": false
+    },
+    "client_profile": {
+      "aggregated_data": {}
+    },
+    "permitted_actions": []
+  },
+  "uuid": {
+    "userId": "527f287a-488b-4a0b-89b6-6053ea9eaaa9",
+    "sub": "8tet/qbl+CcHB4nE68Kv5WdIZcPCH8JCeoArhHqWlFS+z7iqDAZQ9EEE4wdfI76102FmFj2CvM8n5X/6JKSwPsboVOBDNKPbE1QaDoQ7pflj8c8gwXrqV8SAuo2oDWaxng8gadFhk8QcLjWYfdVI07lr/knABRrh35Dr4z0D5Fc=",
+    "userChannel": "COMPANION_B2C"
+  }
+}
