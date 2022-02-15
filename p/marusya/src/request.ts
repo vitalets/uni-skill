@@ -32,10 +32,12 @@ implements UniRequest<MarusyaReqBody, MarusyaResponse> {
   }
   get sessionId() { return this.body.session.session_id; }
   get messageId() { return this.body.session.message_id; }
-  get userMessage() {
+  protected get platformUserMessage() {
     const { command, original_utterance } = this.body.request;
-    const msg = this.isEndSession() ? original_utterance : ( command || original_utterance);
-    return msg || '';
+    // при endSession в command 'on_interrupt'
+    return this.isEndSession()
+      ? original_utterance
+      : (command || original_utterance);
   }
   get clientInfo() {
     return `${this.body.meta.client_id}; app: ${this.body.session.application.application_type}`;

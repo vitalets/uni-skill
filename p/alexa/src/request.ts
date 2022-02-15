@@ -25,7 +25,7 @@ implements UniRequest<AlexaReqBody, AlexaResponse> {
   get sessionId() { return this.body.session!.sessionId; }
   get messageId() { return 0; }
   /** Alexa does not provide user's phrase */
-  get userMessage() { return ''; }
+  protected get platformUserMessage() { return ''; }
   get clientInfo() { return 'Alexa device'; }
   /** LaunchRequest? */
   get isNewSession() { return this.body.session!.new; }

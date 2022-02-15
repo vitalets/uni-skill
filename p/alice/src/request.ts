@@ -29,7 +29,10 @@ implements UniRequest<AliceReqBody, AliceResponse> {
   }
   get sessionId() { return this.body.session.session_id; }
   get messageId() { return this.body.session.message_id; }
-  get userMessage() { return this.body.request.command || this.body.request.original_utterance || ''; }
+  protected get platformUserMessage() {
+    const { command, original_utterance } = this.body.request;
+    return command || original_utterance;
+  }
   get clientInfo() { return this.body.meta.client_id; }
   get isNewSession() { return this.body.session.new; }
   get hasScreen() { return Boolean(this.body.meta.interfaces.screen); }

@@ -4,7 +4,7 @@
 
 import { UniRequest } from './types';
 
-export class BaseRequest<TBody, TRes> implements Partial<UniRequest<TBody, TRes>> {
+export abstract class BaseRequest<TBody, TRes> implements Partial<UniRequest<TBody, TRes>> {
   constructor(reqBody: TBody) { this.body = reqBody; }
   body: TBody;
   isAlice() { return false; }
@@ -12,4 +12,8 @@ export class BaseRequest<TBody, TRes> implements Partial<UniRequest<TBody, TRes>
   isMarusya() { return false; }
   isAlexa() { return false; }
   isPing() { return false; }
+  get userMessage() {
+    return (this.platformUserMessage || '').replace(/[?!,.]/g, '').toLocaleLowerCase();
+  }
+  protected abstract platformUserMessage: string | void;
 }
