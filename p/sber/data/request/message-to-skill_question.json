@@ -1,0 +1,401 @@
+{
+  "messageId": 52357590,
+  "sessionId": "93c792bc-cad0-3ba4-ad2e-a8e91ab348c8",
+  "messageName": "MESSAGE_TO_SKILL",
+  "payload": {
+    "intent": "run_app",
+    "original_intent": "get_date",
+    "intent_meta": {},
+    "message": {
+      "original_text": "какой сегодня день",
+      "normalized_text": "какой TIME_TEMPORAL_TOKEN PERIOD_TOKEN .",
+      "tokenized_elements_list": [
+        {
+          "text": "какой",
+          "raw_text": "какой",
+          "grammem_info": {
+            "case": "nom",
+            "gender": "masc",
+            "number": "sing",
+            "raw_gram_info": "case=nom|gender=masc|number=sing",
+            "part_of_speech": "DET"
+          },
+          "lemma": "какой",
+          "is_stop_word": false,
+          "list_of_dependents": [
+            2
+          ],
+          "dependency_type": "det",
+          "head": 3
+        },
+        {
+          "text": "сегодня",
+          "raw_text": "сегодня",
+          "grammem_info": {
+            "degree": "pos",
+            "raw_gram_info": "degree=pos",
+            "part_of_speech": "ADV"
+          },
+          "lemma": "сегодня",
+          "is_stop_word": false,
+          "list_of_dependents": [],
+          "dependency_type": "nsubj",
+          "head": 1,
+          "token_type": "TIME_TEMPORAL_TOKEN",
+          "token_value": {
+            "value": "сегодня"
+          },
+          "list_of_token_types_data": [
+            {
+              "token_type": "TIME_TEMPORAL_TOKEN",
+              "token_value": {
+                "value": "сегодня"
+              }
+            }
+          ]
+        },
+        {
+          "text": "день",
+          "raw_text": "день",
+          "grammem_info": {
+            "animacy": "inan",
+            "case": "nom",
+            "gender": "masc",
+            "number": "sing",
+            "raw_gram_info": "animacy=inan|case=nom|gender=masc|number=sing",
+            "part_of_speech": "NOUN"
+          },
+          "lemma": "день",
+          "is_stop_word": false,
+          "list_of_dependents": [
+            1
+          ],
+          "dependency_type": "root",
+          "head": 0,
+          "token_type": "TIME_TEMPORAL_TOKEN",
+          "token_value": {
+            "value": "день"
+          },
+          "list_of_token_types_data": [
+            {
+              "token_type": "TIME_TEMPORAL_TOKEN",
+              "token_value": {
+                "value": "день"
+              }
+            }
+          ],
+          "is_beginning_of_composite": true,
+          "composite_token_type": "PERIOD_TOKEN",
+          "composite_token_length": 1,
+          "composite_token_value": 24
+        },
+        {
+          "raw_text": ".",
+          "text": ".",
+          "lemma": ".",
+          "token_type": "SENTENCE_ENDPOINT_TOKEN",
+          "token_value": {
+            "value": "."
+          },
+          "list_of_token_types_data": [
+            {
+              "token_type": "SENTENCE_ENDPOINT_TOKEN",
+              "token_value": {
+                "value": "."
+              }
+            }
+          ]
+        }
+      ],
+      "entities": {
+        "TIME_TEMPORAL_TOKEN": [
+          {
+            "value": "сегодня"
+          },
+          {
+            "value": "день"
+          }
+        ],
+        "PERIOD_TOKEN": [
+          24
+        ]
+      },
+      "original_message_name": "VOICE_FROM_USER",
+      "human_normalized_text": "какой сегодня день",
+      "asr_normalized_message": "Какой сегодня день?",
+      "human_normalized_text_with_anaphora": "какой сегодня день"
+    },
+    "annotations": {
+      "censor_data": {
+        "classes": [
+          "politicians",
+          "obscene",
+          "model_response"
+        ],
+        "probas": [
+          0,
+          0,
+          0.0011380906216800213
+        ]
+      },
+      "text_sentiment": {
+        "classes": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "probas": [
+          0.04653151333332062,
+          0.08624063432216644,
+          0.8672277927398682
+        ]
+      },
+      "asr_sentiment": {
+        "classes": [
+          "positive",
+          "neutral",
+          "negative"
+        ],
+        "probas": [
+          0.04208322,
+          0.9540104,
+          0.003906344
+        ]
+      },
+      "ner_prediction": [
+        {
+          "raw_text": "какой",
+          "lemma": "какой",
+          "normalized_token": null,
+          "ner_labels": {
+            "food": "O",
+            "main": "O",
+            "music": "O",
+            "odqa": "O",
+            "video": "O"
+          },
+          "ner_label_probas": {
+            "food": "1.0",
+            "main": "1.0",
+            "music": "1.0",
+            "odqa": "1.0",
+            "video": "1.0"
+          }
+        },
+        {
+          "raw_text": "сегодня",
+          "lemma": "сегодня",
+          "normalized_token": null,
+          "ner_labels": {
+            "food": "O",
+            "main": "O",
+            "music": "O",
+            "odqa": "O",
+            "video": "O"
+          },
+          "ner_label_probas": {
+            "food": "1.0",
+            "main": "0.952",
+            "music": "1.0",
+            "odqa": "0.998",
+            "video": "0.999"
+          }
+        },
+        {
+          "raw_text": "день",
+          "lemma": "день",
+          "normalized_token": null,
+          "ner_labels": {
+            "food": "O",
+            "main": "O",
+            "music": "O",
+            "odqa": "O",
+            "video": "O"
+          },
+          "ner_label_probas": {
+            "food": "1.0",
+            "main": "0.999",
+            "music": "0.987",
+            "odqa": "1.0",
+            "video": "0.995"
+          }
+        },
+        {
+          "raw_text": ".",
+          "lemma": ".",
+          "normalized_token": null,
+          "ner_labels": {
+            "food": "O",
+            "main": "O",
+            "music": "O",
+            "odqa": "O",
+            "video": "O"
+          },
+          "ner_label_probas": {
+            "food": "1.0",
+            "main": "1.0",
+            "music": "1.0",
+            "odqa": "1.0",
+            "video": "1.0"
+          }
+        }
+      ],
+      "normalized_entities": {
+        "main": {}
+      },
+      "unified_normalized_text": "какой сегодня день ."
+    },
+    "selected_item": {},
+    "new_session": false,
+    "strategies": {
+      "last_call": null
+    },
+    "character": {
+      "id": "joy",
+      "name": "Джой",
+      "gender": "female",
+      "appeal": "no_official"
+    },
+    "asr": {
+      "hypotheses": [
+        {
+          "words": "какой сегодня день",
+          "normalizedText": "Какой сегодня день?",
+          "extendedWords": [
+            {
+              "tokenType": 1,
+              "token": "какой"
+            },
+            {
+              "tokenType": 1,
+              "token": "сегодня"
+            },
+            {
+              "tokenType": 1,
+              "token": "день"
+            },
+            {
+              "tokenType": 2,
+              "token": "?"
+            }
+          ]
+        },
+        {
+          "words": "какое сегодня день",
+          "normalizedText": "какое сегодня день"
+        }
+      ],
+      "sentiment": {
+        "classes": [
+          "positive",
+          "neutral",
+          "negative"
+        ],
+        "probas": [
+          0.04208322,
+          0.9540104,
+          0.003906344
+        ]
+      }
+    },
+    "reverseGeocoding": {},
+    "applicationId": "1b3caf57-a37e-4caa-a582-6fbe84069295",
+    "appversionId": "006404b2-8d69-435a-a1db-a7470f2eb87a",
+    "projectName": "4cf4d40a-68e4-4fa7-99a9-bb9eec5873a5",
+    "device": {
+      "platformType": "IOS",
+      "platformVersion": "15.1",
+      "surface": "COMPANION",
+      "surfaceVersion": "22.1.1002",
+      "features": {
+        "appTypes": [
+          "DIALOG",
+          "WEB_APP",
+          "CHAT_APP",
+          "EMBEDDED_APP"
+        ],
+        "clientFlags": {
+          "c2bChatAppsEnabled": false,
+          "messengerEnabled": true,
+          "salute20Enabled": true
+        }
+      },
+      "capabilities": {
+        "screen": {
+          "available": true,
+          "height": 1334,
+          "scale_factor": 2,
+          "width": 750
+        }
+      },
+      "deviceId": "97019A55-66CD-4539-A73F-2ADA05542E95",
+      "deviceManufacturer": "Apple",
+      "deviceModel": "iPhone9,3",
+      "additionalInfo": {
+        "host_app_id": "ru.sberdevices.companion",
+        "host_params": {
+          "appsflyerId": "1602754507630-8917480"
+        },
+        "sdk_version": "22.1.1002"
+      }
+    },
+    "app_info": {
+      "projectId": "cda2c4b9-a51e-409d-8b7c-5dedf7a3ded8",
+      "applicationId": "1b3caf57-a37e-4caa-a582-6fbe84069295",
+      "appversionId": "006404b2-8d69-435a-a1db-a7470f2eb87a",
+      "systemName": null,
+      "frontendEndpoint": null,
+      "frontendType": "CHAT_APP",
+      "ageLimit": 18,
+      "affiliationType": "EXTERNAL"
+    },
+    "meta": {
+      "current_app": {
+        "app_info": {
+          "frontendStateId": "cda2c4b9-a51e-409d-8b7c-5dedf7a3ded8_1b3caf57-a37e-4caa-a582-6fbe84069295_006404b2-8d69-435a-a1db-a7470f2eb87a",
+          "frontendType": "CHAT_APP",
+          "applicationId": "1b3caf57-a37e-4caa-a582-6fbe84069295",
+          "projectId": "cda2c4b9-a51e-409d-8b7c-5dedf7a3ded8",
+          "frontendEndpoint": "None",
+          "affiliationType": "EXTERNAL",
+          "ageLimit": 18,
+          "appearance": {
+            "header": {
+              "title": "4cf4d40a-68e4-4fa7-99a9-bb9eec5873a5"
+            }
+          },
+          "appversionId": "006404b2-8d69-435a-a1db-a7470f2eb87a"
+        },
+        "state": {}
+      },
+      "time": {
+        "timezone_offset_sec": 10800,
+        "timestamp": 1644919637974,
+        "timezone_id": "Europe/Moscow"
+      },
+      "location": {},
+      "features": {
+        "screen": {
+          "enabled": true
+        },
+        "int_login": {
+          "enabled": true
+        },
+        "demo_mode": {
+          "enabled": false
+        }
+      },
+      "background_apps": [],
+      "child_mode": false
+    },
+    "client_profile": {
+      "aggregated_data": {}
+    },
+    "permitted_actions": []
+  },
+  "uuid": {
+    "userId": "E4DA5658-3C2E-46BA-BDC8-FE7EB35F2DEB",
+    "sub": "8tet/qbl+CcHB4nE68Kv5WdIZcPCH8JCeoArhHqWlFS+z7iqDAZQ9EEE4wdfI76102FmFj2CvM8n5X/6JKSwPsboVOBDNKPbE1QaDoQ7pflj8c8gwXrqV8SAuo2oDWaxng8gadFhk8QcLjWYfdVI07lr/knABRrh35Dr4z0D5Fc=",
+    "userChannel": "COMPANION_B2C"
+  }
+}

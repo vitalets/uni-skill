@@ -1,5 +1,6 @@
 import data from '../../data/request/message-to-skill.json';
 import messageToSkillTap from '../../data/request/message-to-skill_tap_suggest.json';
+import messageToSkillQuestion from '../../data/request/message-to-skill_question.json';
 import closeAppData from '../../data/request/close-app.json';
 import runAppData from '../../data/request/run-app-sberbox.json';
 
@@ -18,7 +19,12 @@ describe('sber request', () => {
 
   it('userMessage (MESSAGE_TO_SKILL, tap suggest)', () => {
     const req = createRequest(messageToSkillTap);
-    assert.equal(req.userMessage, 'сидеть в телефоне', 'userMessage');
+    assert.equal(req.userMessage, 'сидеть в телефоне');
+  });
+
+  it('userMessage (MESSAGE_TO_SKILL, question) - удаляем знак вопроса', () => {
+    const req = createRequest(messageToSkillQuestion);
+    assert.equal(req.userMessage, 'какой сегодня день');
   });
 
   it('main props (RUN_APP, sberbox)', () => {

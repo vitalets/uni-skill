@@ -29,7 +29,7 @@ implements UniRequest<SberReqBody, SberResponse> {
       // Изначально берем asr_normalized_message, т.к. там нормализованы числительные.
       // Это ближе к другим платформам. Но при тапе в саджест там null, поэтому используем original_text.
       // See: https://developers.sber.ru/docs/ru/salute/api/smartapp_api_requests#message-to-skill
-      return (asr_normalized_message || original_text || '').toLocaleLowerCase();
+      return (asr_normalized_message || original_text || '').replace(/[?!,.]/g, '').toLocaleLowerCase();
     } else {
       return '';
     }
