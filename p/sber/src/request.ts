@@ -24,9 +24,15 @@ implements UniRequest<SberReqBody, SberResponse> {
   get sessionId() { return this.body.sessionId; }
   get messageId() { return this.body.messageId; }
   get userMessage(): string {
-    return this.isMessageToSkill() || this.isEndSession()
-      ? (this.body.payload.message.original_text || '').toLocaleLowerCase()
-      : '';
+    if (this.isMessageToSkill() || this.isEndSession()) {
+      const { asr_normalized_message, original_text } = this.body.payload.message;
+      // Изначально берем asr_normalized_message, т.к. там нормализованы числительные.
+      // Это ближе к другим платформам. Но при тапе в саджест там null, поэтому используем original_text.
+      // See: https://developers.sber.ru/docs/ru/salute/api/smartapp_api_requests#message-to-skill
+      return (asr_normalized_message || original_text || '').toLocaleLowerCase();
+    } else {
+      return '';
+    }
   }
 
   get clientInfo() {
