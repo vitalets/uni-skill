@@ -143,4 +143,18 @@ describe('marusya response', () => {
     }, /Response already contains another card/);
   });
 
+  it('voice (ssml)', () => {
+    const res = createResponse(data);
+    res.body.response.tts_type = 'ssml';
+    res.addVoice('привет <break time="500ms"/> как дела');
+    assert.deepEqual(res.body.response, {
+      text: [],
+      tts: '',
+      tts_type: 'ssml',
+      // todo: <?xml version =... или и без этого работает? =)
+      ssml: '<speak>привет <break time="500ms"/> как дела</speak>',
+      end_session: false,
+      buttons: [],
+    });
+  });
 });

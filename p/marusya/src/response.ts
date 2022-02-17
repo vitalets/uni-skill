@@ -9,6 +9,7 @@ import {
   State,
   Link,
   concatWithSpace,
+  stripSpeakTag,
 } from '@uni-skill/core';
 import { MarusyaRequest } from './request';
 import { convertSsmlForMarusya } from './ssml';
@@ -27,9 +28,13 @@ implements UniResponse<MarusyaResBody, MarusyaRequest> {
   }
 
   protected platformAddVoice(ssml: string) {
-    const { response } = this.body;
-    ssml = convertSsmlForMarusya(ssml);
-    response.tts = concatWithSpace(response.tts, ssml);
+    // Note! Разметка SSML работает только со звуками из Библиотеки.
+    // See: https://dev.vk.com/marusia/ssml#%3Cspeaker%3E
+    if (this.body.response.tts_type === 'ssml') {
+      this.platformAddVoiceSsml(ssml);
+    } else {
+      this.platformAddVoiceTts(ssml);
+    }
   }
 
   protected platformAddSuggest(suggest: string[]) {
@@ -87,6 +92,19 @@ implements UniResponse<MarusyaResBody, MarusyaRequest> {
 
   get sessionState() { return this.body.session_state; }
   set sessionState(value: State) { this.body.session_state = value; }
+
+  private platformAddVoiceTts(ssml: string) {
+    const { response } = this.body;
+    ssml = convertSsmlForMarusya(ssml);
+    response.tts = concatWithSpace(stripSpeakTag(response.tts), stripSpeakTag(ssml));
+  }
+
+  private platformAddVoiceSsml(ssml: string) {
+    const { response } = this.body;
+    ssml = convertSsmlForMarusya(ssml);
+    ssml = concatWithSpace(stripSpeakTag(response.ssml), stripSpeakTag(ssml));
+    response.ssml = `<speak>${ssml}</speak>`;
+  }
 
   protected initBody(): MarusyaResBody {
     return {
