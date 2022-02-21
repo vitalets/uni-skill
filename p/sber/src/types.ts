@@ -11,21 +11,24 @@ import {
 } from '@salutejs/types';
 
 export type NLPRequestMTS = NLPRequestMTSOrig & {
-  // тайпинги для MESSAGE_TO_SKILL не содержат payload.asr, хотя он приходит
-  payload: PayloadAsr;
+  payload: PayloadWithAsr & PayloadWithMeta;
 }
 export type NLPRequestСA = NLPRequestСAOrig & {
-  // тайпинги для CLOSE_APP не содержат payload.asr, хотя он приходит
-  payload: PayloadAsr;
+  payload: PayloadWithAsr;
 }
 export type NLPRequestRA = NLPRequestRAOrig & {
-  // тайпинги для RUN_APP не содержат payload.meta, хотя он приходит
-  payload: NLPRequestRAOrig & Pick<NLPRequestMTS['payload'], 'meta'>
+  payload: PayloadWithAsr & PayloadWithMeta;
 }
 export type SberReqBody = NLPRequestMTS | NLPRequestСA | NLPRequestRA | NLPRequestSA;
 export { NLPRequestSA };
 
-interface PayloadAsr {
+// тайпинги для RUN_APP не содержат payload.meta, хотя он приходит
+interface PayloadWithMeta {
+  meta?: NLPRequestMTSOrig['payload']['meta'] & MetaFeatures;
+}
+
+// тайпинги для MESSAGE_TO_SKILL, CLOSE_APP, RUN_APP не содержат payload.asr, хотя он приходит
+interface PayloadWithAsr {
   asr: {
     hypotheses?: Hypothese[]
   }
@@ -40,4 +43,13 @@ interface Hypothese {
 interface HypotheseExtendedWord {
   tokenType: number;
   token: string;
+}
+
+// meta.features не типизировано
+interface MetaFeatures {
+  features: {
+    screen: {
+      enabled: boolean;
+    }
+  }
 }

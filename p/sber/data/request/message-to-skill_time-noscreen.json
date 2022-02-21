@@ -1,0 +1,351 @@
+{
+  "messageId": 1645434715111149000,
+  "sessionId": "9cbabb23-d4b5-3403-9216-361f1e6c0ad3",
+  "messageName": "MESSAGE_TO_SKILL",
+  "payload": {
+    "intent": "run_app",
+    "original_intent": "run_app",
+    "intent_meta": {},
+    "message": {
+      "original_text": "запусти стишки пирожки",
+      "normalized_text": "запустить стишок пирожок .",
+      "tokenized_elements_list": [
+        {
+          "text": "запусти",
+          "raw_text": "запусти",
+          "grammem_info": {
+            "aspect": "perf",
+            "mood": "imp",
+            "number": "sing",
+            "person": "2",
+            "transitivity": "tran",
+            "verbform": "fin",
+            "voice": "act",
+            "raw_gram_info": "aspect=perf|mood=imp|number=sing|person=2|transitivity=tran|verbform=fin|voice=act",
+            "part_of_speech": "VERB"
+          },
+          "lemma": "запустить",
+          "is_stop_word": false,
+          "list_of_dependents": [
+            2
+          ],
+          "dependency_type": "root",
+          "head": 0
+        },
+        {
+          "text": "стишки",
+          "raw_text": "стишки",
+          "grammem_info": {
+            "animacy": "inan",
+            "case": "acc",
+            "gender": "masc",
+            "number": "plur",
+            "raw_gram_info": "animacy=inan|case=acc|gender=masc|number=plur",
+            "part_of_speech": "NOUN"
+          },
+          "lemma": "стишок",
+          "is_stop_word": false,
+          "list_of_dependents": [
+            3
+          ],
+          "dependency_type": "obj",
+          "head": 1
+        },
+        {
+          "text": "пирожки",
+          "raw_text": "пирожки",
+          "grammem_info": {
+            "animacy": "inan",
+            "case": "acc",
+            "gender": "masc",
+            "number": "plur",
+            "raw_gram_info": "animacy=inan|case=acc|gender=masc|number=plur",
+            "part_of_speech": "NOUN"
+          },
+          "lemma": "пирожок",
+          "is_stop_word": false,
+          "list_of_dependents": [],
+          "dependency_type": "nmod",
+          "head": 2
+        },
+        {
+          "raw_text": ".",
+          "text": ".",
+          "lemma": ".",
+          "token_type": "SENTENCE_ENDPOINT_TOKEN",
+          "token_value": {
+            "value": "."
+          },
+          "list_of_token_types_data": [
+            {
+              "token_type": "SENTENCE_ENDPOINT_TOKEN",
+              "token_value": {
+                "value": "."
+              }
+            }
+          ]
+        }
+      ],
+      "entities": {},
+      "original_message_name": "VOICE_FROM_USER",
+      "human_normalized_text": "запустить стишок пирожок",
+      "asr_normalized_message": "Запусти стишки пирожки",
+      "human_normalized_text_with_anaphora": "запустить стишок пирожок"
+    },
+    "annotations": {
+      "censor_data": {
+        "classes": [
+          "politicians",
+          "obscene",
+          "model_response"
+        ],
+        "probas": [
+          0,
+          0,
+          0.008362430147826672
+        ]
+      },
+      "text_sentiment": {
+        "classes": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "probas": [
+          0.005426095332950354,
+          0.006146918050944805,
+          0.9884269833564758
+        ]
+      },
+      "asr_sentiment": {
+        "classes": [
+          "positive",
+          "neutral",
+          "negative"
+        ],
+        "probas": [
+          0.0056809983,
+          0.9937684,
+          0.00055058993
+        ]
+      },
+      "ner_prediction": [
+        {
+          "raw_text": "запусти",
+          "lemma": "запустить",
+          "normalized_token": null,
+          "ner_labels": {
+            "food": "O",
+            "main": "O",
+            "music": "O",
+            "odqa": "O",
+            "video": "O"
+          },
+          "ner_label_probas": {
+            "food": "1.0",
+            "main": "0.993",
+            "music": "1.0",
+            "odqa": "1.0",
+            "video": "1.0"
+          }
+        },
+        {
+          "raw_text": "стишки",
+          "lemma": "стишок",
+          "normalized_token": null,
+          "ner_labels": {
+            "food": "O",
+            "main": "O",
+            "music": "B-TRACK",
+            "odqa": "O",
+            "video": "O"
+          },
+          "ner_label_probas": {
+            "food": "0.986",
+            "main": "0.992",
+            "music": "0.558",
+            "odqa": "1.0",
+            "video": "0.998"
+          }
+        },
+        {
+          "raw_text": "пирожки",
+          "lemma": "пирожок",
+          "normalized_token": null,
+          "ner_labels": {
+            "food": "O",
+            "main": "I-ORG",
+            "music": "I-TRACK",
+            "odqa": "O",
+            "video": "O"
+          },
+          "ner_label_probas": {
+            "food": "0.771",
+            "main": "0.652",
+            "music": "0.869",
+            "odqa": "1.0",
+            "video": "0.993"
+          }
+        },
+        {
+          "raw_text": ".",
+          "lemma": ".",
+          "normalized_token": null,
+          "ner_labels": {
+            "food": "O",
+            "main": "O",
+            "music": "O",
+            "odqa": "O",
+            "video": "O"
+          },
+          "ner_label_probas": {
+            "food": "1.0",
+            "main": "1.0",
+            "music": "1.0",
+            "odqa": "1.0",
+            "video": "1.0"
+          }
+        }
+      ],
+      "normalized_entities": {
+        "main": {}
+      },
+      "unified_normalized_text": "запустить стишок пирожок ."
+    },
+    "selected_item": {},
+    "new_session": true,
+    "strategies": {
+      "last_call": null
+    },
+    "character": {
+      "id": "athena",
+      "name": "Афина",
+      "gender": "female",
+      "appeal": "official"
+    },
+    "asr": {
+      "hypotheses": [
+        {
+          "words": "запусти стишки пирожки",
+          "normalizedText": "Запусти стишки пирожки",
+          "extendedWords": [
+            {
+              "tokenType": 1,
+              "token": "запусти"
+            },
+            {
+              "tokenType": 1,
+              "token": "стишки"
+            },
+            {
+              "tokenType": 1,
+              "token": "пирожки"
+            }
+          ]
+        },
+        {
+          "words": "запусти стижки пирожки",
+          "normalizedText": "запусти стижки пирожки"
+        },
+        {
+          "words": "запусти стяжки пирожки",
+          "normalizedText": "запусти стяжки пирожки"
+        },
+        {
+          "words": "запусти стежки пирожки",
+          "normalizedText": "запусти стежки пирожки"
+        }
+      ],
+      "sentiment": {
+        "classes": [
+          "positive",
+          "neutral",
+          "negative"
+        ],
+        "probas": [
+          0.0056809983,
+          0.9937684,
+          0.00055058993
+        ]
+      }
+    },
+    "reverseGeocoding": {},
+    "applicationId": "a7e417a9-544c-4f1b-adc4-f6d5214897a6",
+    "appversionId": "15d4d67e-0792-4eb1-89d1-b312f1abaf05",
+    "projectName": "95874a74-32b3-4a84-b5cb-ce2f4de89330",
+    "device": {
+      "platformType": "android",
+      "platformVersion": "9",
+      "surface": "TIME",
+      "surfaceVersion": "1.78.8-volume-buttons",
+      "features": {
+        "appTypes": [
+          "APK",
+          "WEB_APP",
+          "DIALOG",
+          "CHAT_APP"
+        ]
+      },
+      "capabilities": {
+        "mic": {
+          "available": true
+        },
+        "screen": {
+          "available": true,
+          "height": 1080,
+          "scale_factor": 2,
+          "width": 1920
+        },
+        "speak": {
+          "available": true
+        },
+        "uiFamily": "TV"
+      },
+      "deviceId": "30304232500100000e311a09",
+      "deviceManufacturer": "SberDevices",
+      "deviceModel": "",
+      "additionalInfo": {}
+    },
+    "app_info": {
+      "projectId": "3da84959-aed6-4d41-838e-16348caccec0",
+      "applicationId": "a7e417a9-544c-4f1b-adc4-f6d5214897a6",
+      "appversionId": "15d4d67e-0792-4eb1-89d1-b312f1abaf05",
+      "systemName": null,
+      "frontendEndpoint": null,
+      "frontendType": "CHAT_APP",
+      "ageLimit": 0,
+      "affiliationType": "EXTERNAL"
+    },
+    "meta": {
+      "current_app": {},
+      "time": {
+        "timestamp": 1645434715106,
+        "timezone_id": "Asia/Omsk",
+        "timezone_offset_sec": 21600
+      },
+      "location": {},
+      "features": {
+        "screen": {
+          "enabled": false
+        },
+        "int_login": {
+          "enabled": true
+        },
+        "demo_mode": {
+          "enabled": false
+        }
+      },
+      "background_apps": [],
+      "child_mode": false
+    },
+    "client_profile": {
+      "aggregated_data": {}
+    },
+    "permitted_actions": []
+  },
+  "uuid": {
+    "userId": "4cf062ca-5215-4102-8159-c5dbb0c8222c",
+    "sub": "gYqcG+1AVXNkvw06dMv8CaV9jNUPh5VdUPc08NFZnTXcmDXT0HZS69i/SECoYYgLt/UIaKAcdDkwcG7WQAK/I7ANvSeCa2mImA7i46VMB5qzN+VDcXftvB6fHPZP9KlHvj/U6sUVs2Et9AbE5GO2UerblMn1trJTA6p7jSpG23o=",
+    "userChannel": "B2C"
+  }
+}

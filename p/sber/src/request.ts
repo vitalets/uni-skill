@@ -56,9 +56,11 @@ implements UniRequest<SberReqBody, SberResponse> {
       : (this.isRunApp() ? true : false);
   }
 
-  get hasScreen() {
-    // meta.features.screen.enabled?
-    return Boolean(this.body.payload.device.capabilities.screen?.available);
+  get hasScreen(): boolean {
+    return this.isMessageToSkill() || this.isRunApp()
+      ? Boolean(this.body.payload.meta?.features?.screen?.enabled)
+      // payload.meta не приходит в CLOSE_APP и SERVER_ACTION
+      : true;
   }
 
   get isAuthorized() { return Boolean(this.body.uuid.sub); }
