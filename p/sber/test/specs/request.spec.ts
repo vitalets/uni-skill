@@ -17,7 +17,7 @@ describe('sber request', () => {
   it('userMessage (MESSAGE_TO_SKILL, tap suggest)', async () => {
     const data = await import('../../data/request/message-to-skill_tap_suggest.json');
     const req = createRequest(data);
-    assert.equal(req.userMessage, 'сидеть в телефоне');
+    assert.equal(req.userMessage, 'дай два евро');
   });
 
   it('userMessage (MESSAGE_TO_SKILL, question) - удаляем знак вопроса', async () => {

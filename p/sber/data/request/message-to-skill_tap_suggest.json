@@ -1,64 +1,108 @@
 {
-  "messageId": 765251402,
-  "sessionId": "4f905737-3278-30cb-b6de-06d84e578ec6",
+  "messageId": 658334373,
+  "sessionId": "2f9e8c74-37c8-36d8-a295-583b220de25b",
   "messageName": "MESSAGE_TO_SKILL",
   "payload": {
     "intent": "run_app",
-    "original_intent": "axon",
+    "original_intent": "currency_converter",
     "intent_meta": {},
     "message": {
-      "original_text": "Сидеть в телефоне",
-      "normalized_text": "сидеть в телефон .",
+      "original_text": "дай два евро",
+      "normalized_text": "дать MONEY_TOKEN .",
       "tokenized_elements_list": [
         {
-          "text": "Сидеть",
-          "raw_text": "Сидеть",
+          "text": "дай",
+          "raw_text": "дай",
           "grammem_info": {
-            "aspect": "impf",
-            "transitivity": "intr",
-            "verbform": "inf",
-            "raw_gram_info": "aspect=impf|transitivity=intr|verbform=inf",
+            "aspect": "perf",
+            "mood": "imp",
+            "number": "sing",
+            "person": "2",
+            "transitivity": "tran",
+            "verbform": "fin",
+            "voice": "act",
+            "raw_gram_info": "aspect=perf|mood=imp|number=sing|person=2|transitivity=tran|verbform=fin|voice=act",
             "part_of_speech": "VERB"
           },
-          "lemma": "сидеть",
+          "lemma": "дать",
           "is_stop_word": false,
           "list_of_dependents": [
+            2,
             3
           ],
           "dependency_type": "root",
           "head": 0
         },
         {
-          "text": "в",
-          "raw_text": "в",
-          "grammem_info": {
-            "raw_gram_info": "",
-            "part_of_speech": "ADP"
+          "text": "2",
+          "raw_text": "2",
+          "lemma": "2",
+          "original_text": "два",
+          "token_type": "NUM_TOKEN",
+          "token_value": {
+            "value": 2,
+            "adjectival_number": false
           },
-          "lemma": "в",
+          "list_of_token_types_data": [
+            {
+              "token_type": "NUM_TOKEN",
+              "token_value": {
+                "value": 2,
+                "adjectival_number": false
+              }
+            }
+          ],
+          "grammem_info": {
+            "numform": "digit",
+            "raw_gram_info": "numform=digit",
+            "part_of_speech": "NUM"
+          },
           "is_stop_word": false,
           "list_of_dependents": [],
-          "dependency_type": "case",
-          "head": 3
+          "dependency_type": "nsubj",
+          "head": 1,
+          "is_beginning_of_composite": true,
+          "composite_token_type": "MONEY_TOKEN",
+          "composite_token_length": 2,
+          "composite_token_value": {
+            "amount": 2,
+            "currency": "eur"
+          }
         },
         {
-          "text": "телефоне",
-          "raw_text": "телефоне",
+          "text": "eur",
+          "raw_text": "евро",
           "grammem_info": {
-            "animacy": "inan",
-            "case": "loc",
+            "case": "gen",
             "gender": "masc",
             "number": "sing",
-            "raw_gram_info": "animacy=inan|case=loc|gender=masc|number=sing",
-            "part_of_speech": "NOUN"
+            "raw_gram_info": "case=gen|gender=masc|number=sing",
+            "part_of_speech": "X"
           },
-          "lemma": "телефон",
+          "lemma": "eur",
           "is_stop_word": false,
-          "list_of_dependents": [
-            2
+          "list_of_dependents": [],
+          "dependency_type": "obj",
+          "head": 1,
+          "token_type": "CCY_TOKEN",
+          "token_value": {
+            "value": "eur"
+          },
+          "list_of_token_types_data": [
+            {
+              "token_type": "CCY_TOKEN",
+              "token_value": {
+                "value": "eur"
+              }
+            }
           ],
-          "dependency_type": "obl",
-          "head": 1
+          "is_beginning_of_composite": false,
+          "composite_token_type": "MONEY_TOKEN",
+          "composite_token_length": 2,
+          "composite_token_value": {
+            "amount": 2,
+            "currency": "eur"
+          }
         },
         {
           "raw_text": ".",
@@ -78,11 +122,29 @@
           ]
         }
       ],
-      "entities": {},
+      "entities": {
+        "NUM_TOKEN": [
+          {
+            "value": 2,
+            "adjectival_number": false
+          }
+        ],
+        "MONEY_TOKEN": [
+          {
+            "amount": 2,
+            "currency": "eur"
+          }
+        ],
+        "CCY_TOKEN": [
+          {
+            "value": "eur"
+          }
+        ]
+      },
       "original_message_name": "MESSAGE_FROM_USER",
-      "human_normalized_text": "сидеть в телефон",
+      "human_normalized_text": "дать 2 eur",
       "asr_normalized_message": null,
-      "human_normalized_text_with_anaphora": "сидеть в телефон"
+      "human_normalized_text_with_anaphora": "дать 2 eur"
     },
     "annotations": {
       "censor_data": {
@@ -94,7 +156,7 @@
         "probas": [
           0,
           0,
-          0.00020907178986817598
+          0.002580214524641633
         ]
       },
       "text_sentiment": {
@@ -104,9 +166,9 @@
           "neutral"
         ],
         "probas": [
-          0.056776393204927444,
-          0.002968157408758998,
-          0.9402554035186768
+          0.006410859525203705,
+          0.002192271174862981,
+          0.9913968443870544
         ]
       },
       "asr_sentiment": {
@@ -115,8 +177,8 @@
       },
       "ner_prediction": [
         {
-          "raw_text": "Сидеть",
-          "lemma": "сидеть",
+          "raw_text": "дай",
+          "lemma": "дать",
           "normalized_token": null,
           "ner_labels": {
             "food": "O",
@@ -126,16 +188,16 @@
             "video": "O"
           },
           "ner_label_probas": {
-            "food": "1.0",
-            "main": "0.431",
-            "music": "0.996",
-            "odqa": "1.0",
-            "video": "0.994"
+            "food": "0.935",
+            "main": "0.996",
+            "music": "0.997",
+            "odqa": "0.975",
+            "video": "0.999"
           }
         },
         {
-          "raw_text": "в",
-          "lemma": "в",
+          "raw_text": "2",
+          "lemma": "2",
           "normalized_token": null,
           "ner_labels": {
             "food": "O",
@@ -145,16 +207,16 @@
             "video": "O"
           },
           "ner_label_probas": {
-            "food": "1.0",
-            "main": "0.77",
-            "music": "0.995",
-            "odqa": "1.0",
-            "video": "0.991"
+            "food": "0.986",
+            "main": "0.999",
+            "music": "0.984",
+            "odqa": "0.771",
+            "video": "0.989"
           }
         },
         {
-          "raw_text": "телефоне",
-          "lemma": "телефон",
+          "raw_text": "евро",
+          "lemma": "eur",
           "normalized_token": null,
           "ner_labels": {
             "food": "O",
@@ -165,10 +227,10 @@
           },
           "ner_label_probas": {
             "food": "1.0",
-            "main": "0.971",
+            "main": "0.992",
             "music": "0.992",
-            "odqa": "0.999",
-            "video": "0.993"
+            "odqa": "0.937",
+            "video": "0.998"
           }
         },
         {
@@ -194,7 +256,7 @@
       "normalized_entities": {
         "main": {}
       },
-      "unified_normalized_text": "сидеть в телефон ."
+      "unified_normalized_text": "дать 2 eur ."
     },
     "selected_item": {},
     "new_session": false,
@@ -261,27 +323,27 @@
     },
     "meta": {
       "current_app": {
-        "state": {},
         "app_info": {
-          "ageLimit": 18,
-          "frontendEndpoint": "None",
-          "applicationId": "1b3caf57-a37e-4caa-a582-6fbe84069295",
+          "frontendStateId": "cda2c4b9-a51e-409d-8b7c-5dedf7a3ded8_1b3caf57-a37e-4caa-a582-6fbe84069295_006404b2-8d69-435a-a1db-a7470f2eb87a",
+          "appversionId": "006404b2-8d69-435a-a1db-a7470f2eb87a",
           "appearance": {
             "header": {
               "title": "4cf4d40a-68e4-4fa7-99a9-bb9eec5873a5"
             }
           },
-          "affiliationType": "EXTERNAL",
-          "appversionId": "006404b2-8d69-435a-a1db-a7470f2eb87a",
+          "applicationId": "1b3caf57-a37e-4caa-a582-6fbe84069295",
           "projectId": "cda2c4b9-a51e-409d-8b7c-5dedf7a3ded8",
-          "frontendType": "CHAT_APP",
-          "frontendStateId": "cda2c4b9-a51e-409d-8b7c-5dedf7a3ded8_1b3caf57-a37e-4caa-a582-6fbe84069295_006404b2-8d69-435a-a1db-a7470f2eb87a"
-        }
+          "affiliationType": "EXTERNAL",
+          "frontendEndpoint": "None",
+          "ageLimit": 18,
+          "frontendType": "CHAT_APP"
+        },
+        "state": {}
       },
       "time": {
-        "timezone_id": "Europe/Moscow",
-        "timestamp": 1644917736379,
-        "timezone_offset_sec": 10800
+        "timestamp": 1645618010747,
+        "timezone_offset_sec": 10800,
+        "timezone_id": "Europe/Moscow"
       },
       "location": {},
       "features": {
