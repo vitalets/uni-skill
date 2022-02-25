@@ -60,6 +60,8 @@ implements UniResponse<SberResBody, SberRequest> {
 
   protected platformEndSession(value: boolean) {
     this.body.payload.finished = value;
+    // на всякий случай в Сбере еще auto_listening отключаем, т.к. не везде закрытие отрабатывает
+    if (value) this.body.payload.auto_listening = false;
   }
 
   protected initBody(): SberResBody {
