@@ -15,8 +15,8 @@
     "build": "tsc -b tsconfig.build.json"
   },
   "dependencies": {
-    "ask-sdk-core": "^2.12.0",
-    "ask-sdk-model": "^1.37.2"
+    "ask-sdk-core": "^2.12.1",
+    "ask-sdk-model": "^1.38.3"
   },
   "author": {
     "name": "Vitaliy Potapov"
