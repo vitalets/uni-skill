@@ -1,10 +1,17 @@
-import { GalleryCard } from '@salutejs/types';
+import { GalleryCard } from '@salutejs/scenario';
 import data from '../../data/request/message-to-skill.json';
 
 describe('sber response', () => {
-  it('main props', () => {
+  it('main props (ANSWER_TO_USER)', () => {
     const res = createResponse(data);
     assert.equal(res.platform, 'sber', 'platform');
+    assert.equal(res.body.messageName, 'ANSWER_TO_USER');
+  });
+
+  it('main props (CALL_RATING)', () => {
+    const res = createResponse(data);
+    res.body.messageName = 'CALL_RATING';
+    assert.equal(res.body.messageName, 'CALL_RATING');
   });
 
   it('isMale', () => {

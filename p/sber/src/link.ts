@@ -1,4 +1,4 @@
-import { CardCommand, ButtonCellView, PlatformType } from '@salutejs/types';
+import { CardCommand, ButtonCellView, PlatformType } from '@salutejs/scenario';
 import { Link } from '@uni-skill/core';
 
 export function getLinkItem({ title, url }: Link, platformType: PlatformType): CardCommand {

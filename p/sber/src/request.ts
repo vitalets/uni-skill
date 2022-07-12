@@ -3,7 +3,14 @@
  */
 import { UniRequest, BaseRequest, Platform } from '@uni-skill/core';
 import { SberResponse } from './response';
-import { SberReqBody, NLPRequestMTS, NLPRequestСA, NLPRequestRA, NLPRequestSA } from './types';
+import {
+  SberReqBody,
+  NLPRequestMTS,
+  NLPRequestСA,
+  NLPRequestRA,
+  NLPRequestSA,
+  NLPRequestRR,
+} from './request.types';
 
 export class SberRequest
 extends BaseRequest<SberReqBody, SberResponse>
@@ -42,17 +49,22 @@ implements UniRequest<SberReqBody, SberResponse> {
   }
 
   get clientInfo() {
-    const { platformType, platformVersion, deviceModel, surface, surfaceVersion } = this.body.payload.device;
-    return [
-      `${platformType} ${platformVersion}`,
-      `${deviceModel}`,
-      `${surface} ${surfaceVersion}`,
-    ].join('; ');
+    const { device } = this.body.payload;
+    if (device) {
+      const { platformType, platformVersion, deviceModel, surface, surfaceVersion } = device;
+      return [
+        `${platformType} ${platformVersion}`,
+        `${deviceModel}`,
+        `${surface} ${surfaceVersion}`,
+      ].join('; ');
+    } else {
+      return `unknown device for ${this.body.messageName}`;
+    }
   }
 
   get isNewSession(): boolean {
     return this.isMessageToSkill() || this.isEndSession()
-      ? this.body.payload.new_session
+      ? Boolean(this.body.payload.new_session)
       : (this.isRunApp() ? true : false);
   }
 
@@ -97,5 +109,9 @@ implements UniRequest<SberReqBody, SberResponse> {
 
   isRunApp(): this is this & { body: NLPRequestRA } {
     return this.body.messageName === 'RUN_APP';
+  }
+
+  isRatingResult(): this is this & { body: NLPRequestRR } {
+    return this.body.messageName === 'RATING_RESULT';
   }
 }

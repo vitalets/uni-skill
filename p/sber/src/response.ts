@@ -1,7 +1,7 @@
 /**
  * Sber response.
  */
-import { Button, NLPResponseATU } from '@salutejs/types';
+import { Button, NLPResponseATU } from '@salutejs/scenario';
 import {
   UniResponse,
   BaseResponse,
@@ -13,11 +13,11 @@ import { SberRequest } from './request';
 import { getImageItem } from './image';
 import { getLinkItem } from './link';
 import { convertSsmlForSber } from './ssml';
+import { NLPResponseCR } from './rating';
 
-// todo: support other messageNames, not only NLPResponseATU
+// todo: support other messageNames
 
-// Use fake Omit to have 'SberResBody' in ts messages.
-export type SberResBody = Omit<NLPResponseATU, ''>;
+export type SberResBody = NLPResponseATU | NLPResponseCR;
 
 export class SberResponse
 extends BaseResponse<SberResBody, SberRequest>
@@ -52,7 +52,7 @@ implements UniResponse<SberResBody, SberRequest> {
   }
 
   protected platformAddLinks(links: Link[]) {
-    const { platformType } = this.body.payload.device;
+    const { platformType } = this.body.payload.device!;
     for (const link of links) {
       this.body.payload.items.push(getLinkItem(link, platformType));
     }

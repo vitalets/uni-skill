@@ -14,7 +14,7 @@
     "build": "tsc -b tsconfig.build.json"
   },
   "dependencies": {
-    "@salutejs/types": "^0.7.0",
+    "@salutejs/scenario": "^0.26.0",
     "@uni-skill/core": "^4.10.1"
   },
   "author": {

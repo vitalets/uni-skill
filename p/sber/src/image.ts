@@ -1,4 +1,4 @@
-import { CardCommand, GalleryItem, ImageView, Margins1, TextView } from '@salutejs/types';
+import { CardCommand, GalleryItem, Margins, ImageView, TextView } from '@salutejs/scenario';
 import { Image } from '@uni-skill/core';
 
 export function getImageItem({
@@ -34,7 +34,7 @@ function getImage(url: string, hash: string, aspect_ratio: number): ImageView {
   };
 }
 
-function getMargins(): Margins1 {
+function getMargins(): Margins {
   return {
     top: '5x',
     left: '5x',
