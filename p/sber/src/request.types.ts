@@ -7,7 +7,7 @@ import {
   NLPRequestMTS as NLPRequestMTSOrig,
   NLPRequestСA as NLPRequestСAOrig,
   NLPRequestRA as NLPRequestRAOrig,
-  NLPRequestSA,
+  NLPRequestSA as NLPRequestSAOrig,
   Device
 } from '@salutejs/scenario';
 import { NLPRequestRR } from './rating';
@@ -27,8 +27,13 @@ export type NLPRequestRA = NLPRequestRAOrig & {
   payload: PayloadWithAsr & PayloadWithMeta & PayloadWithDevice;
 }
 
-// SERVER_ACTION, RATING_RESPONSE
-export { NLPRequestSA, NLPRequestRR };
+// SERVER_ACTION
+export type NLPRequestSA = NLPRequestSAOrig & {
+  payload: PayloadWithDevice;
+}
+
+// RATING_RESPONSE
+export { NLPRequestRR };
 
 export type SberReqBody = NLPRequestMTS | NLPRequestСA | NLPRequestRA | NLPRequestSA | NLPRequestRR;
 
@@ -45,7 +50,8 @@ interface PayloadWithAsr {
 }
 
 // Поле device в какой-то момент сделали опциональным для всех типов сообщений.
-// А нужно четко поделить, когда оно приходит, когда нет.
+// Хотя я пока не увидел сообщений, где его нет.
+// See: https://github.com/salute-developers/salutejs/issues/11
 export interface PayloadWithDevice {
   device: Device
 }
