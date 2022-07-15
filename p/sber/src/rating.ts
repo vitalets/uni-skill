@@ -9,16 +9,28 @@ export type NLPResponseCR = Omit<NLPResponseATU, 'messageName'> & { messageName:
 
 // RATING_RESULT
 export type NLPRequestRR = NLPRequestBody<'RATING_RESULT', RRPayload & PayloadWithDevice>;
-export type RRPayload = SharedRequestPayload & ({
+export type RRPayload = SharedRequestPayload & (RRPayloadSuccess | RRPayloadSkip | RRPayloadForbidden)
+
+export type RRPayloadSuccess = {
   rating: {
-    estimation: number;
+    estimation: 1 | 2 | 3 | 4 | 5;
   }
   status_code: {
     code: 1,
     description: 'SUCCESS'
   }
-} | {
-  status_code: { code: 101, description: 'SKIP BY USER' }
-} | {
-  status_code: { code: 104, description: 'FORBIDDEN' }
-})
+}
+
+export type RRPayloadSkip = {
+  status_code: {
+    code: 101,
+    description: 'SKIP BY USER'
+  }
+}
+
+export type RRPayloadForbidden = {
+  status_code: {
+    code: 104,
+    description: 'FORBIDDEN'
+  }
+}
