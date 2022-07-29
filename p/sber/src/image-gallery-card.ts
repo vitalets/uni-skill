@@ -1,3 +1,7 @@
+/**
+ * Вставка изображения через gallery-card.
+ * НЕ ИСПОЛЬЗУЕТСЯ. Вместо него list-card.
+ */
 import { CardCommand, GalleryItem, Margins, ImageView, TextView } from '@salutejs/scenario';
 import { Image } from '@uni-skill/core';
 

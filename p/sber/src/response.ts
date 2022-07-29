@@ -10,7 +10,8 @@ import {
   concatWithSpace,
 } from '@uni-skill/core';
 import { SberRequest } from './request';
-import { getImageItem } from './image';
+// import { getImageItem } from './image';
+import { getImageItem } from './image-list-card';
 import { getLinkItem } from './link';
 import { convertSsmlForSber } from './ssml';
 import { NLPResponseCR } from './rating';

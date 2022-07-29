@@ -1,4 +1,4 @@
-import { GalleryCard } from '@salutejs/scenario';
+import { ListCard } from '@salutejs/scenario';
 import data from '../../data/request/message-to-skill.json';
 
 describe('sber response', () => {
@@ -78,15 +78,34 @@ describe('sber response', () => {
     assert.deepEqual(res.body.payload.finished, true);
   });
 
-  it('image', () => {
+  it('image with title and description', () => {
     const res = createResponse(data);
     const imageId = 'https://image.png|hash12345';
     res.addImage({ imageId, title: 'картинка', description: 'описание', ratio: 0.5 });
-    const imgItem = (res.body.payload.items[0].card as GalleryCard).items[0];
-    assert.deepInclude(imgItem.image, { url: 'https://image.png', hash: 'hash12345' });
-    assert.deepInclude(imgItem.image, { size: { aspect_ratio: 0.5, width: 'large' }});
-    assert.deepInclude(imgItem.top_text, { text: 'картинка' });
-    assert.deepInclude(imgItem.bottom_text, { text: 'описание' });
+    const card = res.body.payload.items[0].card as ListCard;
+    assert.lengthOf(card.cells, 3);
+    assert.deepInclude(card.cells[0].content, { url: 'https://image.png', hash: 'hash12345' });
+    assert.deepInclude(card.cells[0].content, { size: { aspect_ratio: 0.5, width: 'resizable' }});
+    assert.deepInclude(card.cells[1].content, { text: 'картинка' });
+    assert.deepInclude(card.cells[2].content, { text: 'описание' });
+  });
+
+  it('image with only title', () => {
+    const res = createResponse(data);
+    const imageId = 'https://image.png|hash12345';
+    res.addImage({ imageId, title: 'картинка', ratio: 0.5 });
+    const card = res.body.payload.items[0].card as ListCard;
+    assert.lengthOf(card.cells, 2);
+    assert.deepInclude(card.cells[1].content, { text: 'картинка' });
+  });
+
+  it('image with only description', () => {
+    const res = createResponse(data);
+    const imageId = 'https://image.png|hash12345';
+    res.addImage({ imageId, description: 'описание', ratio: 0.5 });
+    const card = res.body.payload.items[0].card as ListCard;
+    assert.lengthOf(card.cells, 2);
+    assert.deepInclude(card.cells[1].content, { text: 'описание' });
   });
 
   it('text + image + text', () => {
@@ -97,11 +116,11 @@ describe('sber response', () => {
     res.addText('как дела');
 
     assert.deepEqual(res.body.payload.items[0], { bubble: { text: 'привет' } });
-    const imgItem = (res.body.payload.items[1].card as GalleryCard).items[0];
-    assert.deepInclude(imgItem.image, { url: 'https://image.png', hash: 'hash12345' });
-    assert.deepInclude(imgItem.image, { size: { aspect_ratio: 0.5, width: 'large' }});
-    assert.deepInclude(imgItem.top_text, { text: 'картинка' });
-    assert.deepInclude(imgItem.bottom_text, { text: 'описание' });
+    const card = res.body.payload.items[1].card as ListCard;
+    assert.deepInclude(card.cells[0].content, { url: 'https://image.png', hash: 'hash12345' });
+    assert.deepInclude(card.cells[0].content, { size: { aspect_ratio: 0.5, width: 'resizable' }});
+    assert.deepInclude(card.cells[1].content, { text: 'картинка' });
+    assert.deepInclude(card.cells[2].content, { text: 'описание' });
     assert.deepEqual(res.body.payload.items[2], { bubble: { text: 'как дела' } });
   });
 
@@ -109,11 +128,11 @@ describe('sber response', () => {
     const res = createResponse(data);
     res.addImage({ imageId: 'foo|bar', title: 'картинка', description: 'описание', ratio: 0.5 });
     // @ts-expect-error card is unknown
-    res.body.payload.items[0].card.items[0].image.size.width = 'resizable';
+    res.body.payload.items[0].card.cells[0].content.size.width = 'large';
     res.addText('привет');
     // @ts-expect-error card is unknown
-    assert.deepInclude(res.body.payload.items[0].card.items[0].image, {
-      size: { aspect_ratio: 0.5, width: 'resizable' }
+    assert.deepInclude(res.body.payload.items[0].card.cells[0].content, {
+      size: { aspect_ratio: 0.5, width: 'large' }
     });
   });
 
